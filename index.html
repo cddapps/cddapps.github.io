@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Highdmin - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>Bsai</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -16,6 +16,9 @@
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        
+        
         <script src="assets/js/modernizr.min.js"></script>
 
     </head>
@@ -110,11 +113,8 @@
                             <li>
                                 <div class="page-title-box">
                                     <h4 class="page-title" id="userAddress">n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</h4>
-                                    <ol class="breadcrumb" id="registered" style="display: none">
-                                        <li class="breadcrumb-item active">您的可用资金：$ <span id="userBalance">10000</span></li>
-                                    </ol>
-                                    <ol class="breadcrumb" id="unregistered" style="display: none">
-                                        <li class="breadcrumb-item active">您还没有参加本轮比赛，<a href="#" onclick="showHome()">点击报名</a></span></li>
+                                    <ol class="breadcrumb" id="register">
+                                        <li class="breadcrumb-item active">欢迎来到交易大赛</span></li>
                                     </ol>
                                 </div>
                             </li>
@@ -177,7 +177,7 @@
                                     <div class="row m-b-20">
                                         <div class="col-sm-4"> </div>
                                         <div class="col-sm-4">   
-                                            <button type="submit" class="btn btn-block btn-success waves-effect waves-light">
+                                            <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()">
                                                 我要报名
                                             </button>   
                                         </div>
@@ -238,14 +238,25 @@
                                         <div class="row m-b-20">
                                             <div class="col-sm-4"> </div>
                                             <div class="col-sm-4">   
-                                                <button type="submit" class="btn btn-block btn-success waves-effect waves-light">
+                                                <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()">
                                                     我要报名
                                                 </button>   
                                             </div>
                                             <div class="col-sm-4"> </div>
                                         </div>
                                     
+                                </div>
+                                <div id="homeText" style="display: none">
+                                    <div class="card m-b-30 text-white bg-primary text-xs-center">
+                                        <div class="card-body">
+                                            <blockquote class="card-bodyquote" id="tradeAlert">
+                                                <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                                                <p>
+                                                </p>
+                                            </blockquote>
+                                        </div>
                                     </div>
+                                </div>
                             </div>
 
                             <div class="col-lg-8" id="trade"  style="display: none">
@@ -671,8 +682,25 @@
 
 
                 <footer class="footer text-right">
-                    2018 © Highdmin. - Coderthemes.com
+                    2018 © Bsai - powered by nebulas.
                 </footer>
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+                            </div>
+                            <section>
+                                <div class="modal-body modal-spa">
+                                    <div class="writ", id="newWindow">
+                                        <h4>请在浏览器插件中完成操作！</h4>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
@@ -720,6 +748,7 @@
             //var netWork = "https://testnet.nebulas.io"
             neb.setRequest(new HttpRequest(netWork));
 
+            var intervalQuery;
             var register = 0;
             var currentPrice;
             var userWallet =new Array();
@@ -768,13 +797,13 @@
                         }).then(function (resp) {
                             var result = JSON.parse(resp.result)
                             if(result == null){
-                                document.getElementById("userBalance").innerText = 0;
-                                document.getElementById("unregistered").style.display = 'inline'
+                                document.getElementById("register").innerHTML = `
+                                <li class="breadcrumb-item active">您还没有参加本轮比赛 <a href="#" onclick="showHome()">点击报名</a></li>`
                             } else {
                                 register = 1;
                                 var balance = result.balance;
-                                document.getElementById("userBalance").innerText = balance;
-                                document.getElementById("unregistered").style.display = 'inline'
+                                document.getElementById("register").innerHTML = `
+                                <li class="breadcrumb-item active">您的可用资金：$ <span id="userBalance">${balance}</span></li>`
                                 // 用户货币列表，需要存储在本地，在钱包里展示
                                 var coinList = result.coinList;
                                 if (coinList){
@@ -801,15 +830,75 @@
                 })
             }
             
+            function login() {
+                var to = contractAddress;
+                var value = 0;
+                var callFunction = "register";
+                var callArgs =  JSON.stringify([]);
+                var options = {
+                    listener: function (resp) {
+                        console.log(resp)
+                        var txhash = resp.txhash
+                        if (typeof(txhash) == "undefined"){
+                            document.getElementById("tradeAlert").innerHTML = `
+                            <h3 class="m-b-20 text-center">您已取消交易，即将刷新页面重新开始！</h4>
+                            <p></p>`
+                            alert("您已取消交易！")
+                            setTimeout(window.location.reload(), 1000)
+                        } else {
+                            intervalQuery = setInterval(function() {
+                                loginQuery(txhash);
+                            }, 3000);
+                        }
+                    }
+                }
+                //发送交易(发起智能合约调用)
+                nebPay.call(to, value, callFunction, callArgs, options);
+                document.getElementById('matchRule').style.display = 'none'
+                document.getElementById('homeText').style.display = ''
+                document.getElementById("tradeAlert").innerHTML = `
+                <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                <p></p>`
+            }
+
+            function loginQuery(txhash) {
+                document.getElementById("tradeAlert").innerHTML = `
+                        <h3 class="m-b-20 text-center">正在查询报名结果，请稍等。。。</h4>
+                        <p></p>`
+                receiptTransaction(txhash).then(function(resp){
+                    var respObject = resp;
+                    console.log(respObject)
+                    if (respObject.status == 1){
+                        clearInterval(intervalQuery);
+                        document.getElementById("tradeAlert").innerHTML = `
+                        <h3 class="m-b-20 text-center">报名成功，3秒后将刷新页面重新开始！</h4>
+                        <p></p>`
+                        setTimeout(window.location.reload(), 10000)
+                    } else if (respObject.status == 0) {
+                        clearInterval(intervalQuery);
+                        var result = respObject.execute_result;
+                        if (result == 'Error: You have registered'){
+                            document.getElementById("tradeAlert").innerHTML = `
+                            <h3 class="m-b-20 text-center">报名失败了！</h4>
+                            <p class="text-center">本轮比赛您已经报过名了，请不要重复报名！</p>`
+                        } else {
+                            document.getElementById("tradeAlert").innerHTML = `
+                            <h3 class="m-b-20 text-center">报名失败了！</h4>
+                            <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
+                            <p>${txhash}</p>`
+                        }  
+                    }
+                }).catch(function(err){
+                    clearInterval(intervalQuery);
+                    document.getElementById("tradeAlert").innerHTML = `
+                        <h3 class="m-b-20 text-center">报名失败了！</h4>
+                        <p>您可以根据以下哈希，再次确认您的交易状态:</p>
+                        <p>${txhash}</p>`
+                })
+            }
+            
             function updatePrice() {
             
-            }
-            function coinPrice(value){
-                document.getElementById("currentPrice").innerText = value
-                document.getElementById("coinAmount").value = ""
-                document.getElementById("coinValue").value = ""
-                currentPrice = value
-                console.log(value)
             }
 
             function getPrice() {
@@ -844,15 +933,15 @@
                                 <span class="text-danger">-1.22%</span>
                             </td>
                             `
-                            document.getElementById('btcPrice').onclick = this.coinPrice(btcValue);
-                            /*
                             document.getElementById('btcPrice').onclick = function(){
+                                showTrade()
                                 document.getElementById("currentPrice").innerText = btcValue
                                 document.getElementById("coinAmount").value = ""
                                 document.getElementById("coinValue").value = ""
                                 currentPrice = btcValue
                                 console.log(btcValue)
-                            }*/
+                                
+                            }
                             break;
                         case "eth":
                             var ethValue = coin.value;
@@ -868,6 +957,7 @@
                             </td>
                             `
                             document.getElementById('ethPrice').onclick = function(){
+                                showTrade()
                                 document.getElementById("currentPrice").innerText = ethValue
                                 document.getElementById("coinAmount").value = ""
                                 document.getElementById("coinValue").value = ""
@@ -895,14 +985,14 @@
                     $('#coinAmount').val(b);  
                 }); 
             })
-            
-            
+              
             function showHome() {
                 
                 document.getElementById("home").style.display = 'inline';
                 document.getElementById("trade").style.display = 'none';
                 document.getElementById("wallet").style.display = 'none';
                 document.getElementById("rank").style.display = 'none';
+                document.getElementById('homeText').style.display = 'none'
                 
             }
             
@@ -914,6 +1004,7 @@
                     document.getElementById("home").style.display = 'none';
                     document.getElementById("wallet").style.display = 'none';
                     document.getElementById("rank").style.display = 'none';
+                    document.getElementById('homeText').style.display = 'none'
                 }
             }
 
@@ -925,6 +1016,7 @@
                     document.getElementById("home").style.display = 'none';
                     document.getElementById("trade").style.display = 'none';
                     document.getElementById("rank").style.display = 'none';
+                    document.getElementById('homeText').style.display = 'none'
                 }
             }
 
@@ -933,7 +1025,20 @@
                 document.getElementById("home").style.display = 'none';
                 document.getElementById("trade").style.display = 'none';
                 document.getElementById("wallet").style.display = 'none';
+                document.getElementById('homeText').style.display = 'none'
             }
+
+            function receiptTransaction(txhash) {
+                var promise = new Promise(function(resolve, reject){
+                    neb.api.getTransactionReceipt(txhash).then(function (resp) {
+                        resolve(resp);
+                    }).catch(function(err) {
+                        console.log(err);
+                    });
+                });
+                return promise
+            }
+
         </script>
 
 

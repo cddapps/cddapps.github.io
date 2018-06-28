@@ -6011,4 +6011,21 @@ h3.timeline-title {
     display: none;
   }
 }
+
+.modal-header {
+  border-bottom: 1px solid #fff !important;
+}
+
+.writ {
+  padding: 0 2em 3em;
+}
+
+.writ h4 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 0.5em;
+  padding: 0 0 0.5em 0;
+  color: #28a745;
+  font-weight: 600;
+}
 /*# sourceMappingURL=style.css.map */
