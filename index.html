@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Highdmin - Responsive Bootstrap 4 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="assets/js/modernizr.min.js"></script>
+
+    </head>
+
+
+    <body onload="getPrice();loadAccount()">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+
+                <div class="slimscroll-menu" id="remove-scroll">
+
+                    <!-- LOGO -->
+                    <div class="topbar-left">
+                        <a href="index.html" class="logo">
+                            <span>
+                                <img src="assets/images/logo.bmp" alt="" height="22">
+                            </span>
+                            <i>
+                                <img src="assets/images/logo_sm.png" alt="" height="28">
+                            </i>
+                        </a>
+                    </div>
+
+                    <!-- User box -->
+                    <div class="user-box">
+                        <!--
+                        <div class="user-img">
+                            <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                        </div>
+                        
+                        <h5><a href="#">Maxine Kennedy</a> </h5>
+                        <p class="text-muted">Admin Head</p>
+                        -->
+                    </div>
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+
+                        <ul class="metismenu" id="side-menu">
+
+                            <!--<li class="menu-title">Navigation</li>-->
+
+                            <li>
+                                <a href="#" onclick="showHome()"><i class="fi-layers"></i> <span> 网站首页 </span></a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showWallet()"><i class="fi-layers"></i> <span> 我的钱包 </span> </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showTrade()"><i class="fi-layers"></i> <span> 交易大赛 </span></a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showRank()"><i class="fi-layers"></i> <span> 比赛排行 </span></a>
+                            </li>
+                           
+
+                        </ul>
+
+                    </div>
+                    <!-- Sidebar -->
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+
+                <!-- Top Bar Start -->
+                <div class="topbar">
+
+                    <nav class="navbar-custom">
+
+                        <ul class="list-inline menu-left mb-0">
+                            <li class="float-left">
+                                <button class="button-menu-mobile open-left disable-btn">
+                                    <i class="dripicons-menu"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <div class="page-title-box">
+                                    <h4 class="page-title" id="userAddress">n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</h4>
+                                    <ol class="breadcrumb" id="registered" style="display: none">
+                                        <li class="breadcrumb-item active">您的可用资金：$ <span id="userBalance">10000</span></li>
+                                    </ol>
+                                    <ol class="breadcrumb" id="unregistered" style="display: none">
+                                        <li class="breadcrumb-item active">您还没有参加本轮比赛，<a href="#" onclick="showHome()">点击报名</a></span></li>
+                                    </ol>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+                <!-- Top Bar End -->
+
+
+                <!-- Start Page content -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="col-lg-8" id="home">
+                                <div class="card-box">
+                                    <h4 class="m-b-20 text-center">比特币模拟交易器</h4>
+
+                                    <p class="text-muted">
+                                        BSAI.IO是一款免费的比特币/加密货币在线模拟交易工具。在这里，你可以使用真实的市场价格来模拟交易任何主流加密货币。
+                                    </p>
+
+                                    <p class="text-muted">
+                                        我们希望这款工具可以帮助人们在没有任何风险的情况下了解如何交易比特币以及其它加密货币，同时也能真实的体会到投资加密货币的风险和利润。
+                                    </p>
+
+                                    <p class="text-muted">
+                                            总之，我们希望为每一位投资者带去最真实的交易体验。
+                                    </p>
+
+                                    <h4 class="m-b-20 text-center">BSAI免费模拟交易大赛</h4>
+
+                                    <p class="text-muted">
+                                        我们开设了免费的模拟交易大赛通道。用户在使用我们的模拟交易工具的同时，也参与了我们的交易比赛。一旦你获得当期比赛的名次，你还可以获得真实的比特币奖金- 奖金高达1BTC
+                                    </p>
+
+                                    <p class="text-muted">
+                                        每期的模拟交易大赛以不间断的形式持续展开，你可以在任何时刻参与到最新的比赛中来
+                                    </p>
+
+                                    <p class="text-muted">
+                                        记住，不断的去了解加密货，不断的去改变你的交易策略。你一定会取得不错的成绩，赢得我们的奖金
+                                    </p>
+
+                                    <p class="m-b-30"></p>
+                                    
+                                    <div class="row m-b-20">
+                                        <div class="col-sm-4"> </div>
+                                        <div class="col-sm-4 text-center">   
+                                            <a href="#" onclick="document.getElementById('matchRule').style.display = '';">点击查看交易大赛详细说明</a>  
+                                        </div>
+                                        <div class="col-sm-4"> </div>
+                                    </div>
+
+                                    <p class="m-b-30"></p>
+
+                                    <div class="row m-b-20">
+                                        <div class="col-sm-4"> </div>
+                                        <div class="col-sm-4">   
+                                            <button type="submit" class="btn btn-block btn-success waves-effect waves-light">
+                                                我要报名
+                                            </button>   
+                                        </div>
+                                        <div class="col-sm-4"> </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="card-box" id="matchRule" style="display: none">
+                                        <h3 class="m-b-20 text-center">交易大赛详细说明</h4>
+                                        <p>
+                                                BSAI模拟交易大赛公平公正，所有参赛用户的初始资金为$10000，点击“开始比赛”，即可实时参与当期交易大赛。您可根据您的交易策略，选择你喜欢的加密货币，进行模拟的买卖从而获取利润, 每期比赛周期为1周。
+                                        </p>
+    
+                                        <h4 class="m-b-20">每期比赛时间</h4>
+                                        <p>
+                                                比赛周期为 10 天，”比赛倒计时” 记录当前比赛所剩时间。 <br>
+                                                每期不会间断，你可以在任何时间报名参与比赛，当然，越早越有优势。
+                                        </p>
+
+                                        <h4 class="m-b-20">每期比赛奖励</h4>
+                                        <p>
+                                                第1名—$599<br>
+                                                第2名—$299<br>
+                                                第3名—$199<br>
+                                                第4名—$99<br>
+                                                第5名—$50<br>
+                                                第6名—$20<br>
+                                                第7名—$15<br>
+                                                第8名—$10<br>
+                                                第9名—$9<br>
+                                                第10名—$8<br>
+                                        </p>
+
+                                        <h4 class="m-b-20">支付说明</h4>
+                                        <p>
+                                            一旦你获得排名，系统将会在3个工作日内，将相应的奖励，以比特币的方式，发送至你的BTC地址。
+                                        </p>
+
+                                        <h4 class="m-b-20 text-danger">注意事项 ( 必须阅读)</h4>
+                                        <p>
+                                            1.我们的排行榜最终只会以 美金余额 来统计。这意味着，你必须在每期比赛结束前，卖出你所有的加密货币。 一旦你获得排名，系统将会在3个工作日内，将相应的奖励以比特币的方式发送至你的预留账户内。
+                                        </p>
+                                        <p>
+                                            举个例子: <br>
+                                            此时你账户有1.2BTC和$500。如果在比赛倒计时归0前，你还没有将你的比特币换成美金，一旦本期比赛结束，我们只能用你的$500来统计你的排名。
+                                        </p>
+                                        <p>
+                                            2.在每次比赛中，你必至少完成1次交易，如果你在报名后，比赛中没有任何交易记录，你的账户将不会被计入到排行榜中。
+                                        </p>
+
+                                        <h4 class="m-b-20">联系我们</h4>
+                                        <p>
+                                            如果你有其它问题，欢迎加入QQ群：545239942 或发送email至 admin@bsai.io
+                                        </p>
+
+                                        <p class="m-b-30"></p>
+
+                                        <div class="row m-b-20">
+                                            <div class="col-sm-4"> </div>
+                                            <div class="col-sm-4">   
+                                                <button type="submit" class="btn btn-block btn-success waves-effect waves-light">
+                                                    我要报名
+                                                </button>   
+                                            </div>
+                                            <div class="col-sm-4"> </div>
+                                        </div>
+                                    
+                                    </div>
+                            </div>
+
+                            <div class="col-lg-8" id="trade"  style="display: none">
+                                <div class="card-box">
+                                    <!-- <h4 class="m-t-0 header-title">Total Wallet Balance</h4> -->
+
+                                    <div class="row text-center">
+                                        <div class="col-sm-3 col-lg-3 col-xl-3"></div>
+                                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                                            <div class="card-box tilebox-one">
+                                                <h6 class="text-muted text-uppercase mt-0">BTC</h6>
+                                                <h2 class="m-b-20">$<span data-plugin="counterup" id="currentPrice">46,782</span></h2>
+                                                <span class="text-muted">24小时涨跌幅：</span>
+                                                <span id="currentRate"><span class="badge badge-danger">-29%</span></span> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-lg-3 col-xl-3"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-row col-sm-12">
+                                            <div class="form-group col-md-6">
+                                                    <label for="inputEmail4" class="col-form-label">数量 <span>BTC</span> </label>
+                                                    <input type="text" class="form-control" id="coinAmount" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                    <label for="inputEmail4" class="col-form-label">金额 <span>USD</span> </label>
+                                                    <input type="text" class="form-control" id="coinValue" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-row col-sm-12">
+                                            <div class="form-group col-md-6">
+                                                    <a href="#" class="btn btn-block btn-custom waves-effect waves-light">买入</a>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                    <a href="#" class="btn btn-block btn-danger waves-effect waves-light">卖出</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card m-b-30 text-white bg-primary text-xs-center">
+                                                <div class="card-body">
+                                                    <blockquote class="card-bodyquote">
+                                                        <p>特别须知：</p>
+                                                        <p>1. 每周排行仅统计当前美金余额，比赛截止前请自行卖出持有虚拟币。</p>
+                                                        <p>2.为防止恶意刷单/超短线下单，每笔卖出交易将会扣除1.5%的手续费。</p>
+                                                        <p>3.频繁短线，刷单的盈利会被清除。此类交易不符合设计初衷以及真实市场情况，请勿滥用。</p>
+                                                        <p>4.如果你有更多的问题，请查看我们常见问题或联系我们。</p>
+                                            
+                                                    </blockquote>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-8"  id="wallet" style="display: none">
+                                <div class="card-box">
+                                    <h4 class="header-title mb-3">我的总资产: <span>$20000</span> </h4>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-centered m-0">
+                                            <thead>
+                                            <tr>
+                                                <th>币种</th>
+                                                <th>数量</th>
+                                                <th>交易</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    BTC
+                                                </td>
+
+                                                <td>
+                                                    2.1
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-sm btn-custom">交易</i></a>
+                                                </td>
+                                            </tr>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-8"  id="rank" style="display: none">
+                                <div class="card-box">
+
+                                    <h4 class="header-title mb-3 text-center">我的总资产: <span>$20000</span> </h4>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-centered m-0">
+                                            <thead>
+                                            <tr>
+                                                <th>账户地址</th>
+                                                <th>排名</th>
+                                                <th>资金</th>
+                                                <th>盈亏</th>
+                                                <th>奖金</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                <td>1</td>
+                                                <td>$17000</td>
+                                                <td>83%</td>
+                                                <td>100NAS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                <td>1</td>
+                                                <td>$17000</td>
+                                                <td>83%</td>
+                                                <td>100NAS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                <td>1</td>
+                                                <td>$17000</td>
+                                                <td>83%</td>
+                                                <td>100NAS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                <td>1</td>
+                                                <td>$17000</td>
+                                                <td>83%</td>
+                                                <td>100NAS</td>
+                                            </tr>
+                                            <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
+                                                    <td>1</td>
+                                                    <td>$17000</td>
+                                                    <td>83%</td>
+                                                    <td>100NAS</td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4">
+                                <div class="card-box">
+                                    <h4 class="header-title mb-3 text-center">交易列表</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-centered m-0">
+                                            <thead>
+                                            <tr>
+                                                <th>币种</th>
+                                                <th>价格</th>
+                                                <th>24H涨跌</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr id="btcPrice" onclick="">
+                                                <td>
+                                                    <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                </td>
+                                                <td id="btcPrice">
+                                                    $6000
+                                                </td>
+                                                <td id="btcRate">
+                                                    <span class="text-danger">-1.22%</span>
+                                                </td>
+                                            </tr>
+                                            <tr id="ethPrice" onclick="">
+                                                <td>
+                                                    <i class="mdi mdi-currency-eth text-primary"></i> ETH
+                                                </td>
+                                                <td id="ethPrice">
+                                                    $6000
+                                                </td>
+                                                <td id="ethRate">
+                                                    <span class="text-danger">-1.22%</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                </td>
+
+                                                <td>
+                                                    $6000
+                                                </td>
+
+                                                <td>
+                                                    <span class="text-danger">-1.22%</span>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                </td>
+
+                                                <td>
+                                                    $6000
+                                                </td>
+
+                                                <td>
+                                                    <span class="text-danger">-1.22%</span>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>
+                                                        <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                    </td>
+    
+                                                    <td>
+                                                        $6000
+                                                    </td>
+    
+                                                    <td>
+                                                        <span class="text-danger">-1.22%</span>
+    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <i class="mdi mdi-currency-eth text-primary"></i> ETH
+                                                    </td>
+    
+                                                    <td>
+                                                        $6000
+                                                    </td>
+    
+                                                    <td>
+                                                        <span class="text-danger">-1.22%</span>
+    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                    </td>
+    
+                                                    <td>
+                                                        $6000
+                                                    </td>
+    
+                                                    <td>
+                                                        <span class="text-danger">-1.22%</span>
+    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                    </td>
+    
+                                                    <td>
+                                                        $6000
+                                                    </td>
+    
+                                                    <td>
+                                                        <span class="text-danger">-1.22%</span>
+    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>
+                                                            <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                        </td>
+        
+                                                        <td>
+                                                            $6000
+                                                        </td>
+        
+                                                        <td>
+                                                            <span class="text-danger">-1.22%</span>
+        
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="mdi mdi-currency-eth text-primary"></i> ETH
+                                                        </td>
+        
+                                                        <td>
+                                                            $6000
+                                                        </td>
+        
+                                                        <td>
+                                                            <span class="text-danger">-1.22%</span>
+        
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                        </td>
+        
+                                                        <td>
+                                                            $6000
+                                                        </td>
+        
+                                                        <td>
+                                                            <span class="text-danger">-1.22%</span>
+        
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                                                        </td>
+        
+                                                        <td>
+                                                            $6000
+                                                        </td>
+        
+                                                        <td>
+                                                            <span class="text-danger">-1.22%</span>
+        
+                                                        </td>
+                                                    </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            
+                        </div>
+                        <!-- end row -->
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+
+                <footer class="footer text-right">
+                    2018 © Highdmin. - Coderthemes.com
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+
+        <!-- KNOB JS -->
+        <!--[if IE]>
+        <script type="text/javascript" src="../plugins/jquery-knob/excanvas.js"></script>
+        <![endif]-->
+        <!-- App js -->
+        <script src="assets/js/jquery.app.js"></script>
+        <!--<script src="https://cdn.jsdelivr.net/npm/nebulas@0.5.2/dist/nebulas.js"></script>-->
+        <script src="lib/nebPay.js"></script>
+        <script src="lib/nebulas.js"></script>
+
+        <script>
+            'use strict';
+            var Neb = require("nebulas").Neb;
+            var HttpRequest = require("nebulas").HttpRequest
+            var NebPay = require("nebpay");
+            var nebPay = new NebPay(); 
+            var Account = require("nebulas").Account;
+            var contractAddress = "n1tgvYybz5iz9f3WaRJpCnqDA8RHyZqdBtb";
+            var intervalQuery;
+
+            var neb = new Neb();
+            var chainId = 1;
+            var netWork = "https://mainnet.nebulas.io"
+            //var chainId = 1001;
+            //var netWork = "https://testnet.nebulas.io"
+            neb.setRequest(new HttpRequest(netWork));
+
+            var register = 0;
+            var currentPrice;
+            var userWallet =new Array();
+
+            function getUserAddress() {
+                window.postMessage(
+                  {
+                    target: 'contentscript',
+                    method: 'getAccount'
+                  },
+                  '*'
+                )
+                window.addEventListener('message', function(e) {
+                  if (e.data && e.data.data && e.data.data.account) {
+                    console.log(e.data.data.account)
+                    return e.data.data.account;
+                  }
+                })
+            }
+
+            function loadAccount() {
+                window.postMessage(
+                  {
+                    target: 'contentscript',
+                    method: 'getAccount'
+                  },
+                  '*'
+                )
+                window.addEventListener('message', function(e) {
+                    if (e.data && e.data.data && e.data.data.account) {
+                        console.log(e.data.data.account)
+                        var address = e.data.data.account;
+                        document.getElementById("userAddress").innerText = address;
+                        neb.api.call({
+                            chainID: chainId,
+                            from: contractAddress,
+                            to: contractAddress,
+                            value: 0,
+                            nonce: 0,
+                            gasPrice: 1000000,
+                            gasLimit: 2000000,
+                            contract: {
+                                function: "searchUser",
+                                args: JSON.stringify([address]),
+                            }
+                        }).then(function (resp) {
+                            var result = JSON.parse(resp.result)
+                            if(result == null){
+                                document.getElementById("userBalance").innerText = 0;
+                                document.getElementById("unregistered").style.display = 'inline'
+                            } else {
+                                register = 1;
+                                var balance = result.balance;
+                                document.getElementById("userBalance").innerText = balance;
+                                document.getElementById("unregistered").style.display = 'inline'
+                                // 用户货币列表，需要存储在本地，在钱包里展示
+                                var coinList = result.coinList;
+                                if (coinList){
+                                    for (var coin of coinList) {
+                                        var html = `
+                                        <tr>
+                                            <td>${coin.name}</td>
+                                            <td>${coin.count}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-custom">交易</i></a>
+                                            </td>
+                                        </tr>
+                                        `
+                                        coin.html = html;
+                                        userWallet.push(coin)
+                                    }
+                                }
+                            }
+
+                        }).catch(function(err) {
+                            console.log(err);
+                        })  
+                    }
+                })
+            }
+            
+            function updatePrice() {
+            
+            }
+            function coinPrice(value){
+                document.getElementById("currentPrice").innerText = value
+                document.getElementById("coinAmount").value = ""
+                document.getElementById("coinValue").value = ""
+                currentPrice = value
+                console.log(value)
+            }
+
+            function getPrice() {
+                neb.api.call({
+                    chainID: chainId,
+                    from: contractAddress,
+                    to: contractAddress,
+                    value: 0,
+                    nonce: 0,
+                    gasPrice: 1000000,
+                    gasLimit: 2000000,
+                    contract: {
+                        function: "searchCoin",
+                        args: JSON.stringify([]),
+                    }
+                }).then(function (resp) {
+                    var result = JSON.parse(resp.result)
+                    for (var coin of result) {
+                        var name = coin.name;
+                        switch(name)
+                        {
+                        case "btc":
+                            var btcValue = coin.value;
+                            document.getElementById('btcPrice').innerHTML = `
+                            <td>
+                                <i class="mdi mdi-currency-btc text-primary"></i> BTC
+                            </td>
+                            <td>
+                                $${btcValue}
+                            </td>
+                            <td>
+                                <span class="text-danger">-1.22%</span>
+                            </td>
+                            `
+                            document.getElementById('btcPrice').onclick = this.coinPrice(btcValue);
+                            /*
+                            document.getElementById('btcPrice').onclick = function(){
+                                document.getElementById("currentPrice").innerText = btcValue
+                                document.getElementById("coinAmount").value = ""
+                                document.getElementById("coinValue").value = ""
+                                currentPrice = btcValue
+                                console.log(btcValue)
+                            }*/
+                            break;
+                        case "eth":
+                            var ethValue = coin.value;
+                            document.getElementById('ethPrice').innerHTML = `
+                            <td>
+                                <i class="mdi mdi-currency-eth text-primary"></i> ETH
+                            </td>
+                            <td>
+                                $${ethValue}
+                            </td>
+                            <td>
+                                <span class="text-danger">-1.22%</span>
+                            </td>
+                            `
+                            document.getElementById('ethPrice').onclick = function(){
+                                document.getElementById("currentPrice").innerText = ethValue
+                                document.getElementById("coinAmount").value = ""
+                                document.getElementById("coinValue").value = ""
+                                currentPrice = ethValue
+                                console.log(ethValue)
+                            }
+                            break;
+                        }
+                    } 
+                }).catch(function(err) {
+                    console.log(err);
+                })
+            }
+
+            $(function(){  
+                $('#coinAmount').bind('input propertychange', function() {  
+                    var a = $('#coinAmount').val();
+                    var b = a*currentPrice;
+                    $('#coinValue').val(b);  
+                }); 
+
+                $('#coinValue').bind('input propertychange', function() {  
+                    var a = $('#coinValue').val();
+                    var b = a/currentPrice;
+                    $('#coinAmount').val(b);  
+                }); 
+            })
+            
+            
+            function showHome() {
+                
+                document.getElementById("home").style.display = 'inline';
+                document.getElementById("trade").style.display = 'none';
+                document.getElementById("wallet").style.display = 'none';
+                document.getElementById("rank").style.display = 'none';
+                
+            }
+            
+            function showTrade() {
+                if (register == 0) {
+                    alert('请先点击"我要报名"，参加本轮比赛')
+                } else {
+                    document.getElementById("trade").style.display = 'inline';
+                    document.getElementById("home").style.display = 'none';
+                    document.getElementById("wallet").style.display = 'none';
+                    document.getElementById("rank").style.display = 'none';
+                }
+            }
+
+            function showWallet() {
+                if (register == 0) {
+                    alert('请先点击"我要报名"，参加本轮比赛')
+                } else {
+                    document.getElementById("wallet").style.display = 'inline';
+                    document.getElementById("home").style.display = 'none';
+                    document.getElementById("trade").style.display = 'none';
+                    document.getElementById("rank").style.display = 'none';
+                }
+            }
+
+            function showRank() {
+                document.getElementById("rank").style.display = 'inline';
+                document.getElementById("home").style.display = 'none';
+                document.getElementById("trade").style.display = 'none';
+                document.getElementById("wallet").style.display = 'none';
+            }
+        </script>
+
+
+    </body>
+</html>
