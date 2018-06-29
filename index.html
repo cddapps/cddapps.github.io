@@ -68,7 +68,7 @@
                                 <a href="#" onclick="showHome()"><i class="fi-layers"></i> <span> 网站首页 </span></a>
                             </li>
                             <li>
-                                <a href="#" onclick="showTrade()"><i class="fi-layers"></i> <span> 交易大赛 </span></a>
+                                <a href="#" onclick="showTrade()" id="tradeButton"><i class="fi-layers"></i> <span> 交易大赛 </span></a>
                             </li>
                             <li>
                                 <a href="#" onclick="showRank()"><i class="fi-layers"></i> <span> 比赛排行 </span></a>
@@ -262,15 +262,15 @@
                             <div class="col-lg-8" id="trade"  style="display: none">
                                 <div class="card-box">
                                     <div id="coinShow">
-                                        <h4 class="m-t-0 header-title">持币数量:100 | 可用资金:$100</h4>
+                                        <h4 class="m-t-0 header-title">持币数量:0 | 可用资金:$10000</h4>
                                         <div class="row text-center">
                                             <div class="col-sm-3 col-lg-3 col-xl-3"></div>
                                             <div class="col-sm-6 col-lg-6 col-xl-6">
                                                 <div class="card-box tilebox-one">
                                                     <h6 class="text-muted text-uppercase mt-0">BTC</h6>
-                                                    <h2 class="m-b-20">$<span data-plugin="counterup" id="currentPrice">46,782</span></h2>
+                                                    <h2 class="m-b-20">$<span data-plugin="counterup" id="currentPrice">--</span></h2>
                                                     <span class="text-muted">24小时涨跌幅：</span>
-                                                    <span id="currentRate"><span class="badge badge-danger">-29%</span></span> 
+                                                    <span id="currentRate"><span class="badge">--</span></span> 
                                                 </div>
                                             </div>
                                             <div class="col-sm-3 col-lg-3 col-xl-3"></div>
@@ -546,6 +546,7 @@
             var register = 0;
             var currentPrice;
             var currentCoin;
+            var onTrade=0;
             var matchRound=0;
             var lastRound=0;
 
@@ -958,6 +959,7 @@
             }
               
             function showCoin(coin, price, rate, rateColor) {
+                onTrade = 1;
                 document.getElementById('coinAmount').value = '';
                 document.getElementById('coinValue').value = '';
                 currentPrice = price;
@@ -1010,13 +1012,18 @@
                 document.getElementById(coin.name).onclick = function(){
                     showCoin(coin.name, value, rate, rateColor)
                 }
-                if (coin.name == currentCoin) {
+                if (coin.name == "BTC") {
+                    document.getElementById("tradeButton").onclick = function(){
+                        showCoin(coin.name, value, rate, rateColor)
+                    } 
+                }
+                if (coin.name == currentCoin && onTrade == 1) {
                     showCoin(currentCoin, value, rate, rateColor)
                 }
             }
 
             function showHome() {
-                
+                onTrade = 0;
                 document.getElementById("home").style.display = 'inline';
                 document.getElementById("trade").style.display = 'none';
                 document.getElementById("wallet").style.display = 'none';
@@ -1029,6 +1036,7 @@
                 if (register == 0) {
                     alert('请先点击"我要报名"，参加本轮比赛')
                 } else {
+                    onTrade = 1;
                     document.getElementById("trade").style.display = 'inline';
                     document.getElementById("home").style.display = 'none';
                     document.getElementById("wallet").style.display = 'none';
@@ -1041,6 +1049,7 @@
                 if (register == 0) {
                     alert('请先点击"我要报名"，参加本轮比赛')
                 } else {
+                    onTrade = 0;
                     document.getElementById("wallet").style.display = 'inline';
                     document.getElementById("home").style.display = 'none';
                     document.getElementById("trade").style.display = 'none';
@@ -1050,6 +1059,7 @@
             }
 
             function showRank() {
+                onTrade = 0;
                 document.getElementById("rank").style.display = 'inline';
                 document.getElementById("home").style.display = 'none';
                 document.getElementById("trade").style.display = 'none';
