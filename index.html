@@ -10,14 +10,13 @@
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
+        <!-- Spinkit css -->
+        <link href="assets/css/spinkit.css" rel="stylesheet" />
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-
-        
         
         <script src="assets/js/modernizr.min.js"></script>
 
@@ -69,16 +68,15 @@
                                 <a href="#" onclick="showHome()"><i class="fi-layers"></i> <span> 网站首页 </span></a>
                             </li>
                             <li>
-                                <a href="#" onclick="showWallet()"><i class="fi-layers"></i> <span> 我的钱包 </span> </a>
-                            </li>
-                            <li>
                                 <a href="#" onclick="showTrade()"><i class="fi-layers"></i> <span> 交易大赛 </span></a>
                             </li>
                             <li>
                                 <a href="#" onclick="showRank()"><i class="fi-layers"></i> <span> 比赛排行 </span></a>
                             </li>
+                            <li>
+                                <a href="#" onclick="showWallet()"><i class="fi-layers"></i> <span> 我的钱包 </span> </a>
+                            </li>
                            
-
                         </ul>
 
                     </div>
@@ -369,136 +367,41 @@
 
                             <div class="col-lg-8"  id="rank" style="display: none">
                                 <div class="card-box">
-
-                                    <h4 class="header-title mb-3 text-center">我的总资产: <span>$20000</span> </h4>
-                                    
-                                    <div class="table-responsive">
+                                    <h4 class="header-title m-t-0 m-b-30 text-center"><span id="round">本</span>期比赛排行榜</h4>
+                                    <ul class="nav nav-pills navtab-bg nav-justified pull-in ">
+                                        <li class="nav-item">
+                                            <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link active" onclick="loadRank(0)">
+                                                本期排行
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#profile1" data-toggle="tab" aria-expanded="true" class="nav-link" onclick="" id="lastRank">
+                                                上期排行
+                                            </a>
+                                        </li>
+                                    </ul>                                  
+                                    <div class="table-responsive" id="rankTable" style="display: none">
                                         <table class="table table-hover table-centered m-0">
                                             <thead>
-                                            <tr>
-                                                <th>账户地址</th>
-                                                <th>排名</th>
-                                                <th>资金</th>
-                                                <th>盈亏</th>
-                                                <th>奖金</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>账户地址</th>
+                                                    <th>排名</th>
+                                                    <th>资金</th>
+                                                    <th>盈亏</th>
+                                                    <th>奖金</th>
+                                                </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                <td>1</td>
-                                                <td>$17000</td>
-                                                <td>83%</td>
-                                                <td>100NAS</td>
-                                            </tr>
-                                            <tr>
-                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                <td>1</td>
-                                                <td>$17000</td>
-                                                <td>83%</td>
-                                                <td>100NAS</td>
-                                            </tr>
-                                            <tr>
-                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                <td>1</td>
-                                                <td>$17000</td>
-                                                <td>83%</td>
-                                                <td>100NAS</td>
-                                            </tr>
-                                            <tr>
-                                                <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                <td>1</td>
-                                                <td>$17000</td>
-                                                <td>83%</td>
-                                                <td>100NAS</td>
-                                            </tr>
-                                            <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</td>
-                                                    <td>1</td>
-                                                    <td>$17000</td>
-                                                    <td>83%</td>
-                                                    <td>100NAS</td>
-                                                </tr>
-                                                
-                                            </tbody>
+                                            <tbody id="rankList"></tbody>
                                         </table>
+                                    </div>
+                                    <div id="rankWave">
+                                        <div class="sk-wave">
+                                            <div class="sk-rect sk-rect1"></div>
+                                            <div class="sk-rect sk-rect2"></div>
+                                            <div class="sk-rect sk-rect3"></div>
+                                            <div class="sk-rect sk-rect4"></div>
+                                            <div class="sk-rect sk-rect5"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -587,23 +490,6 @@
                     2018 © Bsai - powered by nebulas.
                 </footer>
 
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-                            </div>
-                            <section>
-                                <div class="modal-body modal-spa">
-                                    <div class="writ", id="newWindow">
-                                        <h4>请在浏览器插件中完成操作！</h4>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
 
@@ -621,7 +507,7 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/metisMenu.min.js"></script>
         <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>>
 
         <!-- KNOB JS -->
         <!--[if IE]>
@@ -653,12 +539,15 @@
             var intervalQuery;
             var accountQuery;
             var priceQuery;
+            
             var userAddress = "";
             var userBalance = "";
             var userWallet;
             var register = 0;
             var currentPrice;
             var currentCoin;
+            var matchRound=0;
+            var lastRound=0;
 
             var btcValue=0;
             var ethValue=0;
@@ -840,8 +729,8 @@
                 })
             }
             
-            
             function start(){
+                loadInfo();
                 accountQuery = setInterval(function() {
                     loadAccount().then(function(data){
                         if (data != ""){
@@ -905,7 +794,169 @@
                     }
                 })
             }
-
+            
+            function loadRank(round) {
+                document.getElementById("rankList").innerHTML = ''
+                document.getElementById('rankWave').style.display = '';
+                document.getElementById('rankTable').style.display = 'none';
+                if (isNaN(parseInt(round))){
+                    alert("请输入正确的参数！")
+                } else {
+                    if (!round){
+                        if (matchRound){
+                            document.getElementById('round').innerHTML = `第${matchRound}`
+                        } else {
+                            document.getElementById('round').innerHTML = "本"
+                        }
+                    } else {
+                        document.getElementById('round').innerHTML = `第${round}`
+                    }
+                    neb.api.call({
+                        chainID: chainId,
+                        from: contractAddress,
+                        to: contractAddress,
+                        value: 0,
+                        nonce: 0,
+                        gasPrice: 1000000,
+                        gasLimit: 2000000,
+                        contract: {
+                            function: "searchRank",
+                            args: JSON.stringify([parseInt(round)]),
+                        }
+                    }).then(function (resp) {
+                        var userList = JSON.parse(resp.result)
+                        console.log(userList)
+                        if(userList.length == 0){
+                            document.getElementById("rankWave").innerHTML = `
+                            <h3>本轮比赛还没有人报名，快来成为第一个吧！</h3>`
+                        } else {
+                            if(matchRound == 0){
+                                matchRound = parseInt(userList[0].round);
+                                lastRound = matchRound - 1;
+                                document.getElementById('lastRank').onclick = function(){loadRank(lastRound)}
+                            }
+                            userList.sort(function(li1, li2){
+                                var n1=parseInt(li1.balance);  
+                                var n2=parseInt(li2.balance);  
+                                return n2-n1; 
+                            });
+                            document.getElementById('rankWave').style.display = 'none';
+                            document.getElementById('rankTable').style.display = '';
+                            for (var i=0;i<userList.length;i++){
+                                var user = userList[i];
+                                var rate = ((user.balance-10000)/100).toFixed(2);
+                                var html = `
+                                <tr>
+                                    <td>${user.address}</td>
+                                    <td>${i+1}</td>
+                                    <td>${user.balance}</td>
+                                    <td>${rate}%</td>
+                                    <td>100NAS</td>
+                                </tr>`
+                                console.log(html)
+                                document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
+                            }
+                        }
+                    }).catch(function(err) {
+                        console.log(err);
+                        loadRank(parseInt(round))
+                    }) 
+                }
+            }
+            
+            function loadInfo(){
+                neb.api.call({
+                    chainID: chainId,
+                    from: contractAddress,
+                    to: contractAddress,
+                    value: 0,
+                    nonce: 0,
+                    gasPrice: 1000000,
+                    gasLimit: 2000000,
+                    contract: {
+                        function: "searchInfo",
+                        args: JSON.stringify([]),
+                    }
+                }).then(function (resp) {
+                    var info = JSON.parse(resp.result)
+                    matchRound = parseInt(info.round);
+                    lastRound = matchRound - 1;
+                    document.getElementById('lastRank').onclick = function(){loadRank(lastRound)}
+                    console.log(`第${matchRound}轮比赛`)
+                    document.getElementById('round').innerText = matchRound;
+                }).catch(function(err) {
+                    console.log(err);
+                    loadInfo()
+                }) 
+            }
+            
+            function getPrice() {
+                neb.api.call({
+                    chainID: chainId,
+                    from: contractAddress,
+                    to: contractAddress,
+                    value: 0,
+                    nonce: 0,
+                    gasPrice: 1000000,
+                    gasLimit: 2000000,
+                    contract: {
+                        function: "searchCoin",
+                        args: JSON.stringify([]),
+                    }
+                }).then(function (resp) {
+                    var result = JSON.parse(resp.result)
+                    console.log('update')
+                    for (var coin of result) {
+                        var name = coin.name;
+                        switch(name)
+                        {
+                        case "BTC":
+                            showList(coin, btcValue)
+                            btcValue = coin.price;
+                            break;
+                        case "ETH":
+                            showList(coin, ethValue)
+                            ethValue = coin.price;
+                            break;
+                        case "XRP":
+                            showList(coin, xrpValue)
+                            xrpValue = coin.price;
+                            break;
+                        case "BCH":
+                            showList(coin, bchValue)
+                            bchValue = coin.price;
+                            break;
+                        case "EOS":
+                            showList(coin, eosValue)
+                            eosValue = coin.price;
+                            break;
+                        case "LTC":
+                            showList(coin, ltcValue)
+                            ltcValue = coin.price;
+                            break;
+                        case "XLM":
+                            showList(coin, xlmValue)
+                            xlmValue = coin.price;
+                            break;
+                        case "ADA":
+                            showList(coin, adaValue)
+                            adaValue = coin.price;
+                            break;
+                        case "IOT":
+                            showList(coin, iotValue)
+                            iotValue = coin.price;
+                            break;
+                        case "TRX":
+                            showList(coin, trxValue)
+                            trxValue = coin.price;
+                            break;
+                        }
+                    } 
+                }).catch(function(err) {
+                    console.log(err);
+                })
+            }
+              
             function showCoin(coin, price, rate, rateColor) {
                 document.getElementById('coinAmount').value = '';
                 document.getElementById('coinValue').value = '';
@@ -959,100 +1010,11 @@
                 document.getElementById(coin.name).onclick = function(){
                     showCoin(coin.name, value, rate, rateColor)
                 }
+                if (coin.name == currentCoin) {
+                    showCoin(currentCoin, value, rate, rateColor)
+                }
             }
 
-            function getPrice() {
-                neb.api.call({
-                    chainID: chainId,
-                    from: contractAddress,
-                    to: contractAddress,
-                    value: 0,
-                    nonce: 0,
-                    gasPrice: 1000000,
-                    gasLimit: 2000000,
-                    contract: {
-                        function: "searchCoin",
-                        args: JSON.stringify([]),
-                    }
-                }).then(function (resp) {
-                    var result = JSON.parse(resp.result)
-                    console.log('update')
-                    for (var coin of result) {
-                        var name = coin.name;
-                        switch(name)
-                        {
-                        case "BTC":
-                            showList(coin, btcValue)
-                            btcValue = coin.price;
-                            
-                            break;
-                        case "ETH":
-                            showList(coin, ethValue)
-                            ethValue = coin.price;
-                            break;
-                        case "XRP":
-                            showList(coin, xrpValue)
-                            xrpValue = coin.price;
-                            break;
-                        case "BCH":
-                            showList(coin, bchValue)
-                            bchValue = coin.price;
-                            break;
-                        case "EOS":
-                            showList(coin, eosValue)
-                            eosValue = coin.price;
-                            break;
-                        case "LTC":
-                            showList(coin, ltcValue)
-                            ltcValue = coin.price;
-                            break;
-                        case "XLM":
-                            showList(coin, xlmValue)
-                            xlmValue = coin.price;
-                            break;
-                        case "ADA":
-                            showList(coin, adaValue)
-                            adaValue = coin.price;
-                            break;
-                        case "IOT":
-                            showList(coin, iotValue)
-                            iotValue = coin.price;
-                            break;
-                        case "TRX":
-                            showList(coin, trxValue)
-                            trxValue = coin.price;
-                            break;
-                        }
-                    } 
-                }).catch(function(err) {
-                    console.log(err);
-                })
-            }
-
-            $(function(){  
-                $('#coinAmount').bind('input propertychange', function() {  
-                    var a = $('#coinAmount').val();
-                    var b;
-                    if(a == ""){
-                        b = "";
-                    } else {
-                        b = a*currentPrice;
-                    }
-                    $('#coinValue').val(b);  
-                }); 
-
-                $('#coinValue').bind('input propertychange', function() {  
-                    var a = $('#coinValue').val();
-                    var b;
-                    if(a == ""){
-                        b = "";
-                    } else {
-                        b = a/currentPrice;
-                    }
-                    $('#coinAmount').val(b);  
-                }); 
-            })
-              
             function showHome() {
                 
                 document.getElementById("home").style.display = 'inline';
@@ -1092,7 +1054,8 @@
                 document.getElementById("home").style.display = 'none';
                 document.getElementById("trade").style.display = 'none';
                 document.getElementById("wallet").style.display = 'none';
-                document.getElementById('homeText').style.display = 'none'
+                document.getElementById('homeText').style.display = 'none';
+                loadRank(0)
             }
 
             function receiptTransaction(txhash) {
@@ -1105,6 +1068,30 @@
                 });
                 return promise
             }
+
+            $(function(){  
+                $('#coinAmount').bind('input propertychange', function() {  
+                    var a = $('#coinAmount').val();
+                    var b;
+                    if(a == ""){
+                        b = "";
+                    } else {
+                        b = a*currentPrice;
+                    }
+                    $('#coinValue').val(b);  
+                }); 
+
+                $('#coinValue').bind('input propertychange', function() {  
+                    var a = $('#coinValue').val();
+                    var b;
+                    if(a == ""){
+                        b = "";
+                    } else {
+                        b = a/currentPrice;
+                    }
+                    $('#coinAmount').val(b);  
+                }); 
+            })
 
         </script>
 
