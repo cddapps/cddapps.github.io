@@ -24,7 +24,7 @@
     </head>
 
 
-    <body onload="getPrice();loadAccount()">
+    <body onload="start()">
 
         <!-- Begin page -->
         <div id="wrapper">
@@ -132,6 +132,7 @@
                     <div class="container-fluid">
                         <div class="row">
 
+                            <!-- homePage -->
                             <div class="col-lg-8" id="home">
                                 <div class="card-box">
                                     <h4 class="m-b-20 text-center">比特币模拟交易器</h4>
@@ -259,27 +260,29 @@
                                 </div>
                             </div>
 
+                            <!-- tradePage -->
                             <div class="col-lg-8" id="trade"  style="display: none">
                                 <div class="card-box">
-                                    <!-- <h4 class="m-t-0 header-title">Total Wallet Balance</h4> -->
-
-                                    <div class="row text-center">
-                                        <div class="col-sm-3 col-lg-3 col-xl-3"></div>
-                                        <div class="col-sm-6 col-lg-6 col-xl-6">
-                                            <div class="card-box tilebox-one">
-                                                <h6 class="text-muted text-uppercase mt-0">BTC</h6>
-                                                <h2 class="m-b-20">$<span data-plugin="counterup" id="currentPrice">46,782</span></h2>
-                                                <span class="text-muted">24小时涨跌幅：</span>
-                                                <span id="currentRate"><span class="badge badge-danger">-29%</span></span> 
+                                    <div id="coinShow">
+                                        <h4 class="m-t-0 header-title">持币数量:100 | 可用资金:$100</h4>
+                                        <div class="row text-center">
+                                            <div class="col-sm-3 col-lg-3 col-xl-3"></div>
+                                            <div class="col-sm-6 col-lg-6 col-xl-6">
+                                                <div class="card-box tilebox-one">
+                                                    <h6 class="text-muted text-uppercase mt-0">BTC</h6>
+                                                    <h2 class="m-b-20">$<span data-plugin="counterup" id="currentPrice">46,782</span></h2>
+                                                    <span class="text-muted">24小时涨跌幅：</span>
+                                                    <span id="currentRate"><span class="badge badge-danger">-29%</span></span> 
+                                                </div>
                                             </div>
+                                            <div class="col-sm-3 col-lg-3 col-xl-3"></div>
                                         </div>
-                                        <div class="col-sm-3 col-lg-3 col-xl-3"></div>
                                     </div>
 
                                     <div class="row">
                                         <div class="form-row col-sm-12">
                                             <div class="form-group col-md-6">
-                                                    <label for="inputEmail4" class="col-form-label">数量 <span>BTC</span> </label>
+                                                    <label for="inputEmail4" class="col-form-label">数量 <span id="coinType">BTC</span> </label>
                                                     <input type="text" class="form-control" id="coinAmount" placeholder="">
                                             </div>
                                             <div class="form-group col-md-6">
@@ -291,15 +294,15 @@
                                     <div class="row">
                                         <div class="form-row col-sm-12">
                                             <div class="form-group col-md-6">
-                                                    <a href="#" class="btn btn-block btn-custom waves-effect waves-light">买入</a>
+                                                    <a href="#" class="btn btn-block btn-custom waves-effect waves-light" onclick="buy()">买入</a>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                    <a href="#" class="btn btn-block btn-danger waves-effect waves-light">卖出</a>
+                                                    <a href="#" class="btn btn-block btn-danger waves-effect waves-light" onclick="sell()">卖出</a>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
+                                    <div class="row" id="warning">
                                         <div class="col-md-12">
                                             <div class="card m-b-30 text-white bg-primary text-xs-center">
                                                 <div class="card-body">
@@ -315,6 +318,18 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div id="tradeText" style="display: none">
+                                            <div class="card m-b-30 text-white bg-primary text-xs-center">
+                                                <div class="card-body">
+                                                    <blockquote class="card-bodyquote" id="tradeAlert2">
+                                                        <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                                                        <p>
+                                                        </p>
+                                                    </blockquote>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                 </div>
                             </div>
@@ -501,169 +516,56 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr id="btcPrice" onclick="">
-                                                <td>
-                                                    <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                </td>
-                                                <td id="btcPrice">
-                                                    $6000
-                                                </td>
-                                                <td id="btcRate">
-                                                    <span class="text-danger">-1.22%</span>
-                                                </td>
+                                            <tr id="BTC" onclick="">
+                                                <td>BTC</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
                                             </tr>
-                                            <tr id="ethPrice" onclick="">
-                                                <td>
-                                                    <i class="mdi mdi-currency-eth text-primary"></i> ETH
-                                                </td>
-                                                <td id="ethPrice">
-                                                    $6000
-                                                </td>
-                                                <td id="ethRate">
-                                                    <span class="text-danger">-1.22%</span>
-                                                </td>
+                                            <tr id="ETH" onclick="">
+                                                <td> ETH</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                </td>
-
-                                                <td>
-                                                    $6000
-                                                </td>
-
-                                                <td>
-                                                    <span class="text-danger">-1.22%</span>
-
-                                                </td>
+                                            <tr id="XRP" onclick="">
+                                                <td> XRP</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                </td>
-
-                                                <td>
-                                                    $6000
-                                                </td>
-
-                                                <td>
-                                                    <span class="text-danger">-1.22%</span>
-
-                                                </td>
+                                            <tr id="BCH" onclick="">
+                                                <td>BCH</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
                                             </tr>
-                                            <tr>
-                                                    <td>
-                                                        <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                    </td>
-    
-                                                    <td>
-                                                        $6000
-                                                    </td>
-    
-                                                    <td>
-                                                        <span class="text-danger">-1.22%</span>
-    
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i class="mdi mdi-currency-eth text-primary"></i> ETH
-                                                    </td>
-    
-                                                    <td>
-                                                        $6000
-                                                    </td>
-    
-                                                    <td>
-                                                        <span class="text-danger">-1.22%</span>
-    
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                    </td>
-    
-                                                    <td>
-                                                        $6000
-                                                    </td>
-    
-                                                    <td>
-                                                        <span class="text-danger">-1.22%</span>
-    
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                    </td>
-    
-                                                    <td>
-                                                        $6000
-                                                    </td>
-    
-                                                    <td>
-                                                        <span class="text-danger">-1.22%</span>
-    
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>
-                                                            <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                        </td>
-        
-                                                        <td>
-                                                            $6000
-                                                        </td>
-        
-                                                        <td>
-                                                            <span class="text-danger">-1.22%</span>
-        
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="mdi mdi-currency-eth text-primary"></i> ETH
-                                                        </td>
-        
-                                                        <td>
-                                                            $6000
-                                                        </td>
-        
-                                                        <td>
-                                                            <span class="text-danger">-1.22%</span>
-        
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                        </td>
-        
-                                                        <td>
-                                                            $6000
-                                                        </td>
-        
-                                                        <td>
-                                                            <span class="text-danger">-1.22%</span>
-        
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                                                        </td>
-        
-                                                        <td>
-                                                            $6000
-                                                        </td>
-        
-                                                        <td>
-                                                            <span class="text-danger">-1.22%</span>
-        
-                                                        </td>
-                                                    </tr>
-
+                                            <tr id="EOS" onclick="">
+                                                <td> EOS</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
+                                            </tr>
+                                            <tr id="LTC" onclick="">
+                                                <td>LTC</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
+                                            </tr>
+                                            <tr id="XLM" onclick="">
+                                                <td> XLM</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
+                                            </tr>
+                                            <tr id="ADA" onclick="">
+                                                <td> ADA</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
+                                            </tr>
+                                            <tr id="IOT" onclick="">
+                                                <td>IOT</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
+                                            </tr>
+                                            <tr id="TRX" onclick="">
+                                                <td> TRX</td>
+                                                <td>--</td>
+                                                <td><span>--</span></td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -738,7 +640,7 @@
             var NebPay = require("nebpay");
             var nebPay = new NebPay(); 
             var Account = require("nebulas").Account;
-            var contractAddress = "n1tgvYybz5iz9f3WaRJpCnqDA8RHyZqdBtb";
+            var contractAddress = "n22KAGAhraH2CufZ846nr51iy3fpDN5dvYE";
             var intervalQuery;
 
             var neb = new Neb();
@@ -749,86 +651,25 @@
             neb.setRequest(new HttpRequest(netWork));
 
             var intervalQuery;
+            var accountQuery;
+            var priceQuery;
+            var userAddress = "";
+            var userBalance = "";
+            var userWallet;
             var register = 0;
             var currentPrice;
-            var userWallet =new Array();
+            var currentCoin;
 
-            function getUserAddress() {
-                window.postMessage(
-                  {
-                    target: 'contentscript',
-                    method: 'getAccount'
-                  },
-                  '*'
-                )
-                window.addEventListener('message', function(e) {
-                  if (e.data && e.data.data && e.data.data.account) {
-                    console.log(e.data.data.account)
-                    return e.data.data.account;
-                  }
-                })
-            }
-
-            function loadAccount() {
-                window.postMessage(
-                  {
-                    target: 'contentscript',
-                    method: 'getAccount'
-                  },
-                  '*'
-                )
-                window.addEventListener('message', function(e) {
-                    if (e.data && e.data.data && e.data.data.account) {
-                        console.log(e.data.data.account)
-                        var address = e.data.data.account;
-                        document.getElementById("userAddress").innerText = address;
-                        neb.api.call({
-                            chainID: chainId,
-                            from: contractAddress,
-                            to: contractAddress,
-                            value: 0,
-                            nonce: 0,
-                            gasPrice: 1000000,
-                            gasLimit: 2000000,
-                            contract: {
-                                function: "searchUser",
-                                args: JSON.stringify([address]),
-                            }
-                        }).then(function (resp) {
-                            var result = JSON.parse(resp.result)
-                            if(result == null){
-                                document.getElementById("register").innerHTML = `
-                                <li class="breadcrumb-item active">您还没有参加本轮比赛 <a href="#" onclick="showHome()">点击报名</a></li>`
-                            } else {
-                                register = 1;
-                                var balance = result.balance;
-                                document.getElementById("register").innerHTML = `
-                                <li class="breadcrumb-item active">您的可用资金：$ <span id="userBalance">${balance}</span></li>`
-                                // 用户货币列表，需要存储在本地，在钱包里展示
-                                var coinList = result.coinList;
-                                if (coinList){
-                                    for (var coin of coinList) {
-                                        var html = `
-                                        <tr>
-                                            <td>${coin.name}</td>
-                                            <td>${coin.count}</td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-custom">交易</i></a>
-                                            </td>
-                                        </tr>
-                                        `
-                                        coin.html = html;
-                                        userWallet.push(coin)
-                                    }
-                                }
-                            }
-
-                        }).catch(function(err) {
-                            console.log(err);
-                        })  
-                    }
-                })
-            }
+            var btcValue=0;
+            var ethValue=0;
+            var xrpValue=0;
+            var bchValue=0;
+            var eosValue=0;
+            var ltcValue=0;
+            var xlmValue=0;
+            var adaValue=0;
+            var iotValue=0;
+            var trxValue=0;
             
             function login() {
                 var to = contractAddress;
@@ -896,9 +737,228 @@
                         <p>${txhash}</p>`
                 })
             }
+
+            function buy(){
+                var count = document.getElementById('coinAmount').value.trim();
+                if (count == "") {
+                    alert("请输入买入数量");
+                } else {
+                    var to = contractAddress;
+                    var value = 0;
+                    var callFunction = "buyCoin";
+                    var callArgs =  JSON.stringify([currentCoin, count]);
+                    var options = {
+                        listener: function (resp) {
+                            console.log(resp)
+                            var txhash = resp.txhash
+                            if (typeof(txhash) == "undefined"){
+                                document.getElementById("tradeAlert2").innerHTML = `
+                                <h3 class="m-b-20 text-center">您已取消交易，即将刷新页面重新开始！</h4>
+                                <p></p>`
+                                alert("您已取消交易！")
+                                setTimeout(window.location.reload(), 1000)
+                            } else {
+                                intervalQuery = setInterval(function() {
+                                    tradeQuery(txhash);
+                                }, 3000);
+                            }
+                        }
+                    }
+                    //发送交易(发起智能合约调用)
+                    nebPay.call(to, value, callFunction, callArgs, options);
+                    document.getElementById('warning').style.display = 'none'
+                    document.getElementById('tradeText').style.display = ''
+                    document.getElementById("tradeAlert2").innerHTML = `
+                    <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                    <p></p>`
+                }
+            }
+
+            function sell(){
+                var count = document.getElementById('coinAmount').value.trim();
+                if (count == "") {
+                    alert("请输入卖出数量");
+                } else {
+                    var to = contractAddress;
+                    var value = 0;
+                    var callFunction = "sellCoin";
+                    var callArgs =  JSON.stringify([currentCoin, count]);
+                    var options = {
+                        listener: function (resp) {
+                            console.log(resp)
+                            var txhash = resp.txhash
+                            if (typeof(txhash) == "undefined"){
+                                document.getElementById("tradeAlert2").innerHTML = `
+                                <h3 class="m-b-20 text-center">您已取消交易，即将刷新页面重新开始！</h4>
+                                <p></p>`
+                                alert("您已取消交易！")
+                                setTimeout(window.location.reload(), 1000)
+                            } else {
+                                intervalQuery = setInterval(function() {
+                                    tradeQuery(txhash);
+                                }, 3000);
+                            }
+                        }
+                    }
+                    //发送交易(发起智能合约调用)
+                    nebPay.call(to, value, callFunction, callArgs, options);
+                    document.getElementById('warning').style.display = 'none'
+                    document.getElementById('tradeText').style.display = ''
+                    document.getElementById("tradeAlert2").innerHTML = `
+                    <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                    <p></p>`
+                }
+            }
+
+            function tradeQuery(txhash) {
+                document.getElementById("tradeAlert2").innerHTML = `
+                        <h3 class="m-b-20 text-center">正在查询交易结果，请稍等。。。</h4>
+                        <p></p>`
+                receiptTransaction(txhash).then(function(resp){
+                    var respObject = resp;
+                    console.log(respObject)
+                    if (respObject.status == 1){
+                        clearInterval(intervalQuery);
+                        document.getElementById("tradeAlert2").innerHTML = `
+                        <h3 class="m-b-20 text-center">交易成功，3秒后将刷新页面重新开始！</h4>
+                        <p></p>`
+                        setTimeout(window.location.reload(), 10000)
+                    } else if (respObject.status == 0) {
+                        clearInterval(intervalQuery);
+                        document.getElementById("tradeAlert2").innerHTML = `
+                        <h3 class="m-b-20 text-center">交易失败！</h4>
+                        <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
+                        <p>${txhash}</p>`
+                        
+                    }
+                }).catch(function(err){
+                    clearInterval(intervalQuery);
+                    document.getElementById("tradeAlert2").innerHTML = `
+                        <h3 class="m-b-20 text-center">交易失败！</h4>
+                        <p>您可以根据以下哈希，再次确认您的交易状态:</p>
+                        <p>${txhash}</p>`
+                })
+            }
             
-            function updatePrice() {
             
+            function start(){
+                accountQuery = setInterval(function() {
+                    loadAccount().then(function(data){
+                        if (data != ""){
+                            getPrice();
+                        } 
+                    });
+                }, 10000)
+            }
+            
+            function loadAccount() {
+                return new Promise( function(resolve, reject){
+                    if (userAddress == ""){
+                        window.postMessage(
+                        {
+                            target: 'contentscript',
+                            method: 'getAccount'
+                        },
+                        '*'
+                        )
+                        window.addEventListener('message', function(e) {
+                        if (e.data && e.data.data && e.data.data.account) {
+                            console.log(e.data.data.account)
+                            userAddress = e.data.data.account;
+                            document.getElementById("userAddress").innerText = userAddress;
+                            neb.api.call({
+                                chainID: chainId,
+                                from: contractAddress,
+                                to: contractAddress,
+                                value: 0,
+                                nonce: 0,
+                                gasPrice: 1000000,
+                                gasLimit: 2000000,
+                                contract: {
+                                    function: "searchUser",
+                                    args: JSON.stringify([userAddress]),
+                                }
+                            }).then(function (resp) {
+                                var result = JSON.parse(resp.result)
+                                if(result == null){
+                                    userBalance = 0;
+                                    document.getElementById("register").innerHTML = `
+                                    <li class="breadcrumb-item active">您还没有参加本轮比赛 <a href="#" onclick="showHome()">点击报名</a></li>`
+                                } else {
+                                    register = 1;
+                                    userBalance = result.balance;
+                                    document.getElementById("register").innerHTML = `
+                                    <li class="breadcrumb-item active">您的可用资金：$ <span id="userBalance">${userBalance}</span></li>`
+                                    // 用户货币列表，需要存储在本地，在钱包里展示
+                                    userWallet = result.coinList;
+                                    console.log(userWallet)
+                                }
+                                resolve(userBalance);
+                            }).catch(function(err) {
+                                console.log(err);
+                                resolve(userBalance);
+                            })  
+                        }
+                    })
+                    } else {
+                        resolve(userBalance);
+                    }
+                })
+            }
+
+            function showCoin(coin, price, rate, rateColor) {
+                document.getElementById('coinAmount').value = '';
+                document.getElementById('coinValue').value = '';
+                currentPrice = price;
+                currentCoin = coin;
+                var count = 0;
+                for (var dic of userWallet){
+                    var coinName = dic.name;
+                    if (coinName == coin){
+                        count = dic.count;
+                        break;
+                    }
+                }
+                showTrade()
+                document.getElementById("coinType").innerText = coin
+                document.getElementById("coinShow").innerHTML = `
+                <h4 class="m-t-0 header-title"> 可用资金:$${userBalance} | 持币数量:${count}</h4>
+                <div class="row text-center">
+                    <div class="col-sm-3 col-lg-3 col-xl-3"></div>
+                    <div class="col-sm-6 col-lg-6 col-xl-6">
+                        <div class="card-box tilebox-one">
+                            <h6 class="text-muted text-uppercase mt-0">${coin}</h6>
+                            <h2 class="m-b-20">$<span data-plugin="counterup">${price}</span></h2>
+                            <span class="text-muted">24小时涨跌幅：</span>
+                            <span id="currentRate"><span class="badge badge-${rateColor}">${rate}%</span></span> 
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-lg-3 col-xl-3"></div>
+                </div>`
+            }
+            
+            function showList(coin, preValue){
+                var valueColor = 'default';
+                var rateColor = 'default';
+                var value = parseFloat(coin.price);
+                var rate = parseFloat(coin.rate)
+                if (value > preValue){
+                    valueColor = 'custom'
+                } else if (value < preValue) (
+                    valueColor = 'danger'
+                )
+                if (rate > 0){
+                    rateColor = 'custom'
+                } else if (rate < 0) {
+                    rateColor = 'danger'
+                }
+                document.getElementById(coin.name).innerHTML = `
+                <td>${coin.name}</td>
+                <td class="text-${valueColor}">$${value}</td>
+                <td><span class="text-${rateColor}">${rate}%</span></td>`
+                document.getElementById(coin.name).onclick = function(){
+                    showCoin(coin.name, value, rate, rateColor)
+                }
             }
 
             function getPrice() {
@@ -916,54 +976,51 @@
                     }
                 }).then(function (resp) {
                     var result = JSON.parse(resp.result)
+                    console.log('update')
                     for (var coin of result) {
                         var name = coin.name;
                         switch(name)
                         {
-                        case "btc":
-                            var btcValue = coin.value;
-                            document.getElementById('btcPrice').innerHTML = `
-                            <td>
-                                <i class="mdi mdi-currency-btc text-primary"></i> BTC
-                            </td>
-                            <td>
-                                $${btcValue}
-                            </td>
-                            <td>
-                                <span class="text-danger">-1.22%</span>
-                            </td>
-                            `
-                            document.getElementById('btcPrice').onclick = function(){
-                                showTrade()
-                                document.getElementById("currentPrice").innerText = btcValue
-                                document.getElementById("coinAmount").value = ""
-                                document.getElementById("coinValue").value = ""
-                                currentPrice = btcValue
-                                console.log(btcValue)
-                                
-                            }
+                        case "BTC":
+                            showList(coin, btcValue)
+                            btcValue = coin.price;
+                            
                             break;
-                        case "eth":
-                            var ethValue = coin.value;
-                            document.getElementById('ethPrice').innerHTML = `
-                            <td>
-                                <i class="mdi mdi-currency-eth text-primary"></i> ETH
-                            </td>
-                            <td>
-                                $${ethValue}
-                            </td>
-                            <td>
-                                <span class="text-danger">-1.22%</span>
-                            </td>
-                            `
-                            document.getElementById('ethPrice').onclick = function(){
-                                showTrade()
-                                document.getElementById("currentPrice").innerText = ethValue
-                                document.getElementById("coinAmount").value = ""
-                                document.getElementById("coinValue").value = ""
-                                currentPrice = ethValue
-                                console.log(ethValue)
-                            }
+                        case "ETH":
+                            showList(coin, ethValue)
+                            ethValue = coin.price;
+                            break;
+                        case "XRP":
+                            showList(coin, xrpValue)
+                            xrpValue = coin.price;
+                            break;
+                        case "BCH":
+                            showList(coin, bchValue)
+                            bchValue = coin.price;
+                            break;
+                        case "EOS":
+                            showList(coin, eosValue)
+                            eosValue = coin.price;
+                            break;
+                        case "LTC":
+                            showList(coin, ltcValue)
+                            ltcValue = coin.price;
+                            break;
+                        case "XLM":
+                            showList(coin, xlmValue)
+                            xlmValue = coin.price;
+                            break;
+                        case "ADA":
+                            showList(coin, adaValue)
+                            adaValue = coin.price;
+                            break;
+                        case "IOT":
+                            showList(coin, iotValue)
+                            iotValue = coin.price;
+                            break;
+                        case "TRX":
+                            showList(coin, trxValue)
+                            trxValue = coin.price;
                             break;
                         }
                     } 
@@ -975,13 +1032,23 @@
             $(function(){  
                 $('#coinAmount').bind('input propertychange', function() {  
                     var a = $('#coinAmount').val();
-                    var b = a*currentPrice;
+                    var b;
+                    if(a == ""){
+                        b = "";
+                    } else {
+                        b = a*currentPrice;
+                    }
                     $('#coinValue').val(b);  
                 }); 
 
                 $('#coinValue').bind('input propertychange', function() {  
                     var a = $('#coinValue').val();
-                    var b = a/currentPrice;
+                    var b;
+                    if(a == ""){
+                        b = "";
+                    } else {
+                        b = a/currentPrice;
+                    }
                     $('#coinAmount').val(b);  
                 }); 
             })
