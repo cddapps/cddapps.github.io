@@ -65,16 +65,16 @@
                             <!--<li class="menu-title">Navigation</li>-->
 
                             <li>
-                                <a href="#" onclick="showHome()"><i class="fi-layers"></i> <span> 网站首页 </span></a>
-                            </li>
-                            <li>
                                 <a href="#" onclick="showTrade()" id="tradeButton"><i class="fi-layers"></i> <span> 交易大赛 </span></a>
                             </li>
                             <li>
-                                <a href="#" onclick="showRank()"><i class="fi-layers"></i> <span> 比赛排行 </span></a>
+                                <a href="#" onclick="showRank()"><i class="fi-align-left"></i> <span> 比赛排行 </span></a>
                             </li>
                             <li>
-                                <a href="#" onclick="showWallet()"><i class="fi-layers"></i> <span> 我的钱包 </span> </a>
+                                <a href="#" onclick="showWallet()"><i class="fi-head"></i> <span> 我的钱包 </span> </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="showHome()"><i class="fi-paper"></i> <span> 使用说明 </span></a>
                             </li>
                            
                         </ul>
@@ -143,32 +143,15 @@
                             <!-- homePage -->
                             <div class="col-lg-8" id="home" style="display:none">
                                 <div class="card-box">
-                                    <h4 class="m-b-20 text-center">比特币模拟交易器</h4>
-
-                                    <p class="text-muted">
-                                        BSAI.IO是一款免费的比特币/加密货币在线模拟交易工具。在这里，你可以使用真实的市场价格来模拟交易任何主流加密货币。
+                                    <h3 class="m-b-20 text-center">加密货币模拟交易大赛</h3>
+                                    <p >
+                                        这是全球第一款去中心化的加密货币模拟交易大赛，本系统完全基于<a href="https://nebulas.io/cn/">星云链</a>智能合约标准化开发。 只需要简单的报名加入，便可以快速加入到我们的比赛中，在这里，你可以使用真实的市场价格来模拟交易任何主流加密货币。
                                     </p>
-
-                                    <p class="text-muted">
-                                        我们希望这款工具可以帮助人们在没有任何风险的情况下了解如何交易比特币以及其它加密货币，同时也能真实的体会到投资加密货币的风险和利润。
+                                    <p >
+                                        我们希望这款dapp可以帮助人们在没有任何风险的情况下了解如何使用星云dapp，同时还可以免费参与紧张刺激的交易大赛。我们还会为每期获得名次的用户提供免费的NAS作为奖励。
                                     </p>
-
-                                    <p class="text-muted">
-                                            总之，我们希望为每一位投资者带去最真实的交易体验。
-                                    </p>
-
-                                    <h4 class="m-b-20 text-center">BSAI免费模拟交易大赛</h4>
-
-                                    <p class="text-muted">
-                                        我们开设了免费的模拟交易大赛通道。用户在使用我们的模拟交易工具的同时，也参与了我们的交易比赛。一旦你获得当期比赛的名次，你还可以获得真实的比特币奖金- 奖金高达1BTC
-                                    </p>
-
-                                    <p class="text-muted">
-                                        每期的模拟交易大赛以不间断的形式持续展开，你可以在任何时刻参与到最新的比赛中来
-                                    </p>
-
-                                    <p class="text-muted">
-                                        记住，不断的去了解加密货，不断的去改变你的交易策略。你一定会取得不错的成绩，赢得我们的奖金
+                                    <p>
+                                        特别提示：操作需要使用<a href="https://github.com/nebulasio/WebExtensionWallet">星云浏览器插件</a>，请在报名前先进行安装。
                                     </p>
 
                                     <p class="m-b-30"></p>
@@ -195,64 +178,69 @@
                                 
                                 </div>
                                 <div class="card-box" id="matchRule" style="display: none">
-                                        <h3 class="m-b-20 text-center">交易大赛详细说明</h4>
-                                        <p>
-                                                BSAI模拟交易大赛公平公正，所有参赛用户的初始资金为$10000，点击“开始比赛”，即可实时参与当期交易大赛。您可根据您的交易策略，选择你喜欢的加密货币，进行模拟的买卖从而获取利润, 每期比赛周期为1周。
-                                        </p>
-    
-                                        <h4 class="m-b-20">每期比赛时间</h4>
-                                        <p>
-                                                比赛周期为 10 天，”比赛倒计时” 记录当前比赛所剩时间。 <br>
-                                                每期不会间断，你可以在任何时间报名参与比赛，当然，越早越有优势。
-                                        </p>
+                                        <h3 class="m-b-20 text-center">交易大赛规则与奖金</h3>
+                                    <p >
+                                        BSAI模拟交易大赛公平公正，所有参赛用户的初始资金为$10000，点击“我要报名”，即可实时参与当期交易大赛。您可根据您的交易策略，选择你喜欢的加密货币，进行模拟的买卖从而获取利润并且取得名次。
+                                    </p>
+                                    <h4 class="m-b-20">比赛周期</h4>
+                                    <p >
+                                        比赛周期为<strong> 10 </strong>天。 <br>
+                                        每期不会间断，你可以在任何时间报名参与比赛，当然，越早越有优势。
+                                    </p>
+                                    <h4 class="m-b-20">每期比赛奖励</h4>
+                                    <p >
+                                        每期比赛奖金由BSAI和赞助商提供，每期比赛都会有不同的奖池。您可以<a href="#" onclick="showRank()">点击这里</a>查看实时的比赛奖池。（每期奖池实时累积）<br>
+                                        您可以根据您的名次获得当期奖池的百分比    
+                                    </p>
+                                    <p>
+                                        第1名—25% * Reward Pool<br>
+                                        第2名—12% * Reward Pool<br>
+                                        第3名—8% * Reward Pool<br>
+                                        第4名—5% * Reward Pool<br>
+                                        第5名—4%<br>
+                                        第6名—2%<br>
+                                        第7名—1%<br>
+                                        第8名-1%<br>
+                                        第9名-1%<br>
+                                        第10名-1%<br>
+                                        第11名—50 - 0.5% <br>
+                                        第51名—150名 - 0.1% <br>
+                                        第151名-350名-0.05% <br>
+                                    </p>
+                                    <p>
+                                            一旦你获得排名，我们将会将奖池中的NAS数量按照比例支付到你报名参赛中的NAS地址中。支付过程由智能合约完全保证。
+                                    </p>
+                                    <h4 class="m-b-20 text-danger">注意事项 ( 必须阅读)</h4>
+                                    <p>
+                                        1.我们的排行榜最终只会以 美金余额 来统计。这意味着，你必须在每期比赛结束前，卖出你所有的加密货币。 一旦你获得排名，系统将会在几个小时内，将相应的NAS奖励支付到你的报名地址中。
+                                    </p>
+                                    <p>
+                                        举个例子: <br>
+                                        此时你账户有1BTC和$500。如果在比赛倒计时归0前，你还没有将你的比特币换成美金，一旦本期比赛结束，我们只能用你的$500来统计你的排名。
+                                    </p>
+                                    <p>
+                                        2.为了防止恶意刷单或者由于众多原因发生的不公平的交易方式，当您在卖出订单时，我们会收取交易总额1.5%的费率。
+                                    </p>
+                                    <p>
+                                        3.此版本仍为测试版，我们会根据具体的运营情况，随时改变相关信息，请保持对我们的关注。
+                                    </p>
 
-                                        <h4 class="m-b-20">每期比赛奖励</h4>
-                                        <p>
-                                                第1名—$599<br>
-                                                第2名—$299<br>
-                                                第3名—$199<br>
-                                                第4名—$99<br>
-                                                第5名—$50<br>
-                                                第6名—$20<br>
-                                                第7名—$15<br>
-                                                第8名—$10<br>
-                                                第9名—$9<br>
-                                                第10名—$8<br>
-                                        </p>
+                                    <h4 class="m-b-20">联系我们</h4>
+                                    <p>
+                                        如果你有其它问题，欢迎加入QQ群：545239942 或发送email至 admin@bsai.io
+                                    </p>
 
-                                        <h4 class="m-b-20">支付说明</h4>
-                                        <p>
-                                            一旦你获得排名，系统将会在3个工作日内，将相应的奖励，以比特币的方式，发送至你的BTC地址。
-                                        </p>
+                                    <p class="m-b-30"></p>
 
-                                        <h4 class="m-b-20 text-danger">注意事项 ( 必须阅读)</h4>
-                                        <p>
-                                            1.我们的排行榜最终只会以 美金余额 来统计。这意味着，你必须在每期比赛结束前，卖出你所有的加密货币。 一旦你获得排名，系统将会在3个工作日内，将相应的奖励以比特币的方式发送至你的预留账户内。
-                                        </p>
-                                        <p>
-                                            举个例子: <br>
-                                            此时你账户有1.2BTC和$500。如果在比赛倒计时归0前，你还没有将你的比特币换成美金，一旦本期比赛结束，我们只能用你的$500来统计你的排名。
-                                        </p>
-                                        <p>
-                                            2.在每次比赛中，你必至少完成1次交易，如果你在报名后，比赛中没有任何交易记录，你的账户将不会被计入到排行榜中。
-                                        </p>
-
-                                        <h4 class="m-b-20">联系我们</h4>
-                                        <p>
-                                            如果你有其它问题，欢迎加入QQ群：545239942 或发送email至 admin@bsai.io
-                                        </p>
-
-                                        <p class="m-b-30"></p>
-
-                                        <div class="row m-b-20">
-                                            <div class="col-sm-4"> </div>
-                                            <div class="col-sm-4">   
-                                                <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()" id="want2">
-                                                    我要报名
-                                                </button>   
-                                            </div>
-                                            <div class="col-sm-4"> </div>
+                                    <div class="row m-b-20">
+                                        <div class="col-sm-4"> </div>
+                                        <div class="col-sm-4">   
+                                            <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()" id="want2">
+                                                我要报名
+                                            </button>   
                                         </div>
+                                        <div class="col-sm-4"> </div>
+                                    </div>
                                     
                                 </div>
                                 <div id="homeText" style="display: none">
@@ -366,11 +354,11 @@
                             <!-- rankPage -->
                             <div class="col-lg-8"  id="rank" style="display: none">
                                 <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30 text-center"><span id="round">本</span>期比赛排行榜</h4>
+                                    <h4 class="header-title m-t-0 m-b-30 text-center"><span id="round">本</span>期比赛排行榜 | 本期奖金 100 NAS</h4>
                                     <ul class="nav nav-pills navtab-bg nav-justified pull-in ">
                                         <li class="nav-item">
                                             <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link active" onclick="loadRank(0)">
-                                                本期排行
+                                                本期排行(实时变化)
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -539,6 +527,7 @@
             var intervalQuery;
             var accountQuery;
             var priceQuery;
+            var awardPool = 100;
             
             var userAddress = "";
             var userLoaded = 0;
@@ -852,7 +841,6 @@
                         }
                     }).then(function (resp) {
                         var userList = JSON.parse(resp.result)
-                        console.log(userList)
                         if(userList.length == 0){
                             document.getElementById("rankWave").innerHTML = `
                             <h3>本轮比赛还没有人报名，快来成为第一个吧！</h3>`
@@ -862,26 +850,58 @@
                                 lastRound = matchRound - 1;
                                 document.getElementById('lastRank').onclick = function(){loadRank(lastRound)}
                             }
-                            userList.sort(function(li1, li2){
+                            var finalList = new Array()
+                            for (var u of userList){
+                                if(u.balance != 10000){
+                                    finalList.push(u)
+                                }
+                            }
+                            finalList.sort(function(li1, li2){
                                 var n1=parseInt(li1.balance);  
                                 var n2=parseInt(li2.balance);  
                                 return n2-n1; 
                             });
+                            console.log(finalList)
                             document.getElementById('rankWave').style.display = 'none';
                             document.getElementById('rankTable').style.display = '';
-                            for (var i=0;i<userList.length;i++){
-                                var user = userList[i];
+                            for (var j=0;j<finalList.length;j++){
+                                var user = finalList[j];
+                                var i = j+1;
+                                console.log(user)
                                 var rate = ((user.balance-10000)/100).toFixed(2);
+                                var award = 0;
+                                if(i == 1){
+                                    award = parseFloat(awardPool*0.25).toFixed(2);
+                                } else if(i == 2){
+                                    award = parseFloat(awardPool*0.12).toFixed(2);
+                                } else if(i == 3){
+                                    award = parseFloat(awardPool*0.08).toFixed(2);
+                                } else if(i == 4){
+                                    award = parseFloat(awardPool*0.05).toFixed(2);
+                                } else if(i == 5){
+                                    award = parseFloat(awardPool*0.04).toFixed(2);
+                                } else if(i == 6){
+                                    award = parseFloat(awardPool*0.02).toFixed(2);
+                                } else if(i>=7 && i<= 10){
+                                    award = parseFloat(awardPool*0.01).toFixed(2);
+                                } else if(i>=11 && i<= 50){
+                                    award = parseFloat(awardPool*0.005).toFixed(2);
+                                } else if(i>=51 && i<= 150){
+                                    award = parseFloat(awardPool*0.001).toFixed(2);
+                                } else if(i>=151 && i<= 350){
+                                    award = parseFloat(awardPool*0.0005).toFixed(2);
+                                } 
                                 var html = `
                                 <tr>
                                     <td>${user.address}</td>
-                                    <td>${i+1}</td>
-                                    <td>${user.balance}</td>
+                                    <td>${i}</td>
+                                    <td>${parseFloat(user.balance).toFixed(2)}</td>
                                     <td>${rate}%</td>
-                                    <td>100NAS</td>
+                                    <td>${award}NAS</td>
                                 </tr>`
                                 document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
                             }
+                            
                         }
                         console.log('loaded rank')
                     }).catch(function(err) {
@@ -950,7 +970,7 @@
             }
             
             function getPrice() {
-                //console.log('loading price')
+                console.log('loading price')
                 neb.api.call({
                     chainID: chainId,
                     from: contractAddress,
