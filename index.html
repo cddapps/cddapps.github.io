@@ -130,8 +130,18 @@
                     <div class="container-fluid">
                         <div class="row">
 
+                            <div class="col-lg-8" id="loading">
+                                <div class="card-box">
+                                    <!-- <h4 class="m-t-0 header-title">Rotate plane</h4> -->
+                                    <div class="sk-rotating-plane"></div>
+                                    <p class="text-muted text-center">
+                                            正在从星云链加载您的信息，请稍等。。。
+                                    </p>
+                                </div>
+                            </div>
+
                             <!-- homePage -->
-                            <div class="col-lg-8" id="home">
+                            <div class="col-lg-8" id="home" style="display:none">
                                 <div class="card-box">
                                     <h4 class="m-b-20 text-center">比特币模拟交易器</h4>
 
@@ -531,14 +541,17 @@
             var priceQuery;
             
             var userAddress = "";
+            var userLoaded = 0;
             var userBalance = "";
             var userWallet;
+            var userCoinList = new Array();
             var register = 0;
             var currentPrice;
             var currentCoin;
             var onTrade=0;
             var matchRound=0;
             var lastRound=0;
+            var firstLoad=0;
 
             var btcValue=0;
             var ethValue=0;
@@ -728,12 +741,12 @@
                             getPrice();
                         } 
                     });
-                }, 10000)
+                }, 1000)
             }
 
             function loadAccount() {
                 return new Promise( function(resolve, reject){
-                    if (userAddress == ""){
+                    if (userLoaded == 0){
                         window.postMessage(
                         {
                             target: 'contentscript',
@@ -743,9 +756,10 @@
                         )
                         window.addEventListener('message', function(e) {
                         if (e.data && e.data.data && e.data.data.account) {
-                            console.log(e.data.data.account)
+                            console.log(`用户地址：${e.data.data.account}`)
                             userAddress = e.data.data.account;
                             document.getElementById("userAddress").innerText = userAddress;
+                            console.log('loading accountInfo')
                             neb.api.call({
                                 chainID: chainId,
                                 from: contractAddress,
@@ -759,11 +773,13 @@
                                     args: JSON.stringify([userAddress]),
                                 }
                             }).then(function (resp) {
+                                userLoaded = 1;
                                 var result = JSON.parse(resp.result)
                                 if(result == null){
                                     userBalance = 0;
                                     document.getElementById("register").innerHTML = `
                                     <li class="breadcrumb-item active">您还没有参加本轮比赛 <a href="#" onclick="showHome()">点击报名</a></li>`
+                                    showHome();
                                 } else {
                                     register = 1;
                                     userBalance = result.balance;
@@ -772,12 +788,12 @@
                                     // 用户货币列表，需要存储在本地，在钱包里展示
                                     userWallet = result.coinList;
                                     loadWallet();
-                                    console.log(userWallet)
                                 }
+                                console.log('loaded accountInfo')
                                 resolve(userBalance);
                             }).catch(function(err) {
-                                console.log(err);
-                                resolve(userBalance);
+                                console.log('account load error');
+                                reject();
                             })  
                         }
                     })
@@ -794,6 +810,7 @@
                 if (isNaN(parseInt(round))){
                     alert("请输入正确的参数！")
                 } else {
+                    console.log('loading rank')
                     if (!round){
                         if (matchRound){
                             document.getElementById('round').innerHTML = `第${matchRound}`
@@ -848,6 +865,7 @@
                                 document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
                             }
                         }
+                        console.log('loaded rank')
                     }).catch(function(err) {
                         console.log(err);
                         loadRank(parseInt(round))
@@ -856,6 +874,7 @@
             }
             
             function loadInfo(){
+                console.log('loading info')
                 neb.api.call({
                     chainID: chainId,
                     from: contractAddress,
@@ -875,18 +894,27 @@
                     document.getElementById('lastRank').onclick = function(){loadRank(lastRound)}
                     console.log(`第${matchRound}轮比赛`)
                     document.getElementById('round').innerText = matchRound;
+                    console.log('loaded info')
                 }).catch(function(err) {
                     console.log(err);
                     loadInfo()
                 }) 
+
             }
             
             function loadWallet() {
+                console.log('loading wallet')
                 userWallet.sort(function(li1, li2){
                     var n1=parseInt(li1.count);  
                     var n2=parseInt(li2.count);  
                     return n2-n1; 
                 });
+
+                userCoinList = new Array();
+                for (var c of userWallet) {
+                    userCoinList.push(c.name)
+                }
+                
                 document.getElementById("myWallet").innerHTML = ''
                 for (var i=0;i<userWallet.length;i++){
                     var coin = userWallet[i];
@@ -896,13 +924,15 @@
                     <tr>
                         <td>${name}</td>
                         <td>${count}</td>
-                        <td><a href="#" class="btn btn-sm btn-custom">交易</i></a></td>
+                        <td><a href="#" class="btn btn-sm btn-custom" id="${name.toLowerCase()}" onclick="">交易</a></td>
                     </tr>`
                     document.getElementById("myWallet").insertAdjacentHTML('beforeend', html);
                 }
+                console.log('loaded wallet')
             }
             
             function getPrice() {
+                console.log('loading price')
                 neb.api.call({
                     chainID: chainId,
                     from: contractAddress,
@@ -916,8 +946,8 @@
                         args: JSON.stringify([]),
                     }
                 }).then(function (resp) {
+                    console.log('loaded price')
                     var result = JSON.parse(resp.result)
-                    console.log('update')
                     for (var coin of result) {
                         var name = coin.name;
                         switch(name)
@@ -963,9 +993,9 @@
                             trxValue = coin.price;
                             break;
                         }
-                    } 
+                    }
                 }).catch(function(err) {
-                    console.log(err);
+                    console.log('price load error');;
                 })
             }
             
@@ -1023,10 +1053,19 @@
                 document.getElementById(coin.name).onclick = function(){
                     showCoin(coin.name, value, rate, rateColor)
                 }
+                if(userCoinList.indexOf(coin.name)>=0){
+                    document.getElementById(coin.name.toLowerCase()).onclick = function(){
+                        showCoin(coin.name, value, rate, rateColor)
+                    }
+                }
                 if (coin.name == "BTC") {
                     document.getElementById("tradeButton").onclick = function(){
                         showCoin(coin.name, value, rate, rateColor)
                     } 
+                    if(firstLoad==0){
+                        firstLoad = 1;
+                        document.getElementById("tradeButton").click();
+                    }
                 }
                 if (coin.name == currentCoin && onTrade == 1) {
                     showCoin(currentCoin, value, rate, rateColor)
@@ -1036,6 +1075,7 @@
             function showHome() {
                 onTrade = 0;
                 document.getElementById("home").style.display = 'inline';
+                document.getElementById("loading").style.display = 'none';
                 document.getElementById("trade").style.display = 'none';
                 document.getElementById("wallet").style.display = 'none';
                 document.getElementById("rank").style.display = 'none';
@@ -1049,6 +1089,7 @@
                 } else {
                     onTrade = 1;
                     document.getElementById("trade").style.display = 'inline';
+                    document.getElementById("loading").style.display = 'none';
                     document.getElementById("home").style.display = 'none';
                     document.getElementById("wallet").style.display = 'none';
                     document.getElementById("rank").style.display = 'none';
@@ -1062,6 +1103,7 @@
                 } else {
                     onTrade = 0;
                     document.getElementById("wallet").style.display = 'inline';
+                    document.getElementById("loading").style.display = 'none';
                     document.getElementById("home").style.display = 'none';
                     document.getElementById("trade").style.display = 'none';
                     document.getElementById("rank").style.display = 'none';
@@ -1072,6 +1114,7 @@
             function showRank() {
                 onTrade = 0;
                 document.getElementById("rank").style.display = 'inline';
+                document.getElementById("loading").style.display = 'none';
                 document.getElementById("home").style.display = 'none';
                 document.getElementById("trade").style.display = 'none';
                 document.getElementById("wallet").style.display = 'none';
