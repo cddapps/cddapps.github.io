@@ -110,7 +110,7 @@
                             </li>
                             <li>
                                 <div class="page-title-box">
-                                    <h4 class="page-title" id="userAddress">n1FFDBHfMwY4io9FtSqcR3RL6T6FTkpN3eb</h4>
+                                    <h4 class="page-title" id="userAddress"></h4>
                                     <ol class="breadcrumb" id="register">
                                         <li class="breadcrumb-item active">欢迎来到交易大赛</span></li>
                                     </ol>
@@ -186,7 +186,7 @@
                                     <div class="row m-b-20">
                                         <div class="col-sm-4"> </div>
                                         <div class="col-sm-4">   
-                                            <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()">
+                                            <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()" id="want1">
                                                 我要报名
                                             </button>   
                                         </div>
@@ -247,7 +247,7 @@
                                         <div class="row m-b-20">
                                             <div class="col-sm-4"> </div>
                                             <div class="col-sm-4">   
-                                                <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()">
+                                                <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()" id="want2">
                                                     我要报名
                                                 </button>   
                                             </div>
@@ -526,7 +526,7 @@
             var NebPay = require("nebpay");
             var nebPay = new NebPay(); 
             var Account = require("nebulas").Account;
-            var contractAddress = "n22KAGAhraH2CufZ846nr51iy3fpDN5dvYE";
+            var contractAddress = "n1uTqUTv1nb78trkdCmRve4EeG5RFuDZags";
             var intervalQuery;
 
             var neb = new Neb();
@@ -543,6 +543,7 @@
             var userAddress = "";
             var userLoaded = 0;
             var userBalance = "";
+            var userCurrentCount="";
             var userWallet;
             var userCoinList = new Array();
             var register = 0;
@@ -574,11 +575,8 @@
                         console.log(resp)
                         var txhash = resp.txhash
                         if (typeof(txhash) == "undefined"){
-                            document.getElementById("tradeAlert").innerHTML = `
-                            <h3 class="m-b-20 text-center">您已取消交易，即将刷新页面重新开始！</h4>
-                            <p></p>`
+                            document.getElementById('homeText').style.display = 'none'
                             alert("您已取消交易！")
-                            setTimeout(window.location.reload(), 1000)
                         } else {
                             intervalQuery = setInterval(function() {
                                 loginQuery(txhash);
@@ -633,9 +631,14 @@
 
             function buy(){
                 var count = document.getElementById('coinAmount').value.trim();
+                var usd = document.getElementById('coinValue').value.trim();
                 if (count == "") {
                     alert("请输入买入数量");
-                } else {
+                } else if(isNaN(parseFloat(count))) {
+                    alert("请输入正确数值");
+                } else if(parseFloat(usd) > userBalance) {
+                    alert("您的余额不足，请调低买入数量");
+                }else {
                     var to = contractAddress;
                     var value = 0;
                     var callFunction = "buyCoin";
@@ -645,11 +648,9 @@
                             console.log(resp)
                             var txhash = resp.txhash
                             if (typeof(txhash) == "undefined"){
-                                document.getElementById("tradeAlert2").innerHTML = `
-                                <h3 class="m-b-20 text-center">您已取消交易，即将刷新页面重新开始！</h4>
-                                <p></p>`
+                                document.getElementById('tradeText').style.display = 'none'
+                                document.getElementById('warning').style.display = ''
                                 alert("您已取消交易！")
-                                setTimeout(window.location.reload(), 1000)
                             } else {
                                 intervalQuery = setInterval(function() {
                                     tradeQuery(txhash);
@@ -671,7 +672,11 @@
                 var count = document.getElementById('coinAmount').value.trim();
                 if (count == "") {
                     alert("请输入卖出数量");
-                } else {
+                } else if(isNaN(parseFloat(count))) {
+                    alert("请输入正确数值");
+                } else if(parseFloat(count) > userCurrentCount) {
+                    alert("您的币数不足，请调低卖出数量");
+                }else {
                     var to = contractAddress;
                     var value = 0;
                     var callFunction = "sellCoin";
@@ -681,11 +686,9 @@
                             console.log(resp)
                             var txhash = resp.txhash
                             if (typeof(txhash) == "undefined"){
-                                document.getElementById("tradeAlert2").innerHTML = `
-                                <h3 class="m-b-20 text-center">您已取消交易，即将刷新页面重新开始！</h4>
-                                <p></p>`
+                                document.getElementById('tradeText').style.display = 'none'
+                                document.getElementById('warning').style.display = ''
                                 alert("您已取消交易！")
-                                setTimeout(window.location.reload(), 1000)
                             } else {
                                 intervalQuery = setInterval(function() {
                                     tradeQuery(txhash);
@@ -713,23 +716,38 @@
                     if (respObject.status == 1){
                         clearInterval(intervalQuery);
                         document.getElementById("tradeAlert2").innerHTML = `
-                        <h3 class="m-b-20 text-center">交易成功，3秒后将刷新页面重新开始！</h4>
-                        <p></p>`
-                        setTimeout(window.location.reload(), 10000)
+                        <h3 class="m-b-20 text-center">交易成功!</h3>
+                        <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
+                        <p class="text-center">${txhash}</p>
+                        <a class="btn btn-block btn-custom waves-effect waves-light" 
+                        onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
+                            知道了
+                        </a>`
+                        userLoaded = 0;
+                        loadAccount();
                     } else if (respObject.status == 0) {
+                        console.log("交易失败")
                         clearInterval(intervalQuery);
                         document.getElementById("tradeAlert2").innerHTML = `
-                        <h3 class="m-b-20 text-center">交易失败！</h4>
+                        <h3 class="m-b-20 text-center">交易失败!</h3>
                         <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
-                        <p>${txhash}</p>`
-                        
+                        <p class="text-center">${txhash}</p>
+                        <a class="btn btn-block btn-custom waves-effect waves-light" 
+                        onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
+                            知道了
+                        </a>`
                     }
                 }).catch(function(err){
+                    console.log("交易失败")
                     clearInterval(intervalQuery);
                     document.getElementById("tradeAlert2").innerHTML = `
-                        <h3 class="m-b-20 text-center">交易失败！</h4>
-                        <p>您可以根据以下哈希，再次确认您的交易状态:</p>
-                        <p>${txhash}</p>`
+                    <h3 class="m-b-20 text-center">交易失败!</h3>
+                    <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
+                    <p class="text-center">${txhash}</p>
+                    <a class="btn btn-block btn-custom waves-effect waves-light" 
+                    onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
+                        知道了
+                    </a>`
                 })
             }
             
@@ -737,6 +755,7 @@
                 loadInfo();
                 accountQuery = setInterval(function() {
                     loadAccount().then(function(data){
+                        console.log
                         if (data != ""){
                             getPrice();
                         } 
@@ -785,7 +804,6 @@
                                     userBalance = result.balance;
                                     document.getElementById("register").innerHTML = `
                                     <li class="breadcrumb-item active">您的可用资金：$ <span id="userBalance">${userBalance}</span></li>`
-                                    // 用户货币列表，需要存储在本地，在钱包里展示
                                     userWallet = result.coinList;
                                     loadWallet();
                                 }
@@ -793,7 +811,7 @@
                                 resolve(userBalance);
                             }).catch(function(err) {
                                 console.log('account load error');
-                                reject();
+                                resolve(userBalance);
                             })  
                         }
                     })
@@ -932,7 +950,7 @@
             }
             
             function getPrice() {
-                console.log('loading price')
+                //console.log('loading price')
                 neb.api.call({
                     chainID: chainId,
                     from: contractAddress,
@@ -946,7 +964,7 @@
                         args: JSON.stringify([]),
                     }
                 }).then(function (resp) {
-                    console.log('loaded price')
+                    //console.log('loaded price')
                     var result = JSON.parse(resp.result)
                     for (var coin of result) {
                         var name = coin.name;
@@ -1000,9 +1018,12 @@
             }
             
             function showCoin(coin, price, rate, rateColor) {
+                //console.log(coin)
                 onTrade = 1;
-                document.getElementById('coinAmount').value = '';
-                document.getElementById('coinValue').value = '';
+                if (coin != currentCoin){
+                    document.getElementById('coinAmount').value = '';
+                    document.getElementById('coinValue').value = '';
+                }
                 currentPrice = price;
                 currentCoin = coin;
                 var count = 0;
@@ -1013,6 +1034,7 @@
                         break;
                     }
                 }
+                userCurrentCount = count;
                 showTrade()
                 document.getElementById("coinType").innerText = coin
                 document.getElementById("coinShow").innerHTML = `
@@ -1080,6 +1102,12 @@
                 document.getElementById("wallet").style.display = 'none';
                 document.getElementById("rank").style.display = 'none';
                 document.getElementById('homeText').style.display = 'none'
+                if(userBalance){
+                    document.getElementById("want1").innerText = "您已报名"
+                    document.getElementById("want1").disabled = true;
+                    document.getElementById("want2").innerText = "您已报名"
+                    document.getElementById("want2").disabled = true;
+                }
                 
             }
             
