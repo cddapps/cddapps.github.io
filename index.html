@@ -332,10 +332,10 @@
                                 </div>
                             </div>
 
+                            <!-- walletPage -->
                             <div class="col-lg-8"  id="wallet" style="display: none">
                                 <div class="card-box">
-                                    <h4 class="header-title mb-3">我的总资产: <span>$20000</span> </h4>
-
+                                    <h4 class="header-title mb-3">我的钱包</h4>
                                     <div class="table-responsive">
                                         <table class="table table-hover table-centered m-0">
                                             <thead>
@@ -345,19 +345,7 @@
                                                 <th>交易</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    BTC
-                                                </td>
-
-                                                <td>
-                                                    2.1
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="btn btn-sm btn-custom">交易</i></a>
-                                                </td>
-                                            </tr>
+                                            <tbody id="myWallet">
                                             </tr>
                                             </tbody>
                                         </table>
@@ -365,6 +353,7 @@
                                 </div>
                             </div>
 
+                            <!-- rankPage -->
                             <div class="col-lg-8"  id="rank" style="display: none">
                                 <div class="card-box">
                                     <h4 class="header-title m-t-0 m-b-30 text-center"><span id="round">本</span>期比赛排行榜</h4>
@@ -406,6 +395,7 @@
                                 </div>
                             </div>
                             
+                            <!-- coinPage -->
                             <div class="col-lg-4">
                                 <div class="card-box">
                                     <h4 class="header-title mb-3 text-center">交易列表</h4>
@@ -740,7 +730,7 @@
                     });
                 }, 10000)
             }
-            
+
             function loadAccount() {
                 return new Promise( function(resolve, reject){
                     if (userAddress == ""){
@@ -781,6 +771,7 @@
                                     <li class="breadcrumb-item active">您的可用资金：$ <span id="userBalance">${userBalance}</span></li>`
                                     // 用户货币列表，需要存储在本地，在钱包里展示
                                     userWallet = result.coinList;
+                                    loadWallet();
                                     console.log(userWallet)
                                 }
                                 resolve(userBalance);
@@ -854,7 +845,6 @@
                                     <td>${rate}%</td>
                                     <td>100NAS</td>
                                 </tr>`
-                                console.log(html)
                                 document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
                             }
                         }
@@ -889,6 +879,27 @@
                     console.log(err);
                     loadInfo()
                 }) 
+            }
+            
+            function loadWallet() {
+                userWallet.sort(function(li1, li2){
+                    var n1=parseInt(li1.count);  
+                    var n2=parseInt(li2.count);  
+                    return n2-n1; 
+                });
+                document.getElementById("myWallet").innerHTML = ''
+                for (var i=0;i<userWallet.length;i++){
+                    var coin = userWallet[i];
+                    var name = coin.name;
+                    var count = coin.count;
+                    var html = `
+                    <tr>
+                        <td>${name}</td>
+                        <td>${count}</td>
+                        <td><a href="#" class="btn btn-sm btn-custom">交易</i></a></td>
+                    </tr>`
+                    document.getElementById("myWallet").insertAdjacentHTML('beforeend', html);
+                }
             }
             
             function getPrice() {
@@ -957,7 +968,7 @@
                     console.log(err);
                 })
             }
-              
+            
             function showCoin(coin, price, rate, rateColor) {
                 onTrade = 1;
                 document.getElementById('coinAmount').value = '';
