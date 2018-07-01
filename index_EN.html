@@ -114,8 +114,8 @@
                             <li>
                                 <div class="page-title-box">
                                     <h4 class="page-title" id="userAddress"></h4>
-                                    <ol class="breadcrumb" id="register">
-                                        <li class="breadcrumb-item active">Welcom to BSAI</span></li>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active">The end of this round: 2018-07-10 24:00 | <span id="register"></span><span id="userBalance"></span></li>
                                     </ol>
                                 </div>
                             </li>
@@ -787,14 +787,13 @@
                                 var result = JSON.parse(resp.result)
                                 if(result == null){
                                     userBalance = 0;
-                                    document.getElementById("register").innerHTML = `
-                                    <li class="breadcrumb-item active">Please click <a href="#" onclick="showHome()">Join</a> to take part in contest.</li>`
+                                    document.getElementById("register").innerHTML = `Please click "Join" to take part in contest.</li>`
                                     showHome();
                                 } else {
                                     register = 1;
                                     userBalance = result.balance;
-                                    document.getElementById("register").innerHTML = `
-                                    <li class="breadcrumb-item active">Balance：$ <span id="userBalance">${userBalance}</span></li>`
+                                    document.getElementById("register").innerHTML = `Balance：$ `
+                                    document.getElementById("userBalance").innerHTML = `${userBalance}`
                                     userWallet = result.coinList;
                                     loadWallet();
                                 }
