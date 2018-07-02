@@ -644,15 +644,12 @@
             }
 
             function mobileQuery(serialNumber) {
-                alert(serialNumber)
                 var mq = intervalQuery = setInterval(function() {
                     nebPay.queryPayInfo(serialNumber,{callback: callbackUrl}).then(function (resp) {
                         resp = JSON.parse(resp)
                         if(resp instanceof Object){
-                            alert(resp.msg+resp.code);
-                            if(resp.msg === 'success'){  
+                            if(resp.code == 0){  
                                 var data = resp.data;
-                                alert(data)
                                 if (data instanceof Object){
                                     clearInterval(mq)
                                     var userAddress = data.from;
@@ -660,10 +657,16 @@
                                     localStorage.setItem('userAddress', userAddress);
                                     var txhash = data.hash
                                     intervalQuery = setInterval(function() {
-                                        loginQuery(txhash);
-                                    }, 10000);
+                                        tradeQuery(txhash);
+                                    }, 3000);
                                 }
+                            } else {
+                                clearInterval(mq)
+                                alert("交易失败！")
                             }
+                        } else {
+                            clearInterval(mq)
+                            alert("交易失败！")
                         }
                     }).catch(function (err) {
                         alert("error:" + err)
