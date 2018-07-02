@@ -138,7 +138,10 @@
                                     <!-- <h4 class="m-t-0 header-title">Rotate plane</h4> -->
                                     <div class="sk-rotating-plane"></div>
                                     <p class="text-muted text-center">
-                                            正在从星云链加载您的信息，请稍等。。。
+                                        正在从星云链加载您的信息，请稍等。。。
+                                    </p>
+                                    <p class="text-muted text-center">
+                                        您还没有安装星云浏览器插件，请点击安装<a href="https://github.com/nebulasio/WebExtensionWallet">浏览器插件</a>
                                     </p>
                                 </div>
                             </div>
@@ -745,14 +748,26 @@
             
             function start(){
                 loadInfo();
-                accountQuery = setInterval(function() {
-                    loadAccount().then(function(data){
-                        console.log
-                        if (data != ""){
-                            getPrice();
-                        } 
-                    });
-                }, 1000)
+                userAddress = localStorage.getItem('userAddress');
+                console.log(userAddress)
+                if (userAddress || IsPC()) {
+                    accountQuery = setInterval(function() {
+                        loadAccount().then(function(data){
+                            console.log
+                            if (data != ""){
+                                getPrice();
+                            } 
+                        });
+                    }, 1000)
+                } else {
+                    alert("您正在手机端操作！")
+                    document.getElementById("loading").innerHTML = `
+                    <div class="card-box">
+                    <h3 class="text-center">
+                        您正在手机端使用，目前暂不支持手机端登录，请使用PC进行操作！
+                    </h3>
+                    </div>`
+                }
             }
 
             function loadAccount() {
@@ -769,6 +784,7 @@
                         if (e.data && e.data.data && e.data.data.account) {
                             console.log(`用户地址：${e.data.data.account}`)
                             userAddress = e.data.data.account;
+                            localStorage.setItem('userAddress', userAddress);
                             document.getElementById("userAddress").innerText = userAddress;
                             console.log('loading accountInfo')
                             neb.api.call({
@@ -804,7 +820,7 @@
                                 console.log('account load error');
                                 resolve(userBalance);
                             })  
-                        }
+                        } 
                     })
                     } else {
                         resolve(userBalance);
@@ -1189,6 +1205,16 @@
                 });
                 return promise
             }
+
+            function IsPC() {  
+                var userAgentInfo = navigator.userAgent;  
+                var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");  
+                var flag = true;  
+                for (var v = 0; v < Agents.length; v++) {  
+                    if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
+                }  
+                return flag;  
+             } 
 
             $(function(){  
                 $('#coinAmount').bind('input propertychange', function() {  
