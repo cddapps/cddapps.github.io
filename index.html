@@ -840,58 +840,45 @@
             function loadAccount() {
                 return new Promise( function(resolve, reject){
                     if (userLoaded == 0){
-                        window.postMessage(
-                        {
-                            target: 'contentscript',
-                            method: 'getAccount'
-                        },
-                        '*'
-                        )
-                        window.addEventListener('message', function(e) {
-                        if (userAddress || e.data && e.data.data && e.data.data.account) {
-                            console.log(`用户地址：${e.data.data.account}`)
-                            if (e.data.data.account){
-                                userAddress = e.data.data.account;
+                        getUserAddress();
+                        console.log(userAddress)
+                        localStorage.setItem('userAddress', userAddress);
+                        document.getElementById("userAddress").innerText = userAddress;
+                        console.log('loading accountInfo')
+                        neb.api.call({
+                            chainID: chainId,
+                            from: contractAddress,
+                            to: contractAddress,
+                            value: 0,
+                            nonce: 0,
+                            gasPrice: 1000000,
+                            gasLimit: 2000000,
+                            contract: {
+                                function: "searchUser",
+                                args: JSON.stringify([userAddress]),
                             }
-                            localStorage.setItem('userAddress', userAddress);
-                            document.getElementById("userAddress").innerText = userAddress;
-                            console.log('loading accountInfo')
-                            neb.api.call({
-                                chainID: chainId,
-                                from: contractAddress,
-                                to: contractAddress,
-                                value: 0,
-                                nonce: 0,
-                                gasPrice: 1000000,
-                                gasLimit: 2000000,
-                                contract: {
-                                    function: "searchUser",
-                                    args: JSON.stringify([userAddress]),
-                                }
-                            }).then(function (resp) {
-                                var result = JSON.parse(resp.result)
-                                if(result == null){
-                                    console.log(result)
-                                    userBalance = -1;
-                                    document.getElementById("register").innerText = `您还没有参加本轮比赛`
-                                    showHome();
-                                } else {
-                                    userLoaded = 1;
-                                    register = 1;
-                                    userBalance = result.balance;
-                                    document.getElementById("register").innerText = `您的可用资金：$`
-                                    document.getElementById("userBalance").innerText = `${userBalance}`
-                                    userWallet = result.coinList;
-                                    loadWallet();
-                                }
-                                console.log('loaded accountInfo')
-                                resolve(userBalance);
-                            }).catch(function(err) {
-                                console.log('account load error');
-                                resolve(userBalance);
-                            })  
-                        } 
-                    })
+                        }).then(function (resp) {
+                            var result = JSON.parse(resp.result)
+                            if(result == null){
+                                console.log(result)
+                                userBalance = -1;
+                                document.getElementById("register").innerText = `您还没有参加本轮比赛`
+                                showHome();
+                            } else {
+                                userLoaded = 1;
+                                register = 1;
+                                userBalance = result.balance;
+                                document.getElementById("register").innerText = `您的可用资金：$`
+                                document.getElementById("userBalance").innerText = `${userBalance}`
+                                userWallet = result.coinList;
+                                loadWallet();
+                            }
+                            console.log('loaded accountInfo')
+                            resolve(userBalance);
+                        }).catch(function(err) {
+                            console.log('account load error');
+                            resolve(userBalance);
+                        })    
                     } else {
                         resolve(userBalance);
                     }
@@ -1283,6 +1270,24 @@
                 }  
                 return flag;  
              } 
+
+            function getUserAddress() {
+                if(IsPC()){
+                    window.postMessage(
+                    {
+                        target: 'contentscript',
+                        // data: 'a',
+                        method: 'getAccount'
+                    },
+                    '*'
+                    )
+                    window.addEventListener('message', function(e) {
+                    if (e.data && e.data.data && e.data.data.account) {
+                        userAddress = e.data.data.account;
+                    }
+                    })
+                }
+            }
 
             $(function(){  
                 $('#coinAmount').bind('input propertychange', function() {  
