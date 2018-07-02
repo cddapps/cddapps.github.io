@@ -618,7 +618,7 @@
                         openExtension: true //是否支持插件调用
                     },
                     mobile: {
-                        showInstallTip: true, //是否支持手机钱包安装提示
+                        showInstallTip: false, //是否支持手机钱包安装提示
                         installTip: undefined // 手机钱包安装提示
                     },
                     listener: function (serialNumber,result) {
@@ -634,6 +634,11 @@
                         }
                     }
                 }
+                //发送交易(发起智能合约调用)
+                serialNumber = nebPay.call(to, value, callFunction, callArgs, options);
+                mQuery = setInterval( () => {
+                    mobileLoginQuery();
+                },5000);
             }
 
             function loginQuery(txhash) {
