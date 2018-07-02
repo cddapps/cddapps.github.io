@@ -645,7 +645,7 @@
             }
 
             function mobileQuery() {
-                nebPay.queryPayInfo(serialNumber,{callback: callbackUrl}).then(function (resp) {
+                nebPay.queryPayInfo(serialNumber).then(function (resp) {
                     resp = JSON.parse(resp)
                     if(resp instanceof Object){
                         if(resp.code === 0){  
@@ -661,10 +661,8 @@
                                     tradeQuery(txhash);
                                 }, 3000);
                             }
-                        } else {
-                            clearInterval(mQuery)
-                           alert(resp.msg) 
                         }
+                        alert(resp.msg)
                     }
                 }).catch(function (err) {
                     alert("error:" + err)
@@ -766,7 +764,7 @@
                     serialNumber = nebPay.call(to, value, callFunction, callArgs, options)
                     mQuery = setInterval( () => {
                         mobileQuery();
-                    },3000);
+                    },5000);
                 }
             }
 
