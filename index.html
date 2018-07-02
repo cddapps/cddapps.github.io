@@ -645,6 +645,9 @@
             }
 
             function mobileTradeQuery() {
+                if(IsPC()){
+                    return
+                }
                 nebPay.queryPayInfo(serialNumber).then(function (resp) {
                     resp = JSON.parse(resp)
                     if(resp instanceof Object){
@@ -668,6 +671,9 @@
             }
 
             function mobileLoginQuery() {
+                if(IsPC()){
+                    return
+                }
                 nebPay.queryPayInfo(serialNumber).then(function (resp) {
                     resp = JSON.parse(resp)
                     if(resp instanceof Object){
