@@ -644,12 +644,15 @@
             }
 
             function mobileQuery(serialNumber) {
+                alert(serialNumber)
                 var mq = intervalQuery = setInterval(function() {
                     nebPay.queryPayInfo(serialNumber,{callback: callbackUrl}).then(function (resp) {
                         resp = JSON.parse(resp)
+                        alert(resp)
                         if(resp instanceof Object){
                             if(resp.msg === 'success'){  
                                 var data = resp.data;
+                                alert(data)
                                 if (data instanceof Object){
                                     clearInterval(mq)
                                     var userAddress = data.from;
