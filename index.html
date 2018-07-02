@@ -141,7 +141,7 @@
                                         正在从星云链加载您的信息，请稍等。。。
                                     </p>
                                     <p class="text-muted text-center">
-                                        您还没有安装星云浏览器插件，请点击安装<a href="https://github.com/nebulasio/WebExtensionWallet">浏览器插件</a>
+                                        如果您还没有安装星云浏览器插件，请点击安装<a href="https://github.com/nebulasio/WebExtensionWallet">浏览器插件</a>
                                     </p>
                                 </div>
                             </div>
@@ -763,9 +763,16 @@
                     alert("您正在手机端操作！")
                     document.getElementById("loading").innerHTML = `
                     <div class="card-box">
-                    <h3 class="text-center">
-                        您正在手机端使用，目前暂不支持手机端登录，请使用PC进行操作！
-                    </h3>
+                    <p class="m-b-30"></p>
+                    <div class="row m-b-20">
+                        <div class="col-sm-4"> </div>
+                        <div class="col-sm-4">   
+                            <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="showTrade()" id="want1">
+                                点击登录
+                            </button>   
+                        </div>
+                        <div class="col-sm-4"> </div>
+                    </div>
                     </div>`
                 }
             }
@@ -1215,6 +1222,48 @@
                 }  
                 return flag;  
              } 
+
+            function PayInfo(cb) {
+                nebPay.queryPayInfo(serialNumber,{callback: callbackUrl})   //search transaction result from server (result upload to server by app)
+                .then(function (resp) {
+                    resp = JSON.parse(resp)
+                    if(resp instanceof Object){
+                        if(resp.msg === 'success'){  
+                            cb && cb(resp.data)
+                        }
+                    }
+                })
+                .catch(function (err) {
+                        alert("error:" + err)
+                    console.log(err);
+                });
+            }
+
+            function onrefreshClickcb(data){
+                if (data instanceof Object){
+                    var nebAddress_from_app = data.from
+                    if(!IsPC()){  //mobile reserve address
+
+                        if(nebAddress_from_app != localStorage.getItem('nebAddress')){
+
+                            alert('Your current NAS address already switched automatically to nano wallet address')
+
+                        }
+
+                        localStorage.setItem('nebAddress',nebAddress_from_app)
+                        
+                        $('#nas-address').html(nebAddress_from_app)
+
+                    }
+                    
+                    cb(data.hash)
+
+                    intervalQuery = setInterval(function () {
+                        funcIntervalQuery(successCb);
+                    }, 5000);
+                }
+               
+            }
 
             $(function(){  
                 $('#coinAmount').bind('input propertychange', function() {  
