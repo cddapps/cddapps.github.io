@@ -645,7 +645,7 @@
             }
 
             function mobileQuery() {
-                nebPay.queryPayInfo(serialNumber, {callback: "https://pay.nebulas.io/api/mainnet/pay"}).then(function (resp) {
+                nebPay.queryPayInfo(serialNumber).then(function (resp) {
                     resp = JSON.parse(resp)
                     if(resp instanceof Object){
                         if(resp.code === 0){  
