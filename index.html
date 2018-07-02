@@ -532,6 +532,7 @@
             var callbackUrl = NebPay.config.mainnetUrl;
 
             var serialNumber;
+            var mQuery;
             var intervalQuery;
             var accountQuery;
             var priceQuery;
@@ -847,7 +848,7 @@
                         '*'
                         )
                         window.addEventListener('message', function(e) {
-                        if (e.data && e.data.data && e.data.data.account || userAddress) {
+                        if (userAddress || e.data && e.data.data && e.data.data.account) {
                             console.log(`用户地址：${e.data.data.account}`)
                             if (e.data.data.account){
                                 userAddress = e.data.data.account;
