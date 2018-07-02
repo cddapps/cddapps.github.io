@@ -644,30 +644,32 @@
                 })
             }
 
-            function mobileQuery(serialNumber) {
-                var mq = intervalQuery = setInterval(function() {
-                    nebPay.queryPayInfo(serialNumber,{callback: callbackUrl}).then(function (resp) {
-                        resp = JSON.parse(resp)
-                        if(resp instanceof Object){
-                            if(resp.code === 0){  
-                                alert(resp.code)
-                                var data = resp.data;
-                                if (data instanceof Object){
-                                    clearInterval(mq)
-                                    var userAddress = data.from;
-                                    alert(userAddress);
-                                    localStorage.setItem('userAddress', userAddress);
-                                    var txhash = data.hash
-                                    intervalQuery = setInterval(function() {
-                                        tradeQuery(txhash);
-                                    }, 3000);
-                                }
-                            } 
+            function mobileQuery() {
+                nebPay.queryPayInfo(serialNumber,{callback: callbackUrl}).then(function (resp) {
+                    resp = JSON.parse(resp)
+                    if(resp instanceof Object){
+                        if(resp.code === 0){  
+                            alert(resp.code)
+                            var data = resp.data;
+                            if (data instanceof Object){
+                                clearInterval(mQuery)
+                                userAddress = data.from;
+                                localStorage.setItem('userAddress', userAddress);
+                                alert(userAddress);
+                                var txhash = data.hash
+                                intervalQuery = setInterval(function() {
+                                    tradeQuery(txhash);
+                                }, 3000);
+                            }
+                        } else {
+                            clearInterval(mQuery)
+                           alert(resp.msg) 
                         }
-                    }).catch(function (err) {
-                        alert("error:" + err)
-                        console.log(err);
-                    })}, 3000);
+                    }
+                }).catch(function (err) {
+                    alert("error:" + err)
+                    console.log(err);
+                })
             }
             
             function login() {
@@ -762,7 +764,9 @@
                     }
                     //发送交易(发起智能合约调用)
                     serialNumber = nebPay.call(to, value, callFunction, callArgs, options)
-                    mobileQuery(serialNumber);
+                    mQuery = setInterval( () => {
+                        mobileQuery();
+                    },3000);
                 }
             }
 
@@ -822,11 +826,9 @@
                 if (!userAddress){
                     userAddress = localStorage.getItem('userAddress');
                 }
-                console.log(userAddress)
                 if (IsPC() || userAddress) {
                     accountQuery = setInterval(function() {
                         loadAccount().then(function(data){
-                            console.log
                             if (data != ""){
                                 getPrice();
                             } 
@@ -840,45 +842,46 @@
             function loadAccount() {
                 return new Promise( function(resolve, reject){
                     if (userLoaded == 0){
-                        getUserAddress();
-                        console.log(userAddress)
-                        localStorage.setItem('userAddress', userAddress);
-                        document.getElementById("userAddress").innerText = userAddress;
-                        console.log('loading accountInfo')
-                        neb.api.call({
-                            chainID: chainId,
-                            from: contractAddress,
-                            to: contractAddress,
-                            value: 0,
-                            nonce: 0,
-                            gasPrice: 1000000,
-                            gasLimit: 2000000,
-                            contract: {
-                                function: "searchUser",
-                                args: JSON.stringify([userAddress]),
-                            }
-                        }).then(function (resp) {
-                            var result = JSON.parse(resp.result)
-                            if(result == null){
-                                console.log(result)
-                                userBalance = -1;
-                                document.getElementById("register").innerText = `您还没有参加本轮比赛`
-                                showHome();
-                            } else {
-                                userLoaded = 1;
-                                register = 1;
-                                userBalance = result.balance;
-                                document.getElementById("register").innerText = `您的可用资金：$`
-                                document.getElementById("userBalance").innerText = `${userBalance}`
-                                userWallet = result.coinList;
-                                loadWallet();
-                            }
-                            console.log('loaded accountInfo')
-                            resolve(userBalance);
-                        }).catch(function(err) {
-                            console.log('account load error');
-                            resolve(userBalance);
-                        })    
+                        getUserAddress().then(function(data){
+                            console.log(userAddress)
+                            localStorage.setItem('userAddress', userAddress);
+                            document.getElementById("userAddress").innerText = userAddress;
+                            console.log('loading accountInfo')
+                            neb.api.call({
+                                chainID: chainId,
+                                from: contractAddress,
+                                to: contractAddress,
+                                value: 0,
+                                nonce: 0,
+                                gasPrice: 1000000,
+                                gasLimit: 2000000,
+                                contract: {
+                                    function: "searchUser",
+                                    args: JSON.stringify([userAddress]),
+                                }
+                            }).then(function (resp) {
+                                var result = JSON.parse(resp.result)
+                                if(result == null){
+                                    console.log(result)
+                                    userBalance = -1;
+                                    document.getElementById("register").innerText = `您还没有参加本轮比赛`
+                                    showHome();
+                                } else {
+                                    userLoaded = 1;
+                                    register = 1;
+                                    userBalance = result.balance;
+                                    document.getElementById("register").innerText = `您的可用资金：$`
+                                    document.getElementById("userBalance").innerText = `${userBalance}`
+                                    userWallet = result.coinList;
+                                    loadWallet();
+                                }
+                                console.log('loaded accountInfo')
+                                resolve(userBalance);
+                            }).catch(function(err) {
+                                console.log('account load error');
+                                resolve(userBalance);
+                            })
+                        })   
                     } else {
                         resolve(userBalance);
                     }
@@ -1272,21 +1275,26 @@
              } 
 
             function getUserAddress() {
-                if(IsPC()){
-                    window.postMessage(
-                    {
-                        target: 'contentscript',
-                        // data: 'a',
-                        method: 'getAccount'
-                    },
-                    '*'
-                    )
-                    window.addEventListener('message', function(e) {
-                    if (e.data && e.data.data && e.data.data.account) {
-                        userAddress = e.data.data.account;
+                return new Promise( function(resolve, reject){
+                    if(IsPC()){
+                        window.postMessage(
+                        {
+                            target: 'contentscript',
+                            // data: 'a',
+                            method: 'getAccount'
+                        },
+                        '*'
+                        )
+                        window.addEventListener('message', function(e) {
+                        if (e.data && e.data.data && e.data.data.account) {
+                            userAddress = e.data.data.account;
+                            resolve(userAddress)
+                        }
+                        })
+                    } else {
+                        resolve(userAddress)
                     }
-                    })
-                }
+                })
             }
 
             $(function(){  
