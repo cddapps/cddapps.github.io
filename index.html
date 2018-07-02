@@ -648,7 +648,7 @@
                     nebPay.queryPayInfo(serialNumber,{callback: callbackUrl}).then(function (resp) {
                         resp = JSON.parse(resp)
                         if(resp instanceof Object){
-                            if(resp.code == 0){  
+                            if(resp.code === 0){  
                                 var data = resp.data;
                                 if (data instanceof Object){
                                     clearInterval(mq)
@@ -664,9 +664,6 @@
                                 clearInterval(mq)
                                 alert("交易失败！")
                             }
-                        } else {
-                            clearInterval(mq)
-                            alert("交易失败！")
                         }
                     }).catch(function (err) {
                         alert("error:" + err)
