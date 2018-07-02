@@ -65,19 +65,19 @@
                             <!--<li class="menu-title">Navigation</li>-->
 
                             <li>
-                                <a href="#" onclick="showTrade()" id="tradeButton"><i class="fi-layers"></i> <span> 交易大赛 </span></a>
+                                <a href="#" onclick="showTrade()" id="tradeButton"><i class="fi-layers"></i> <span> Contest </span></a>
                             </li>
                             <li>
-                                <a href="#" onclick="showRank()"><i class="fi-align-left"></i> <span> 比赛排行 </span></a>
+                                <a href="#" onclick="showRank()"><i class="fi-align-left"></i> <span> Leaderboard </span></a>
                             </li>
                             <li>
-                                <a href="#" onclick="showWallet()"><i class="fi-head"></i> <span> 我的钱包 </span> </a>
+                                <a href="#" onclick="showWallet()"><i class="fi-head"></i> <span> My Wallet </span> </a>
                             </li>
                             <li>
-                                <a href="#" onclick="showHome()"><i class="fi-paper"></i> <span> 使用说明 </span></a>
+                                <a href="#" onclick="showHome()"><i class="fi-paper"></i> <span> How to start </span></a>
                             </li>
                             <li>
-                                <a href="index_EN.html"><i class="fi-flag"></i> <span> English </span></a>
+                                <a href="index_ZH.html"><i class="fi-flag"></i> <span> 中文 </span></a>
                             </li>
                            
                         </ul>
@@ -115,7 +115,7 @@
                                 <div class="page-title-box">
                                     <h4 class="page-title" id="userAddress"></h4>
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item active">本期比赛结束时间: 2018-07-10 24:00 | <span id="register"> 欢迎来到模拟交易大赛</span><span id="userBalance"></span></li>
+                                        <li class="breadcrumb-item active">The end of this round: 2018-07-10 24:00 | <span id="register"> Welcome to Bsai</span><span id="userBalance"></span></li>
                                     </ol>
                                 </div>
                             </li>
@@ -138,10 +138,7 @@
                                     <!-- <h4 class="m-t-0 header-title">Rotate plane</h4> -->
                                     <div class="sk-rotating-plane"></div>
                                     <p class="text-muted text-center">
-                                        正在从星云链加载您的信息，请稍等。。。
-                                    </p>
-                                    <p class="text-muted text-center">
-                                        如果您还没有安装星云浏览器插件，请点击安装<a href="https://github.com/nebulasio/WebExtensionWallet">浏览器插件</a>
+                                            正在从星云链加载您的信息，请稍等。。。
                                     </p>
                                 </div>
                             </div>
@@ -149,15 +146,18 @@
                             <!-- homePage -->
                             <div class="col-lg-8" id="home" style="display:none">
                                 <div class="card-box">
-                                    <h3 class="m-b-20 text-center">加密货币模拟交易大赛</h3>
+                                    <h3 class="m-b-20 text-center">Cryptocurrency Trading Contest （DAPP）</h3>
                                     <p >
-                                        这是全球第一款去中心化的加密货币模拟交易大赛，本系统完全基于<a href="https://nebulas.io/cn/">星云链</a>智能合约标准化开发。 只需要简单的报名加入，便可以快速加入到我们的比赛中，在这里，你可以使用真实的市场价格来模拟交易任何主流加密货币。
+                                        It is a first decentralized Cryptocurrency Trading Contest all over the word. This Dapp is completely deployed by <a href="https://nebulas.io/cn/">Nebulas</a> Blockchain.
                                     </p>
                                     <p >
-                                        我们希望这款dapp可以帮助人们在没有任何风险的情况下了解如何使用星云dapp，同时还可以免费参与紧张刺激的交易大赛。我们还会为每期获得名次的用户提供免费的NAS作为奖励。
+                                        This Dapp is an innovative and excellent free chance for everyone to earn your big NAS reward.
                                     </p>
                                     <p>
-                                        特别提示：操作需要使用<a href="https://github.com/nebulasio/WebExtensionWallet">星云浏览器插件</a>，请在报名前先进行安装。
+                                        We hope it will help people learning how to use a dapp and trading cryptocurrencies without any risk.
+                                    </p>
+                                    <p>
+                                        Notice: Please install the <a href="https://github.com/nebulasio/WebExtensionWallet">WebExtensionWallet</a> before joining。
                                     </p>
 
                                     <p class="m-b-30"></p>
@@ -165,7 +165,7 @@
                                     <div class="row m-b-20">
                                         <div class="col-sm-4"> </div>
                                         <div class="col-sm-4 text-center">   
-                                            <a href="#" onclick="document.getElementById('matchRule').style.display = '';">点击查看交易大赛详细说明</a>  
+                                            <a href="#" onclick="document.getElementById('matchRule').style.display = '';">Click here for detailed rules</a>  
                                         </div>
                                         <div class="col-sm-4"> </div>
                                     </div>
@@ -176,7 +176,7 @@
                                         <div class="col-sm-4"> </div>
                                         <div class="col-sm-4">   
                                             <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()" id="want1">
-                                                我要报名
+                                                Join
                                             </button>   
                                         </div>
                                         <div class="col-sm-4"> </div>
@@ -184,56 +184,39 @@
                                 
                                 </div>
                                 <div class="card-box" id="matchRule" style="display: none">
-                                        <h3 class="m-b-20 text-center">交易大赛规则与奖金</h3>
+                                        <h3 class="m-b-20 text-center">BSAI Free Demo Trading Contest(Dapp)</h3>
                                     <p >
-                                        BSAI模拟交易大赛公平公正，所有参赛用户的初始资金为$10000，点击“我要报名”，即可实时参与当期交易大赛。您可根据您的交易策略，选择你喜欢的加密货币，进行模拟的买卖从而获取利润并且取得名次。
+                                        The contest is an absolutely fair trading game guaranteed by nebulas smart contract . All of participants have a same initial fund – $10000.  You could buy and sell all cryptocurrencies using your trading strategy at any time. In a word,  try your best to make a profit and win the game. 
                                     </p>
-                                    <h4 class="m-b-20">比赛周期</h4>
+                                    <h4 class="m-b-20">The time of the Contest</h4>
                                     <p >
-                                        比赛周期为<strong> 10 </strong>天。 <br>
-                                        每期不会间断，你可以在任何时间报名参与比赛，当然，越早越有优势。
+                                        The duration is<strong> 10 </strong>days for each contest. <br>
+                                        The contest is taking place on continuing non-stop basis and everyone can join any of them at any time.
                                     </p>
-                                    <h4 class="m-b-20">每期比赛奖励</h4>
+                                    <h4 class="m-b-20">Prizes of the contest</h4>
                                     <p >
-                                        每期比赛奖金由BSAI和赞助商提供，每期比赛都会有不同的奖池。您可以<a href="#" onclick="showRank()">点击这里</a>查看实时的比赛奖池。（每期奖池实时累积）<br>
-                                        您可以根据您的名次获得当期奖池的百分比    
+                                        Each competition bonus is provided by BSAI and sponsors. Each competition will have different awards. You can click <a href="#" onclick="showRank()">here</a> to Look at the real time rewards pool.<br>
+                                        You can get the percentage of the current prize pool according to your rank:   
                                     </p>
                                     <p>
-                                        第1名 — 25% * Reward Pool<br>
-                                        第2名 — 12% * Reward Pool<br>
-                                        第3名 —  8% * Reward Pool<br>
-                                        第4名 —  5% * Reward Pool<br>
-                                        第5名 —  4% * Reward Pool<br>
-                                        第6名 —  2% * Reward Pool<br>
-                                        第7名 —  1% * Reward Pool<br>
-                                        第8名 —  1% * Reward Pool<br>
-                                        第9名 —  1% * Reward Pool<br>
-                                        第10名 — 1% * Reward Pool<br>
-                                        第11名—50名  — 0.5% * Reward Pool<br>
-                                        第51名—150名 — 0.1% * Reward Pool<br>
-                                        第151名-350名 — 0.05% * Reward Pool<br>
+                                        1st Place—25% * Reward Pool <br>
+                                        2nd place—12% * Reward Pool <br>
+                                        3rd place—8% * Reward Pool <br>
+                                        4th place—5% * Reward Pool <br>
+                                        5th place—4% * Reward Pool <br>
+                                        6th place—2% * Reward Pool <br>
+                                        7th place—1% * Reward Pool <br>
+                                        8th place-1% * Reward Pool <br>
+                                        9th place-1% * Reward Pool <br>
+                                        10th place-1% * Reward Pool <br>
+                                        From 11th place to 50th place — 0.5%  <br>
+                                        From 51th to 150th place - 0.1%  <br>
+                                        From 151th to 350th place - 0.05%  <br>
                                     </p>
+                                    
+                                    <h4 class="m-b-20 text-danger">Payment</h4>
                                     <p>
-                                        一旦你获得排名，我们将会将奖池中的NAS数量按照比例支付到你报名参赛中的NAS地址中。支付过程由智能合约完全保证。
-                                    </p>
-                                    <h4 class="m-b-20 text-danger">注意事项 ( 必须阅读)</h4>
-                                    <p>
-                                        1.我们的排行榜最终只会以 美金余额 来统计。这意味着，你必须在每期比赛结束前，卖出你所有的加密货币。 一旦你获得排名，系统将会在几个小时内，将相应的NAS奖励支付到你的报名地址中。
-                                    </p>
-                                    <p>
-                                        举个例子: <br>
-                                        此时你账户有1BTC和$500。如果在比赛倒计时归0前，你还没有将你的比特币换成美金，一旦本期比赛结束，我们只能用你的$500来统计你的排名。
-                                    </p>
-                                    <p>
-                                        2.为了防止恶意刷单或者由于众多原因发生的不公平的交易方式，当您在卖出订单时，我们会收取交易总额1.5%的费率。
-                                    </p>
-                                    <p>
-                                        3.此版本仍为测试版，我们会根据具体的运营情况，随时改变相关信息，请保持对我们的关注。
-                                    </p>
-
-                                    <h4 class="m-b-20">联系我们</h4>
-                                    <p>
-                                        如果你有其它问题，欢迎发送email至 admin@bsai.io | cddapps@126.com
+                                        We will pay the bonus to your NAS address  in a few hours  if you are in the Top350 once the contest ends.  The rewards distribution is also guaranteed by smart contract. All of payments are open and transparent on BlockChain.
                                     </p>
 
                                     <p class="m-b-30"></p>
@@ -242,7 +225,7 @@
                                         <div class="col-sm-4"> </div>
                                         <div class="col-sm-4">   
                                             <button type="submit" class="btn btn-block btn-success waves-effect waves-light" onclick="login()" id="want2">
-                                                我要报名
+                                                Join
                                             </button>   
                                         </div>
                                         <div class="col-sm-4"> </div>
@@ -253,7 +236,7 @@
                                     <div class="card m-b-30 text-white bg-primary text-xs-center">
                                         <div class="card-body">
                                             <blockquote class="card-bodyquote" id="tradeAlert">
-                                                <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                                                <h3 class="m-b-20 text-center">Please complete the trade in WebExtensionWallet！</h4>
                                                 <p>
                                                 </p>
                                             </blockquote>
@@ -266,14 +249,14 @@
                             <div class="col-lg-8" id="trade"  style="display: none">
                                 <div class="card-box">
                                     <div id="coinShow">
-                                        <h4 class="m-t-0 header-title">持币数量:0 | 可用资金:$10000</h4>
+                                        <h4 class="m-t-0 header-title">Coin:0 | USD:$10000</h4>
                                         <div class="row text-center">
                                             <div class="col-sm-3 col-lg-3 col-xl-3"></div>
                                             <div class="col-sm-6 col-lg-6 col-xl-6">
                                                 <div class="card-box tilebox-one">
                                                     <h6 class="text-muted text-uppercase mt-0">BTC</h6>
                                                     <h2 class="m-b-20">$<span data-plugin="counterup" id="currentPrice">--</span></h2>
-                                                    <span class="text-muted">24小时涨跌幅：</span>
+                                                    <span class="text-muted">24H Change：</span>
                                                     <span id="currentRate"><span class="badge">--</span></span> 
                                                 </div>
                                             </div>
@@ -284,11 +267,11 @@
                                     <div class="row">
                                         <div class="form-row col-sm-12">
                                             <div class="form-group col-md-6">
-                                                    <label for="inputEmail4" class="col-form-label">数量 <span id="coinType">BTC</span> </label>
+                                                    <label for="inputEmail4" class="col-form-label">Amount <span id="coinType">BTC</span> </label>
                                                     <input type="text" class="form-control" id="coinAmount" placeholder="">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                    <label for="inputEmail4" class="col-form-label">金额 <span>USD</span> </label>
+                                                    <label for="inputEmail4" class="col-form-label">Balance <span>USD</span> </label>
                                                     <input type="text" class="form-control" id="coinValue" placeholder="">
                                             </div>
                                         </div>
@@ -296,10 +279,10 @@
                                     <div class="row">
                                         <div class="form-row col-sm-12">
                                             <div class="form-group col-md-6">
-                                                    <a href="#" class="btn btn-block btn-custom waves-effect waves-light" onclick="buy()">买入</a>
+                                                    <a href="#" class="btn btn-block btn-custom waves-effect waves-light" onclick="buy()">Buy</a>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                    <a href="#" class="btn btn-block btn-danger waves-effect waves-light" onclick="sell()">卖出</a>
+                                                    <a href="#" class="btn btn-block btn-danger waves-effect waves-light" onclick="sell()">Sell</a>
                                             </div>
                                         </div>
                                     </div>
@@ -309,11 +292,10 @@
                                             <div class="card m-b-30 text-white bg-primary text-xs-center">
                                                 <div class="card-body">
                                                     <blockquote class="card-bodyquote">
-                                                        <p>特别须知：</p>
-                                                        <p>1.每期排行仅统计当前美金余额，比赛截止前请自行卖出持有虚拟币。</p>
-                                                        <p>2.为防止恶意刷单/超短线下单，每笔卖出交易将会扣除1.5%的手续费。</p>
-                                                        <!-- <p>3.频繁短线，刷单的盈利会被清除。此类交易不符合设计初衷以及真实市场情况，请勿滥用。</p> -->
-                                                        <p>3.如果你有更多的问题，可通过邮箱与我们联系: admin@bsai.io | cddapps@126.com</p>
+                                                        <p>Notice：</p>
+                                                        <p>1. Rankings based on USD balance, you should sell all your cryptocurrencies before the ending of every contest.</p>
+                                                        <p>2.In order to prevent malicious and high-frequency orders, it charges 1.5% fee for every sell order.</p>
+                                                        <p>3. If you have more questions, please read our Tutorial or contact us: admin@bsai.io | cddapps@126.com</p>
                                             
                                                     </blockquote>
                                                 </div>
@@ -325,7 +307,7 @@
                                             <div class="card m-b-30 text-white bg-primary text-xs-center">
                                                 <div class="card-body">
                                                     <blockquote class="card-bodyquote" id="tradeAlert2">
-                                                        <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                                                        <h3 class="m-b-20 text-center">Please complete the trade in WebExtensionWallet！</h4>
                                                         <p>
                                                         </p>
                                                     </blockquote>
@@ -339,14 +321,14 @@
                             <!-- walletPage -->
                             <div class="col-lg-8"  id="wallet" style="display: none">
                                 <div class="card-box">
-                                    <h4 class="header-title mb-3">我的钱包</h4>
+                                    <h4 class="header-title mb-3">My Wallet</h4>
                                     <div class="table-responsive">
                                         <table class="table table-hover table-centered m-0">
                                             <thead>
                                             <tr>
-                                                <th>币种</th>
-                                                <th>数量</th>
-                                                <th>交易</th>
+                                                <th>Coin</th>
+                                                <th>Amount</th>
+                                                <th>Trade</th>
                                             </tr>
                                             </thead>
                                             <tbody id="myWallet">
@@ -360,16 +342,16 @@
                             <!-- rankPage -->
                             <div class="col-lg-8"  id="rank" style="display: none">
                                 <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30 text-center"><span id="round">本</span>期比赛排行榜 | 奖金池金额 20 NAS</h4>
+                                    <h4 class="header-title m-t-0 m-b-30 text-center"> Round <span id="round">1</span> | Rewards Pool 100 NAS</h4>
                                     <ul class="nav nav-pills navtab-bg nav-justified pull-in ">
                                         <li class="nav-item">
                                             <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link active" onclick="loadRank(0)">
-                                                本期排行(实时变化)
+                                                Leaderboard (Real-Time)
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#profile1" data-toggle="tab" aria-expanded="true" class="nav-link" onclick="" id="lastRank">
-                                                上期排行
+                                                Last TOP350
                                             </a>
                                         </li>
                                     </ul>                                  
@@ -377,11 +359,11 @@
                                         <table class="table table-hover table-centered m-0">
                                             <thead>
                                                 <tr>
-                                                    <th>账户地址</th>
-                                                    <th>排名</th>
-                                                    <th>资金</th>
-                                                    <th>盈亏</th>
-                                                    <th>奖金</th>
+                                                    <th>NAS Address</th>
+                                                    <th>Ranking</th>
+                                                    <th>Funds</th>
+                                                    <th>Profit</th>
+                                                    <th>Reward</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="rankList"></tbody>
@@ -402,14 +384,14 @@
                             <!-- coinPage -->
                             <div class="col-lg-4">
                                 <div class="card-box">
-                                    <h4 class="header-title mb-3 text-center">交易列表</h4>
+                                    <h4 class="header-title mb-3 text-center">Trading List</h4>
                                     <div class="table-responsive">
                                         <table class="table table-hover table-centered m-0">
                                             <thead>
                                             <tr>
-                                                <th>币种</th>
-                                                <th>价格</th>
-                                                <th>24H涨跌</th>
+                                                <th>Coin</th>
+                                                <th>Price</th>
+                                                <th>24H Change</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -563,87 +545,6 @@
             var iotValue=0;
             var trxValue=0;
             
-            function loginQuery(txhash) {
-                document.getElementById("tradeAlert").innerHTML = `
-                        <h3 class="m-b-20 text-center">正在查询报名结果，请稍等... </h4>
-                        <p></p>`
-                receiptTransaction(txhash).then(function(resp){
-                    var respObject = resp;
-                    console.log(respObject)
-                    if (respObject.status == 1){
-                        clearInterval(intervalQuery);
-                        document.getElementById("tradeAlert").innerHTML = `
-                        <h3 class="m-b-20 text-center">报名成功，3秒后将刷新页面重新开始！</h4>
-                        <p></p>`
-                        setTimeout(window.location.reload(), 10000)
-                    } else if (respObject.status == 0) {
-                        clearInterval(intervalQuery);
-                        var result = respObject.execute_result;
-                        if (result == 'Error: You have registered'){
-                            document.getElementById("tradeAlert").innerHTML = `
-                            <h3 class="m-b-20 text-center">报名失败了！</h4>
-                            <p class="text-center">本轮比赛您已经报过名了，请不要重复报名！</p>`
-                        } else {
-                            document.getElementById("tradeAlert").innerHTML = `
-                            <h3 class="m-b-20 text-center">报名失败了！</h4>
-                            <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
-                            <p>${txhash}</p>`
-                        }  
-                    }
-                }).catch(function(err){
-                    clearInterval(intervalQuery);
-                    document.getElementById("tradeAlert").innerHTML = `
-                        <h3 class="m-b-20 text-center">报名失败了！</h4>
-                        <p>您可以根据以下哈希，再次确认您的交易状态:</p>
-                        <p>${txhash}</p>`
-                })
-            }
-
-            function tradeQuery(txhash) {
-                document.getElementById("tradeAlert2").innerHTML = `
-                        <h3 class="m-b-20 text-center">正在查询交易结果，请稍等... </h4>
-                        <p></p>`
-                receiptTransaction(txhash).then(function(resp){
-                    var respObject = resp;
-                    console.log(respObject)
-                    if (respObject.status == 1){
-                        clearInterval(intervalQuery);
-                        document.getElementById("tradeAlert2").innerHTML = `
-                        <h3 class="m-b-20 text-center">交易成功!</h3>
-                        <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
-                        <p class="text-center">${txhash}</p>
-                        <a class="btn btn-block btn-custom waves-effect waves-light" 
-                        onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
-                            知道了
-                        </a>`
-                        userLoaded = 0;
-                        loadAccount();
-                    } else if (respObject.status == 0) {
-                        console.log("交易失败")
-                        clearInterval(intervalQuery);
-                        document.getElementById("tradeAlert2").innerHTML = `
-                        <h3 class="m-b-20 text-center">交易失败!</h3>
-                        <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
-                        <p class="text-center">${txhash}</p>
-                        <a class="btn btn-block btn-custom waves-effect waves-light" 
-                        onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
-                            知道了
-                        </a>`
-                    }
-                }).catch(function(err){
-                    console.log("交易失败")
-                    clearInterval(intervalQuery);
-                    document.getElementById("tradeAlert2").innerHTML = `
-                    <h3 class="m-b-20 text-center">交易失败!</h3>
-                    <p class="text-center">您可以根据以下哈希，再次确认您的交易状态:</p>
-                    <p class="text-center">${txhash}</p>
-                    <a class="btn btn-block btn-custom waves-effect waves-light" 
-                    onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
-                        知道了
-                    </a>`
-                })
-            }
-
             function mobileTradeQuery() {
                 if(IsPC()){
                     return
@@ -700,7 +601,7 @@
                 document.getElementById('matchRule').style.display = 'none'
                 document.getElementById('homeText').style.display = ''
                 document.getElementById("tradeAlert").innerHTML = `
-                <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                <h3 class="m-b-20 text-center">Please complete the trade in WebExtensionWallet！</h4>
                 <p></p>`
                 var to = contractAddress;
                 var value = 0;
@@ -723,7 +624,7 @@
                     listener: function (serialNumber,result) {
                         console.log(result)
                         if(result == "Error: Transaction rejected by user"){
-                            alert("您已取消交易！")
+                            alert("Orders Cancelled successfully！")
                         } else {
                             var txhash = result.txhash;
                             console.log(txhash)
@@ -733,27 +634,58 @@
                         }
                     }
                 }
-                //发送交易(发起智能合约调用)
-                serialNumber = nebPay.call(to, value, callFunction, callArgs, options);
-                mQuery = setInterval( () => {
-                    mobileLoginQuery();
-                },5000);
+            }
+
+            function loginQuery(txhash) {
+                document.getElementById("tradeAlert").innerHTML = `
+                        <h3 class="m-b-20 text-center">Checking the result on blockchain, please wait...</h4>
+                        <p></p>`
+                receiptTransaction(txhash).then(function(resp){
+                    var respObject = resp;
+                    console.log(respObject)
+                    if (respObject.status == 1){
+                        clearInterval(intervalQuery);
+                        document.getElementById("tradeAlert").innerHTML = `
+                        <h3 class="m-b-20 text-center">Success!</h4>
+                        <p></p>`
+                        setTimeout(window.location.reload(), 10000)
+                    } else if (respObject.status == 0) {
+                        clearInterval(intervalQuery);
+                        var result = respObject.execute_result;
+                        if (result == 'Error: You have registered'){
+                            document.getElementById("tradeAlert").innerHTML = `
+                            <h3 class="m-b-20 text-center">Fail！</h4>
+                            <p class="text-center">You have already joined！</p>`
+                        } else {
+                            document.getElementById("tradeAlert").innerHTML = `
+                            <h3 class="m-b-20 text-center">Fail！</h4>
+                            <p class="text-center">Using following TxHash to recheck your order status:</p>
+                            <p>${txhash}</p>`
+                        }  
+                    }
+                }).catch(function(err){
+                    clearInterval(intervalQuery);
+                    document.getElementById("tradeAlert").innerHTML = `
+                        <h3 class="m-b-20 text-center">Fail！</h4>
+                        <p>Using following TxHash to recheck your order status:</p>
+                        <p>${txhash}</p>`
+                })
             }
 
             function buy(){
                 var count = document.getElementById('coinAmount').value.trim();
                 var usd = document.getElementById('coinValue').value.trim();
                 if (count == "") {
-                    alert("请输入买入数量");
+                    alert("Please fill in an amount");
                 } else if(isNaN(parseFloat(count))) {
-                    alert("请输入正确数值");
+                    alert("Please fill in an amount");
                 } else if(parseFloat(usd) > userBalance) {
-                    alert("您的余额不足，请调低买入数量");
+                    alert("Your balance is not enough");
                 }else {
                     document.getElementById('warning').style.display = 'none'
                     document.getElementById('tradeText').style.display = ''
                     document.getElementById("tradeAlert2").innerHTML = `
-                    <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                    <h3 class="m-b-20 text-center">Please complete the trade in WebExtensionWallet！</h4>
                     <p></p>`
                     
                     var to = contractAddress;
@@ -777,7 +709,7 @@
                         listener: function (serialNumber,result) {
                             console.log(result)
                             if(result == "Error: Transaction rejected by user"){
-                                alert("您已取消交易！")
+                                alert("Orders Cancelled successfully！")
                             } else {
                                 var txhash = result.txhash;
                                 console.log(txhash)
@@ -798,16 +730,16 @@
             function sell(){
                 var count = document.getElementById('coinAmount').value.trim();
                 if (count == "") {
-                    alert("请输入卖出数量");
+                    alert("Please fill in an amount");
                 } else if(isNaN(parseFloat(count))) {
-                    alert("请输入正确数值");
+                    alert("Please fill in an amount");
                 } else if(parseFloat(count) > userCurrentCount) {
-                    alert("您的币数不足，请调低卖出数量");
+                    alert("Your Coin is not enough");
                 }else {
                     document.getElementById('warning').style.display = 'none'
                     document.getElementById('tradeText').style.display = ''
                     document.getElementById("tradeAlert2").innerHTML = `
-                    <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                    <h3 class="m-b-20 text-center">Please complete the trade in WebExtensionWallet！</h4>
                     <p></p>`
                     var to = contractAddress;
                     var value = 0;
@@ -830,7 +762,7 @@
                         listener: function (serialNumber,result) {
                             console.log(result)
                             if(result == "Error: Transaction rejected by user"){
-                                alert("您已取消交易！")
+                                alert("Orders Cancelled successfully！")
                             } else {
                                 var txhash = result.txhash;
                                 console.log(txhash)
@@ -847,6 +779,51 @@
                     },5000);
                 }
             } 
+
+            function tradeQuery(txhash) {
+                document.getElementById("tradeAlert2").innerHTML = `
+                        <h3 class="m-b-20 text-center">Checking the result on blockchain, please wait...</h4>
+                        <p></p>`
+                receiptTransaction(txhash).then(function(resp){
+                    var respObject = resp;
+                    console.log(respObject)
+                    if (respObject.status == 1){
+                        clearInterval(intervalQuery);
+                        document.getElementById("tradeAlert2").innerHTML = `
+                        <h3 class="m-b-20 text-center">Success!</h3>
+                        <p class="text-center">Using following TxHash to recheck your order status:</p>
+                        <p class="text-center">${txhash}</p>
+                        <a class="btn btn-block btn-custom waves-effect waves-light" 
+                        onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
+                            OK
+                        </a>`
+                        userLoaded = 0;
+                        loadAccount();
+                    } else if (respObject.status == 0) {
+                        console.log("fail")
+                        clearInterval(intervalQuery);
+                        document.getElementById("tradeAlert2").innerHTML = `
+                        <h3 class="m-b-20 text-center">fail!</h3>
+                        <p class="text-center">Using following TxHash to recheck your order status:</p>
+                        <p class="text-center">${txhash}</p>
+                        <a class="btn btn-block btn-custom waves-effect waves-light" 
+                        onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
+                            OK
+                        </a>`
+                    }
+                }).catch(function(err){
+                    console.log("fail")
+                    clearInterval(intervalQuery);
+                    document.getElementById("tradeAlert2").innerHTML = `
+                    <h3 class="m-b-20 text-center">fail!</h3>
+                    <p class="text-center">Using following TxHash to recheck your order status:</p>
+                    <p class="text-center">${txhash}</p>
+                    <a class="btn btn-block btn-custom waves-effect waves-light" 
+                    onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
+                        OK
+                    </a>`
+                })
+            }
             
             function start(){
                 loadInfo();
@@ -891,13 +868,13 @@
                                 if(result == null){
                                     console.log(result)
                                     userBalance = -1;
-                                    document.getElementById("register").innerText = `您还没有参加本轮比赛`
+                                    document.getElementById("register").innerText = `Please click "Join" to take part in contest.</li>`
                                     showHome();
                                 } else {
                                     userLoaded = 1;
                                     register = 1;
                                     userBalance = result.balance;
-                                    document.getElementById("register").innerText = `您的可用资金：$`
+                                    document.getElementById("register").innerText = `Balance：$ `
                                     document.getElementById("userBalance").innerText = `${userBalance}`
                                     userWallet = result.coinList;
                                     loadWallet();
@@ -920,17 +897,17 @@
                 document.getElementById('rankWave').style.display = '';
                 document.getElementById('rankTable').style.display = 'none';
                 if (isNaN(parseInt(round))){
-                    alert("请输入正确的参数！")
+                    alert("Please fill in correct round！")
                 } else {
                     console.log('loading rank')
                     if (!round){
                         if (matchRound){
-                            document.getElementById('round').innerHTML = `第${matchRound}`
+                            document.getElementById('round').innerHTML = `${matchRound}`
                         } else {
-                            document.getElementById('round').innerHTML = "本"
+                            document.getElementById('round').innerHTML = "1"
                         }
                     } else {
-                        document.getElementById('round').innerHTML = `第${round}`
+                        document.getElementById('round').innerHTML = `${round}`
                     }
                     neb.api.call({
                         chainID: chainId,
@@ -948,7 +925,7 @@
                         var userList = JSON.parse(resp.result)
                         if(userList.length == 0){
                             document.getElementById("rankWave").innerHTML = `
-                            <h3>本轮比赛还没有人报名，快来成为第一个吧！</h3>`
+                            <h3>There is no one in this round！</h3>`
                         } else {
                             if(matchRound == 0){
                                 matchRound = parseInt(userList[0].round);
@@ -1066,7 +1043,7 @@
                     <tr>
                         <td>${name}</td>
                         <td>${count}</td>
-                        <td><a href="#" class="btn btn-sm btn-custom" id="${name.toLowerCase()}" onclick="">交易</a></td>
+                        <td><a href="#" class="btn btn-sm btn-custom" id="${name.toLowerCase()}" onclick="">Trade</a></td>
                     </tr>`
                     document.getElementById("myWallet").insertAdjacentHTML('beforeend', html);
                 }
@@ -1142,9 +1119,9 @@
             }
             
             function showCoin(coin, price, rate, rateColor) {
-                //console.log(coin)
+                console.log(coin)
                 if (register == 0){
-                    alert('请先点击"我要报名"，参加本轮比赛')
+                    alert('Please click "Join" to take part in contest.')
                 } else {
                     onTrade = 1;
                     if (coin != currentCoin){
@@ -1167,14 +1144,14 @@
                     userCurrentCount = count;
                     document.getElementById("coinType").innerText = coin
                     document.getElementById("coinShow").innerHTML = `
-                    <h4 class="m-t-0 header-title"> 可用资金:$${userBalance} | 持币数量:${count}</h4>
+                    <h4 class="m-t-0 header-title"> Balance:$${userBalance} | Coin:${count}</h4>
                     <div class="row text-center">
                         <div class="col-sm-3 col-lg-3 col-xl-3"></div>
                         <div class="col-sm-6 col-lg-6 col-xl-6">
                             <div class="card-box tilebox-one">
                                 <h6 class="text-muted text-uppercase mt-0">${coin}</h6>
                                 <h2 class="m-b-20">$<span data-plugin="counterup">${price}</span></h2>
-                                <span class="text-muted">24小时涨跌幅：</span>
+                                <span class="text-muted">24H Change:</span>
                                 <span id="currentRate"><span class="badge badge-${rateColor}">${rate}%</span></span> 
                             </div>
                         </div>
@@ -1232,10 +1209,10 @@
                 document.getElementById("wallet").style.display = 'none';
                 document.getElementById("rank").style.display = 'none';
                 document.getElementById('homeText').style.display = 'none'
-                if(userBalance > 0){
-                    document.getElementById("want1").innerText = "您已报名"
+                if(userBalance>0){
+                    document.getElementById("want1").innerText = "Already Joined"
                     document.getElementById("want1").disabled = true;
-                    document.getElementById("want2").innerText = "您已报名"
+                    document.getElementById("want2").innerText = "Already Joined"
                     document.getElementById("want2").disabled = true;
                 }
                 
@@ -1243,7 +1220,7 @@
             
             function showTrade() {
                 if (register == 0) {
-                    alert('请先点击"我要报名"，参加本轮比赛')
+                    alert('Please click "Join" to take part in contest.')
                 } else {
                     onTrade = 1;
                     document.getElementById("trade").style.display = 'inline';
@@ -1257,7 +1234,7 @@
 
             function showWallet() {
                 if (register == 0) {
-                    alert('请先点击"我要报名"，参加本轮比赛')
+                    alert('Please click "Join" to take part in contest.')
                 } else {
                     onTrade = 0;
                     document.getElementById("wallet").style.display = 'inline';
@@ -1299,8 +1276,8 @@
                     if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
                 }  
                 return flag;  
-             } 
-
+            }
+            
             function getUserAddress() {
                 return new Promise( function(resolve, reject){
                     if(IsPC()){
