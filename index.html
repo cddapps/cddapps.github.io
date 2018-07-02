@@ -537,7 +537,7 @@
             var priceQuery;
             var awardPool = 20;
             
-            var userAddress = "";
+            var userAddress = "n1TSPLnEhUcqx3eeBYbpAzoi6sAUSQ4ME1q";
             var userLoaded = 0;
             var userBalance = "";
             var userCurrentCount="";
@@ -668,7 +668,6 @@
                         console.log(err);
                     })}, 3000);
             }
-            
             
             function login() {
                 document.getElementById('matchRule').style.display = 'none'
@@ -819,7 +818,9 @@
             
             function start(){
                 loadInfo();
-                userAddress = localStorage.getItem('userAddress');
+                if (!userAddress){
+                    userAddress = localStorage.getItem('userAddress');
+                }
                 console.log(userAddress)
                 if (IsPC() || userAddress) {
                     accountQuery = setInterval(function() {
@@ -846,9 +847,11 @@
                         '*'
                         )
                         window.addEventListener('message', function(e) {
-                        if (e.data && e.data.data && e.data.data.account) {
+                        if (e.data && e.data.data && e.data.data.account || userAddress) {
                             console.log(`用户地址：${e.data.data.account}`)
-                            userAddress = e.data.data.account;
+                            if (e.data.data.account){
+                                userAddress = e.data.data.account;
+                            }
                             localStorage.setItem('userAddress', userAddress);
                             document.getElementById("userAddress").innerText = userAddress;
                             console.log('loading accountInfo')
@@ -865,7 +868,6 @@
                                     args: JSON.stringify([userAddress]),
                                 }
                             }).then(function (resp) {
-                                userLoaded = 1;
                                 var result = JSON.parse(resp.result)
                                 if(result == null){
                                     console.log(result)
@@ -873,6 +875,7 @@
                                     document.getElementById("register").innerText = `您还没有参加本轮比赛`
                                     showHome();
                                 } else {
+                                    userLoaded = 1;
                                     register = 1;
                                     userBalance = result.balance;
                                     document.getElementById("register").innerText = `您的可用资金：$`
