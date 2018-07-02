@@ -660,9 +660,9 @@
                                         tradeQuery(txhash);
                                     }, 3000);
                                 }
-                            } else {
+                            } else if(resp.code === 1){
                                 clearInterval(mq)
-                                alert("交易失败！")
+                                alert(resp.msg)
                             }
                         }
                     }).catch(function (err) {
