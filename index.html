@@ -115,7 +115,7 @@
                                 <div class="page-title-box">
                                     <h4 class="page-title" id="userAddress"></h4>
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item active">本期比赛结束时间: 2018-07-10 24:00 | <span id="register"></span><span id="userBalance"></span></li>
+                                        <li class="breadcrumb-item active">本期比赛结束时间: 2018-07-10 24:00 | <span id="register"> 欢迎来到模拟交易大赛</span><span id="userBalance"></span></li>
                                     </ol>
                                 </div>
                             </li>
@@ -536,7 +536,7 @@
             var userLoaded = 0;
             var userBalance = "";
             var userCurrentCount="";
-            var userWallet;
+            var userWallet="";
             var userCoinList = new Array();
             var register = 0;
             var currentPrice;
@@ -787,9 +787,8 @@
                                 userLoaded = 1;
                                 var result = JSON.parse(resp.result)
                                 if(result == null){
-                                    userBalance = 0;
-                                    document.getElementById("register").innerText = `
-                                    您还没有参加本轮比赛`
+                                    userBalance = -1;
+                                    document.getElementById("register").innerText = `您还没有参加本轮比赛`
                                     showHome();
                                 } else {
                                     register = 1;
@@ -1040,39 +1039,46 @@
             }
             
             function showCoin(coin, price, rate, rateColor) {
-                //console.log(coin)
-                onTrade = 1;
-                if (coin != currentCoin){
-                    document.getElementById('coinAmount').value = '';
-                    document.getElementById('coinValue').value = '';
-                }
-                currentPrice = price;
-                currentCoin = coin;
-                var count = 0;
-                for (var dic of userWallet){
-                    var coinName = dic.name;
-                    if (coinName == coin){
-                        count = dic.count;
-                        break;
+                console.log(coin)
+                if (register == 0){
+                    alert('请先点击"我要报名"，参加本轮比赛')
+                } else {
+                    onTrade = 1;
+                    if (coin != currentCoin){
+                        document.getElementById('coinAmount').value = '';
+                        document.getElementById('coinValue').value = '';
                     }
-                }
-                userCurrentCount = count;
-                showTrade()
-                document.getElementById("coinType").innerText = coin
-                document.getElementById("coinShow").innerHTML = `
-                <h4 class="m-t-0 header-title"> 可用资金:$${userBalance} | 持币数量:${count}</h4>
-                <div class="row text-center">
-                    <div class="col-sm-3 col-lg-3 col-xl-3"></div>
-                    <div class="col-sm-6 col-lg-6 col-xl-6">
-                        <div class="card-box tilebox-one">
-                            <h6 class="text-muted text-uppercase mt-0">${coin}</h6>
-                            <h2 class="m-b-20">$<span data-plugin="counterup">${price}</span></h2>
-                            <span class="text-muted">24小时涨跌幅：</span>
-                            <span id="currentRate"><span class="badge badge-${rateColor}">${rate}%</span></span> 
+                    currentPrice = price;
+                    currentCoin = coin;
+                    var count = 0;
+                    if (userWallet){
+                        console.log(userWallet)
+                        for (var dic of userWallet){
+                            var coinName = dic.name;
+                            if (coinName == coin){
+                                count = dic.count;
+                                break;
+                            }
+                        }
+                        showTrade()
+                    }
+                    userCurrentCount = count;
+                    document.getElementById("coinType").innerText = coin
+                    document.getElementById("coinShow").innerHTML = `
+                    <h4 class="m-t-0 header-title"> 可用资金:$${userBalance} | 持币数量:${count}</h4>
+                    <div class="row text-center">
+                        <div class="col-sm-3 col-lg-3 col-xl-3"></div>
+                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                            <div class="card-box tilebox-one">
+                                <h6 class="text-muted text-uppercase mt-0">${coin}</h6>
+                                <h2 class="m-b-20">$<span data-plugin="counterup">${price}</span></h2>
+                                <span class="text-muted">24小时涨跌幅：</span>
+                                <span id="currentRate"><span class="badge badge-${rateColor}">${rate}%</span></span> 
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3 col-xl-3"></div>
-                </div>`
+                        <div class="col-sm-3 col-lg-3 col-xl-3"></div>
+                    </div>`
+                }
             }
             
             function showList(coin, preValue){
@@ -1102,7 +1108,7 @@
                         showCoin(coin.name, value, rate, rateColor)
                     }
                 }
-                if (coin.name == "BTC") {
+                if (coin.name == "BTC" && register == 1) {
                     document.getElementById("tradeButton").onclick = function(){
                         showCoin(coin.name, value, rate, rateColor)
                     } 
@@ -1134,6 +1140,7 @@
             }
             
             function showTrade() {
+                console.log(register)
                 if (register == 0) {
                     alert('请先点击"我要报名"，参加本轮比赛')
                 } else {
