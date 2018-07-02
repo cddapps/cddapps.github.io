@@ -565,7 +565,7 @@
             
             function loginQuery(txhash) {
                 document.getElementById("tradeAlert").innerHTML = `
-                        <h3 class="m-b-20 text-center">正在查询报名结果，请稍等。。。</h4>
+                        <h3 class="m-b-20 text-center">正在查询报名结果，请稍等... </h4>
                         <p></p>`
                 receiptTransaction(txhash).then(function(resp){
                     var respObject = resp;
@@ -601,7 +601,7 @@
 
             function tradeQuery(txhash) {
                 document.getElementById("tradeAlert2").innerHTML = `
-                        <h3 class="m-b-20 text-center">正在查询交易结果，请稍等。。。</h4>
+                        <h3 class="m-b-20 text-center">正在查询交易结果，请稍等... </h4>
                         <p></p>`
                 receiptTransaction(txhash).then(function(resp){
                     var respObject = resp;
@@ -644,7 +644,7 @@
                 })
             }
 
-            function mobileQuery() {
+            function mobileTradeQuery() {
                 nebPay.queryPayInfo(serialNumber).then(function (resp) {
                     resp = JSON.parse(resp)
                     if(resp instanceof Object){
@@ -657,6 +657,29 @@
                                 var txhash = data.hash
                                 intervalQuery = setInterval(function() {
                                     tradeQuery(txhash);
+                                }, 3000);
+                            }
+                        }
+                    }
+                }).catch(function (err) {
+                    alert("error:" + err)
+                    console.log(err);
+                })
+            }
+
+            function mobileLoginQuery() {
+                nebPay.queryPayInfo(serialNumber).then(function (resp) {
+                    resp = JSON.parse(resp)
+                    if(resp instanceof Object){
+                        if(resp.code === 0){  
+                            var data = resp.data;
+                            if (data instanceof Object){
+                                clearInterval(mQuery)
+                                userAddress = data.from;
+                                localStorage.setItem('userAddress', userAddress);
+                                var txhash = data.hash
+                                intervalQuery = setInterval(function() {
+                                    loginQuery(txhash);
                                 }, 3000);
                             }
                         }
@@ -707,7 +730,7 @@
                 //发送交易(发起智能合约调用)
                 serialNumber = nebPay.call(to, value, callFunction, callArgs, options);
                 mQuery = setInterval( () => {
-                    mobileQuery();
+                    mobileLoginQuery();
                 },5000);
             }
 
@@ -761,7 +784,7 @@
                     //发送交易(发起智能合约调用)
                     serialNumber = nebPay.call(to, value, callFunction, callArgs, options)
                     mQuery = setInterval( () => {
-                        mobileQuery();
+                        mobileTradeQuery();
                     },5000);
                 }
             }
@@ -814,7 +837,7 @@
                     //发送交易(发起智能合约调用)
                     serialNumber = nebPay.call(to, value, callFunction, callArgs, options)
                     mQuery = setInterval( () => {
-                        mobileQuery();
+                        mobileTradeQuery();
                     },5000);
                 }
             } 
