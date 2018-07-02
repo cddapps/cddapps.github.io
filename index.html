@@ -538,7 +538,7 @@
             var priceQuery;
             var awardPool = 20;
             
-            var userAddress = "n1TSPLnEhUcqx3eeBYbpAzoi6sAUSQ4ME1q";
+            var userAddress = "";
             var userLoaded = 0;
             var userBalance = "";
             var userCurrentCount="";
@@ -649,20 +649,17 @@
                     resp = JSON.parse(resp)
                     if(resp instanceof Object){
                         if(resp.code === 0){  
-                            alert(resp.code)
                             var data = resp.data;
                             if (data instanceof Object){
                                 clearInterval(mQuery)
                                 userAddress = data.from;
                                 localStorage.setItem('userAddress', userAddress);
-                                alert(userAddress);
                                 var txhash = data.hash
                                 intervalQuery = setInterval(function() {
                                     tradeQuery(txhash);
                                 }, 3000);
                             }
                         }
-                        alert(resp.msg)
                     }
                 }).catch(function (err) {
                     alert("error:" + err)
@@ -709,8 +706,9 @@
                 }
                 //发送交易(发起智能合约调用)
                 serialNumber = nebPay.call(to, value, callFunction, callArgs, options);
-                mobileQuery(serialNumber);
-                
+                mQuery = setInterval( () => {
+                    mobileQuery();
+                },5000);
             }
 
             function buy(){
@@ -815,7 +813,9 @@
                     }
                     //发送交易(发起智能合约调用)
                     serialNumber = nebPay.call(to, value, callFunction, callArgs, options)
-                    mobileQuery(serialNumber);
+                    mQuery = setInterval( () => {
+                        mobileQuery();
+                    },5000);
                 }
             } 
             
