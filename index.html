@@ -649,6 +649,7 @@
                         resp = JSON.parse(resp)
                         if(resp instanceof Object){
                             if(resp.code === 0){  
+                                alert(resp.code)
                                 var data = resp.data;
                                 if (data instanceof Object){
                                     clearInterval(mq)
@@ -660,10 +661,7 @@
                                         tradeQuery(txhash);
                                     }, 3000);
                                 }
-                            } else if(resp.code === 1){
-                                clearInterval(mq)
-                                alert(resp.msg)
-                            }
+                            } 
                         }
                     }).catch(function (err) {
                         alert("error:" + err)
