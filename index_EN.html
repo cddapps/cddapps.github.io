@@ -525,17 +525,20 @@
             //var chainId = 1001;
             //var netWork = "https://testnet.nebulas.io"
             neb.setRequest(new HttpRequest(netWork));
+            var callbackUrl = NebPay.config.mainnetUrl;
 
+            var serialNumber;
+            var mQuery;
             var intervalQuery;
             var accountQuery;
             var priceQuery;
-            var awardPool = 100;
+            var awardPool = 20;
             
             var userAddress = "";
             var userLoaded = 0;
             var userBalance = "";
             var userCurrentCount="";
-            var userWallet = "";
+            var userWallet="";
             var userCoinList = new Array();
             var register = 0;
             var currentPrice;
@@ -556,32 +559,89 @@
             var iotValue=0;
             var trxValue=0;
             
+            function mobileTradeQuery() {
+                nebPay.queryPayInfo(serialNumber).then(function (resp) {
+                    resp = JSON.parse(resp)
+                    if(resp instanceof Object){
+                        if(resp.code === 0){  
+                            var data = resp.data;
+                            if (data instanceof Object){
+                                clearInterval(mQuery)
+                                userAddress = data.from;
+                                localStorage.setItem('userAddress', userAddress);
+                                var txhash = data.hash
+                                intervalQuery = setInterval(function() {
+                                    tradeQuery(txhash);
+                                }, 3000);
+                            }
+                        }
+                    }
+                }).catch(function (err) {
+                    alert("error:" + err)
+                    console.log(err);
+                })
+            }
+
+            function mobileLoginQuery() {
+                nebPay.queryPayInfo(serialNumber).then(function (resp) {
+                    resp = JSON.parse(resp)
+                    if(resp instanceof Object){
+                        if(resp.code === 0){  
+                            var data = resp.data;
+                            if (data instanceof Object){
+                                clearInterval(mQuery)
+                                userAddress = data.from;
+                                localStorage.setItem('userAddress', userAddress);
+                                var txhash = data.hash
+                                intervalQuery = setInterval(function() {
+                                    loginQuery(txhash);
+                                }, 3000);
+                            }
+                        }
+                    }
+                }).catch(function (err) {
+                    alert("error:" + err)
+                    console.log(err);
+                })
+            }
+            
             function login() {
+                document.getElementById('matchRule').style.display = 'none'
+                document.getElementById('homeText').style.display = ''
+                document.getElementById("tradeAlert").innerHTML = `
+                <h3 class="m-b-20 text-center">Please complete the trade in WebExtensionWallet！</h4>
+                <p></p>`
                 var to = contractAddress;
                 var value = 0;
                 var callFunction = "register";
                 var callArgs =  JSON.stringify([]);
                 var options = {
-                    listener: function (resp) {
-                        console.log(resp)
-                        var txhash = resp.txhash
-                        if (typeof(txhash) == "undefined"){
-                            document.getElementById('homeText').style.display = 'none'
+                    qrcode: {
+                        showQRCode: false,      //是否显示二维码信息
+                        container: undefined,    //指定显示二维码的canvas容器，不指定则生成一个默认canvas
+                        completeTip: undefined, // 完成支付提示
+                        cancelTip: undefined // 取消支付提示
+                    },
+                    extension: {
+                        openExtension: true //是否支持插件调用
+                    },
+                    mobile: {
+                        showInstallTip: true, //是否支持手机钱包安装提示
+                        installTip: undefined // 手机钱包安装提示
+                    },
+                    listener: function (serialNumber,result) {
+                        console.log(result)
+                        if(result == "Error: Transaction rejected by user"){
                             alert("Orders Cancelled successfully！")
                         } else {
+                            var txhash = result.txhash;
+                            console.log(txhash)
                             intervalQuery = setInterval(function() {
                                 loginQuery(txhash);
                             }, 3000);
                         }
                     }
                 }
-                //发送交易(发起智能合约调用)
-                nebPay.call(to, value, callFunction, callArgs, options);
-                document.getElementById('matchRule').style.display = 'none'
-                document.getElementById('homeText').style.display = ''
-                document.getElementById("tradeAlert").innerHTML = `
-                <h3 class="m-b-20 text-center">Please complete the trade in WebExtensionWallet！</h4>
-                <p></p>`
             }
 
             function loginQuery(txhash) {
