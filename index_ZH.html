@@ -1200,7 +1200,7 @@
                     rateColor = 'danger'
                 }
                 document.getElementById(coin.name).innerHTML = `
-                <td>${coin.name}</td>
+                <td><img src="assets/images/coins/${coin.name}.png"> ${coin.name}</td>
                 <td class="text-${valueColor}">$${value}</td>
                 <td><span class="text-${rateColor}">${rate}%</span></td>`
                 document.getElementById(coin.name).onclick = function(){
