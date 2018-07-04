@@ -1317,7 +1317,7 @@
                             } else {
                                 console.log("没有检测到插件")
                                 checkTime = checkTime - 1
-                                if (checkTime < 0){
+                                if (checkTime < 0 && !userAddress){
                                     checkTime = 10;
                                     showHome();
                                     userLoaded = 1
