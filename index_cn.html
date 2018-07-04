@@ -273,7 +273,7 @@
                                     <div class="card m-b-30 text-white bg-primary text-xs-center">
                                         <div class="card-body">
                                             <blockquote class="card-bodyquote" id="tradeAlert">
-                                                <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                                                <h3 class="m-b-20 text-center">请到星云钱包中完成操作！</h4>
                                                 <p>
                                                 </p>
                                             </blockquote>
@@ -345,7 +345,7 @@
                                             <div class="card m-b-30 text-white bg-primary text-xs-center">
                                                 <div class="card-body">
                                                     <blockquote class="card-bodyquote" id="tradeAlert2">
-                                                        <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                                                        <h3 class="m-b-20 text-center">请到星云钱包中完成操作！</h4>
                                                         <p>
                                                         </p>
                                                     </blockquote>
@@ -380,7 +380,7 @@
                             <!-- rankPage -->
                             <div class="col-lg-8"  id="rank" style="display: none">
                                 <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30 text-center"><span id="round">本</span>期比赛排行榜 | 奖金池金额 20 NAS</h4>
+                                    <h4 class="header-title m-t-0 m-b-30 text-center"><span id="round">本</span>期比赛排行榜 | <span id="round" class="text-success">奖金池金额: 20 NAS</span></h4>
                                     <ul class="nav nav-pills navtab-bg nav-justified pull-in ">
                                         <li class="nav-item">
                                             <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link active" onclick="loadRank(0)">
@@ -722,7 +722,7 @@
                 document.getElementById('matchRule').style.display = 'none'
                 document.getElementById('homeText').style.display = ''
                 document.getElementById("tradeAlert").innerHTML = `
-                <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                <h3 class="m-b-20 text-center">请到星云钱包中完成操作！</h4>
                 <p></p>`
                 var to = contractAddress;
                 var value = 0;
@@ -739,7 +739,7 @@
                         openExtension: true //是否支持插件调用
                     },
                     mobile: {
-                        showInstallTip: false, //是否支持手机钱包安装提示
+                        showInstallTip: true, //是否支持手机钱包安装提示
                         installTip: undefined // 手机钱包安装提示
                     },
                     listener: function (serialNumber,result) {
@@ -775,7 +775,7 @@
                     document.getElementById('warning').style.display = 'none'
                     document.getElementById('tradeText').style.display = ''
                     document.getElementById("tradeAlert2").innerHTML = `
-                    <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                    <h3 class="m-b-20 text-center">请到星云钱包中完成操作！</h4>
                     <p></p>`
                     
                     var to = contractAddress;
@@ -829,7 +829,7 @@
                     document.getElementById('warning').style.display = 'none'
                     document.getElementById('tradeText').style.display = ''
                     document.getElementById("tradeAlert2").innerHTML = `
-                    <h3 class="m-b-20 text-center">请到浏览器插件中完成操作！</h4>
+                    <h3 class="m-b-20 text-center">请到星云钱包中完成操作！</h4>
                     <p></p>`
                     var to = contractAddress;
                     var value = 0;
