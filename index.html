@@ -532,7 +532,7 @@
             var accountQuery;
             var priceQuery;
             var awardPool = 20;
-            var checkTime = 5;
+            var checkTime = 10;
             
             var userAddress = "";
             var userLoaded = 0;
@@ -1318,7 +1318,7 @@
                                 console.log("没有检测到插件")
                                 checkTime = checkTime - 1
                                 if (checkTime < 0){
-                                    checkTime = 5;
+                                    checkTime = 10;
                                     showHome();
                                     userLoaded = 1
                                     resolve(userAddress) 
