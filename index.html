@@ -532,6 +532,7 @@
             var accountQuery;
             var priceQuery;
             var awardPool = 20;
+            var checkTime = 5;
             
             var userAddress = "";
             var userLoaded = 0;
@@ -1309,10 +1310,20 @@
                         '*'
                         )
                         window.addEventListener('message', function(e) {
-                        if (e.data && e.data.data && e.data.data.account) {
-                            userAddress = e.data.data.account;
-                            resolve(userAddress)
-                        }
+                            if (e.data && e.data.data && e.data.data.account) {
+                                userAddress = e.data.data.account;
+                                checkTime = 5;
+                                resolve(userAddress)
+                            } else {
+                                console.log("没有检测到插件")
+                                checkTime = checkTime - 1
+                                if (checkTime < 0){
+                                    checkTime = 5;
+                                    showHome();
+                                    userLoaded = 1
+                                    resolve(userAddress) 
+                                }
+                            }
                         })
                     } else {
                         resolve(userAddress)
