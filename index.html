@@ -1312,7 +1312,7 @@
                         window.addEventListener('message', function(e) {
                             if (e.data && e.data.data && e.data.data.account) {
                                 userAddress = e.data.data.account;
-                                checkTime = 5;
+                                checkTime = 10;
                                 resolve(userAddress)
                             } else {
                                 console.log("没有检测到插件")
