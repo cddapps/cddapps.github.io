@@ -133,9 +133,9 @@
                             </li>
                             <li>
                                 <div class="page-title-box">
-                                    <h4 class="page-title" id="userAddress"></h4>
+                                    <h4 class="page-title"><span id="userAddress"></span> | <span id="register" class="text-muted" style="font-size: 14px"> Welcome to Bsai</span><span id="userBalance" class="text-muted" style="font-size: 14px"></span></h4>
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item active">The end of this round: 2018-07-10 24:00 | <span id="register"> Welcome to Bsai</span><span id="userBalance"></span></li>
+                                        <li class="breadcrumb-item active">Contest Countdown: <span id="countDown" class="text-danger"></span></li>
                                     </ol>
                                 </div>
                             </li>
@@ -515,6 +515,28 @@
         <!--<script src="https://cdn.jsdelivr.net/npm/nebulas@0.5.2/dist/nebulas.js"></script>-->
         <script src="lib/nebPay.js"></script>
         <script src="lib/nebulas.js"></script>
+
+        <script>
+            const fourthOfJuly = new Date("2018-07-10 24:00:00").getTime();
+            
+            // countdown
+            let timer = setInterval(function() {
+                // get today's date
+                const today = new Date().getTime();
+                // get the difference
+                const diff = fourthOfJuly - today;
+                // math
+                let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+                // display
+                document.getElementById("countDown").innerText =
+                `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
+            
+            }, 1000);
+        </script>
 
         <script>
             'use strict';
