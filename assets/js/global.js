@@ -225,7 +225,8 @@ function loginQuery(txhash) {
                 document.getElementById("tradeAlert").innerHTML = `
                 <h3 class="m-b-20 text-center">${lan.fail}</h4>
                 <p class="text-center">${lan.joined}</p>`
-                start();
+                userLoaded = 0;
+                loadAccount();
             } else {
                 document.getElementById("tradeAlert").innerHTML = `
                 <h3 class="m-b-20 text-center">${lan.fail}</h4>
@@ -508,6 +509,7 @@ function loadRank(round) {
                     lastRound = matchRound - 1;
                     document.getElementById('lastRank').onclick = function(){loadRank(lastRound)}
                 }
+                console.log(userList)
                 var finalList = new Array()
                 for (var u of userList){
                     if(u.balance != 10000){
@@ -717,9 +719,15 @@ function showCoin(coin, price, rate, rateColor) {
             showTrade()
         }
         userCurrentCount = count;
+        var new_balance;
+        if (userBalance == -1){
+            new_balance = `<a href="#", onclick="window.location.reload();">refresh</a>`
+        } else {
+            new_balance = userBalance
+        }
         document.getElementById("coinType").innerText = coin
         document.getElementById("coinShow").innerHTML = `
-        <h4 class="m-t-0 header-title"> ${lan.balance}${userBalance} | ${lan.coin}${count}</h4>
+        <h4 class="m-t-0 header-title"> ${lan.balance}${new_balance} | ${lan.coin}${count}</h4>
         <div class="row text-center">
             <div class="col-sm-3 col-lg-3 col-xl-3"></div>
             <div class="col-sm-6 col-lg-6 col-xl-6">
