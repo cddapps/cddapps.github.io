@@ -721,7 +721,7 @@ function showCoin(coin, price, rate, rateColor) {
         userCurrentCount = count;
         var new_balance;
         if (userBalance == -1){
-            new_balance = `<a href="#", onclick="window.location.reload();">refresh</a>`
+            new_balance = `<a href="#", onclick="window.location.reload();" class="text-danger">refresh</a>`
         } else {
             new_balance = userBalance
         }
