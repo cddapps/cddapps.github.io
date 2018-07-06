@@ -60,6 +60,7 @@ var en = {
     roundAlert: 'There is no one in this round！',
     check: 'Checking the result on blockchain, please wait...',
     success: 'Success!',
+    fail: 'Fail!',
     showHash: 'Using following TxHash to recheck your order status:',
     ok: 'OK',
     joined: 'You have already joined！',
