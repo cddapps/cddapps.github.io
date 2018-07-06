@@ -69,10 +69,10 @@ var en = {
     fillIn: 'Please fill in an amount!',
     insufficientBalance: 'Your balance is not enough',
     insufficientCoin: 'Your Coin is not enough',
-    days: 'days',
-    hours: 'hours',
-    minutes: 'minutes',
-    seconds: 'seconds'
+    days: 'D',
+    hours: 'H',
+    minutes: 'M',
+    seconds: 'S'
 }
 
 var cn = {
@@ -452,7 +452,7 @@ function loadAccount() {
                         register = 1;
                         userBalance = result.balance;
                         document.getElementById("register").innerText = `${lan.balance}`
-                        document.getElementById("userBalance").innerText = `${userBalance}`
+                        document.getElementById("userBalance").innerText = `${parseFloat(userBalance).toFixed(2)}`
                         userWallet = result.coinList;
                         userLoaded = 1;
                         loadWallet();
@@ -618,6 +618,7 @@ function loadWallet() {
         var coin = userWallet[i];
         var name = coin.name;
         var count = coin.count;
+        count = parseFloat(count).toFixed(6)
         var html = `
         <tr>
             <td>${name}</td>
@@ -705,6 +706,7 @@ function showCoin(coin, price, rate, rateColor) {
         if (coin != currentCoin){
             document.getElementById('coinAmount').value = '';
             document.getElementById('coinValue').value = '';
+            window.scrollTo(0, document.getElementById('trade').offsetTop-200)
         }
         currentPrice = price;
         currentCoin = coin;
@@ -719,7 +721,9 @@ function showCoin(coin, price, rate, rateColor) {
             }
             showTrade()
         }
+        count = parseFloat(count).toFixed(6)
         userCurrentCount = count;
+        userBalance = parseFloat(userBalance).toFixed(2)
         var new_balance;
         if (userBalance == -1){
             new_balance = `<a href="#", onclick="window.location.reload();" class="text-danger">refresh</a>`
