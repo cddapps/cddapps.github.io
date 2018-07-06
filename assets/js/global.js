@@ -446,6 +446,7 @@ function loadAccount() {
                             showHome();
                         }
                     } else {
+                        loginTime = 5;
                         register = 1;
                         userBalance = result.balance;
                         document.getElementById("register").innerText = `${lan.balance}`
