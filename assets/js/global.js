@@ -924,14 +924,21 @@ $(function(){
 })
 
 /******************* 倒计时 **********************/
+var deadLine = "2018/07/10 24:00:00"
+var disposeTime = function(a){
+    a = a || new Date().getTime() + 24*60*60*1000;
+    var timeArr0 = a.split(' ');
+    var timeArr1 = timeArr0[1].split(':');
+    return new Date(timeArr0[0]).getTime() + timeArr1[0]*3600000 + timeArr1[1]*60000 + timeArr1[2]*1000;
+}
 
-const fourthOfJuly = new Date("2018-07-10 24:00:00").getTime();
+const newDeadLine = new Date(disposeTime(deadLine)).getTime();
 // countdown
 let timer = setInterval(function() {
     // get today's date
     const today = new Date().getTime();
     // get the difference
-    const diff = fourthOfJuly - today;
+    const diff = newDeadLine - today;
     // math
     let days = Math.floor(diff / (1000 * 60 * 60 * 24));
     let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -943,3 +950,5 @@ let timer = setInterval(function() {
     `${days} ${lan.days} ${hours} ${lan.hours} ${minutes} ${lan.minutes} ${seconds} ${lan.seconds}`
 
 }, 1000);
+
+
