@@ -12,6 +12,7 @@ var netWork = "https://mainnet.nebulas.io"
 //var netWork = "https://testnet.nebulas.io"
 neb.setRequest(new HttpRequest(netWork));
 var contractAddress = "n1uTqUTv1nb78trkdCmRve4EeG5RFuDZags";
+var dropAddress = 'n1tPbTQBMjvo59RWghDxqQERtLfLSYrefrE';
 
 var intervalQuery;
 var serialNumber;
@@ -400,6 +401,7 @@ function tradeQuery(txhash) {
 function start(){
 
     loadInfo();
+    loadReward()
     if (!userAddress){
         userAddress = localStorage.getItem('userAddress');
     }
@@ -452,7 +454,7 @@ function loadAccount() {
                         register = 1;
                         userBalance = result.balance;
                         document.getElementById("register").innerText = `${lan.balance}`
-                        document.getElementById("userBalance").innerText = `${parseFloat(userBalance).toFixed(2)}`
+                        document.getElementById("userBalance").innerText = `${Math.floor(userBalance*100)/100}`
                         userWallet = result.coinList;
                         userLoaded = 1;
                         loadWallet();
@@ -528,34 +530,34 @@ function loadRank(round) {
                 for (var j=0;j<finalList.length;j++){
                     var user = finalList[j];
                     var i = j+1;
-                    var rate = ((user.balance-10000)/100).toFixed(2);
+                    var rate = Math.floor(user.balance-10000)/100;
                     var award = 0;
                     if(i == 1){
-                        award = parseFloat(awardPool*0.25).toFixed(2);
+                        award = Math.floor(awardPool*25)/100;
                     } else if(i == 2){
-                        award = parseFloat(awardPool*0.12).toFixed(2);
+                        award = Math.floor(awardPool*12)/100;
                     } else if(i == 3){
-                        award = parseFloat(awardPool*0.08).toFixed(2);
+                        award = Math.floor(awardPool*8)/100;
                     } else if(i == 4){
-                        award = parseFloat(awardPool*0.05).toFixed(2);
+                        award = Math.floor(awardPool*5)/100;
                     } else if(i == 5){
-                        award = parseFloat(awardPool*0.04).toFixed(2);
+                        award = Math.floor(awardPool*4)/100;
                     } else if(i == 6){
-                        award = parseFloat(awardPool*0.02).toFixed(2);
+                        award = Math.floor(awardPool*2)/100;
                     } else if(i>=7 && i<= 10){
-                        award = parseFloat(awardPool*0.01).toFixed(2);
+                        award = Math.floor(awardPool*1)/100;
                     } else if(i>=11 && i<= 50){
-                        award = parseFloat(awardPool*0.005).toFixed(2);
+                        award = Math.floor(awardPool*0.5)/100;
                     } else if(i>=51 && i<= 150){
-                        award = parseFloat(awardPool*0.001).toFixed(2);
+                        award = Math.floor(awardPool*0.1)/100;
                     } else if(i>=151 && i<= 350){
-                        award = parseFloat(awardPool*0.0005).toFixed(2);
+                        award = Math.floor(awardPool*0.05)/100;
                     } 
                     var html = `
                     <tr>
                         <td>${user.address}</td>
                         <td>${i}</td>
-                        <td>${parseFloat(user.balance).toFixed(2)}</td>
+                        <td>${Math.floor(user.balance*100)/100}</td>
                         <td>${rate}%</td>
                         <td>${award}NAS</td>
                     </tr>`
@@ -600,6 +602,32 @@ function loadInfo(){
 
 }
 
+function loadReward(){
+    console.log('loading reward')
+    neb.api.call({
+        chainID: chainId,
+        from: dropAddress,
+        to: dropAddress,
+        value: 0,
+        nonce: 0,
+        gasPrice: 1000000,
+        gasLimit: 2000000,
+        contract: {
+            function: "balance",
+            args: JSON.stringify([]),
+        }
+    }).then(function (resp) {
+        var balance =  JSON.parse(resp.result);
+        awardPool = parseInt(balance)/1e18; 
+        document.getElementById("reward").innerText = awardPool
+        console.log("奖池金额：" + awardPool.toString())
+    }).catch(function(err) {
+        console.log(err);
+        loadReward()
+    }) 
+
+}
+
 function loadWallet() {
     console.log('loading wallet')
     userWallet.sort(function(li1, li2){
@@ -618,7 +646,7 @@ function loadWallet() {
         var coin = userWallet[i];
         var name = coin.name;
         var count = coin.count;
-        count = parseFloat(count).toFixed(6)
+        count = Math.floor(count*1000000)/1000000
         var html = `
         <tr>
             <td>${name}</td>
@@ -721,9 +749,9 @@ function showCoin(coin, price, rate, rateColor) {
             }
             showTrade()
         }
-        count = parseFloat(count).toFixed(6)
+        count = Math.floor(count*1000000)/1000000
         userCurrentCount = count;
-        userBalance = parseFloat(userBalance).toFixed(2)
+        userBalance = Math.floor(userBalance*100)/100
         var new_balance;
         if (userBalance == -1){
             new_balance = `<a href="#", onclick="window.location.reload();" class="text-danger">refresh</a>`
