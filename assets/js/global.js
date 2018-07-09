@@ -48,6 +48,12 @@ var xlmValue=0;
 var adaValue=0;
 var iotValue=0;
 var trxValue=0;
+var qtumValue=0;
+var etcValue=0;
+var dashValue=0;
+var neoValue=0;
+var xemValue=0;
+
 
 /******************* 语言 **********************/
 
@@ -718,6 +724,26 @@ function getPrice() {
             case "TRX":
                 showList(coin, trxValue)
                 trxValue = coin.price;
+                break;
+            case "XEM":
+                showList(coin, xemValue)
+                xemValue = coin.price;
+                break;
+            case "QTUM":
+                showList(coin, qtumValue)
+                qtumValue = coin.price;
+                break;
+            case "ETC":
+                showList(coin, etcValue)
+                etcValue = coin.price;
+                break;
+            case "DASH":
+                showList(coin, dashValue)
+                dashValue = coin.price;
+                break;
+            case "NEO":
+                showList(coin, neoValue)
+                neoValue = coin.price;
                 break;
             }
         }
