@@ -851,6 +851,25 @@ function showHome() {
     document.getElementById("wallet").style.display = 'none';
     document.getElementById("rank").style.display = 'none';
     document.getElementById('homeText').style.display = 'none'
+    document.getElementById("tutorial").style.display = 'none';
+    if(userBalance>0){
+        document.getElementById("want1").innerText = lan.alreadJoined
+        document.getElementById("want1").disabled = true;
+        document.getElementById("want2").innerText = lan.alreadJoined
+        document.getElementById("want2").disabled = true;
+    }
+    
+}
+
+function showTutorial() {
+    onTrade = 0;
+    document.getElementById("tutorial").style.display = 'inline';
+    document.getElementById("home").style.display = 'none';
+    document.getElementById("loading").style.display = 'none';
+    document.getElementById("trade").style.display = 'none';
+    document.getElementById("wallet").style.display = 'none';
+    document.getElementById("rank").style.display = 'none';
+    document.getElementById('homeText').style.display = 'none'
     if(userBalance>0){
         document.getElementById("want1").innerText = lan.alreadJoined
         document.getElementById("want1").disabled = true;
@@ -870,7 +889,8 @@ function showTrade() {
         document.getElementById("home").style.display = 'none';
         document.getElementById("wallet").style.display = 'none';
         document.getElementById("rank").style.display = 'none';
-        document.getElementById('homeText').style.display = 'none'
+        document.getElementById('homeText').style.display = 'none';
+        document.getElementById("tutorial").style.display = 'none';
     }
 }
 
@@ -884,7 +904,8 @@ function showWallet() {
         document.getElementById("home").style.display = 'none';
         document.getElementById("trade").style.display = 'none';
         document.getElementById("rank").style.display = 'none';
-        document.getElementById('homeText').style.display = 'none'
+        document.getElementById('homeText').style.display = 'none';
+        document.getElementById("tutorial").style.display = 'none';
     }
 }
 
@@ -896,6 +917,7 @@ function showRank() {
     document.getElementById("trade").style.display = 'none';
     document.getElementById("wallet").style.display = 'none';
     document.getElementById('homeText').style.display = 'none';
+    document.getElementById("tutorial").style.display = 'none';
     loadRank(0)
 }
 
