@@ -869,14 +869,7 @@ function showTutorial() {
     document.getElementById("trade").style.display = 'none';
     document.getElementById("wallet").style.display = 'none';
     document.getElementById("rank").style.display = 'none';
-    document.getElementById('homeText').style.display = 'none'
-    if(userBalance>0){
-        document.getElementById("want1").innerText = lan.alreadJoined
-        document.getElementById("want1").disabled = true;
-        document.getElementById("want2").innerText = lan.alreadJoined
-        document.getElementById("want2").disabled = true;
-    }
-    
+    document.getElementById('homeText').style.display = 'none'   
 }
 
 function showTrade() {
