@@ -651,7 +651,7 @@ function loadReward(){
     }).then(function (resp) {
         var balance =  JSON.parse(resp.result);
         awardPool = parseInt(balance)/1e18; 
-        document.getElementById("reward").innerText = awardPool
+        document.getElementById("reward").innerText =  parseFloat(awardPool).toFixed(3)
         console.log("奖池金额：" + awardPool.toString())
     }).catch(function(err) {
         console.log(err);
