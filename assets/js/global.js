@@ -79,10 +79,10 @@ var en = {
     fillIn: 'Please fill in an amount!',
     insufficientBalance: 'Your balance is not enough',
     insufficientCoin: 'Your Coin is not enough',
-    days: 'D',
-    hours: 'H',
-    minutes: 'M',
-    seconds: 'S'
+    days: 'days',
+    hours: 'hours',
+    minutes: 'minutes',
+    seconds: 'seconds'
 }
 
 var cn = {
