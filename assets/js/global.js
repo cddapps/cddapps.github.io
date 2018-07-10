@@ -1022,7 +1022,7 @@ $(function(){
 })
 
 /******************* 倒计时 **********************/
-var deadLine = "2018/07/10 24:00:00"
+var deadLine = "2018/07/20 24:00:00"
 var disposeTime = function(a){
     a = a || new Date().getTime() + 24*60*60*1000;
     var timeArr0 = a.split(' ');
@@ -1037,9 +1037,6 @@ let timer = setInterval(function() {
     const today = new Date().getTime();
     // get the difference
     const diff = newDeadLine - today;
-    while(diff<0){
-        diff = diff + 10*24*60*60*1000;
-    }
     // math
     let days = Math.floor(diff / (1000 * 60 * 60 * 24));
     let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
