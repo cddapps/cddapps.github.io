@@ -937,6 +937,9 @@ function showRank() {
     document.getElementById("wallet").style.display = 'none';
     document.getElementById('homeText').style.display = 'none';
     document.getElementById("tutorial").style.display = 'none';
+    document.getElementById("rewardPool").onclick = function(){
+        window.open(`https://explorer.nebulas.io/#/address/${dropAddress}`);
+    }
     loadRank(0)
 }
 
