@@ -135,7 +135,7 @@
                             <li>
                                 <div class="page-title-box">
                                     <h4 class="page-title"><span id="userAddress"></span> | <span id="register" class="text-muted" style="font-size: 14px"> 欢迎来到交易大赛</span><span id="userBalance" class="text-muted" style="font-size: 14px"></span></h4>
-                                    <div class="breadcrumb-item active"><span>本轮比赛倒计时: </span><span id="countDown" class="text-danger"></span></div>
+                                    <div class="breadcrumb-item active"><span>本轮比赛倒计时: </span><span id="countDown" class="text-danger"></span> | <span>本轮参与人数: </span><span id="playersAmount" class="text-danger"></span></div>
                                     <!--
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item active">本轮比赛倒计时: <span id="countDown" class="text-danger"></span></li>
@@ -387,8 +387,41 @@
 
                             <!-- rankPage -->
                             <div class="col-lg-8"  id="rank" style="display: none">
+                                <div class="row text-center">
+                                    <div class="col-sm-3 col-lg-3 col-xl-3">
+                                        <div class="card-box widget-flat border-custom bg-custom text-white">
+                                            <i class="fi-tag"></i>
+                                            <h3 class="m-b-10" id="round">1</h3>
+                                            <p class="text-uppercase m-b-5 font-13 font-600">比赛轮次</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-3 col-xl-3">
+                                        <a href="#myRankList" id="myRankHref">
+                                            <div class="card-box widget-flat border-success bg-success text-white">
+                                                <i class="fi-tag"></i>
+                                                <h3 class="m-b-10" id="myRank">2</h3>
+                                                <p class="text-uppercase m-b-5 font-13 font-600">我的排名</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-3 col-xl-3">
+                                        <div class="card-box bg-primary widget-flat border-primary text-white">
+                                            <i class="fi-tag"></i>
+                                            <h3 class="m-b-10" id="reward">0</h3>
+                                            <p class="text-uppercase m-b-5 font-13 font-600">奖池金额</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-3 col-xl-3">
+                                        <a href="#myRankList" id="myRankHref">
+                                            <div class="card-box bg-danger widget-flat border-danger text-white">
+                                                <i class="fi-tag"></i>
+                                                <h3 class="m-b-10" id="myReward">25563</h3>
+                                                <p class="text-uppercase m-b-5 font-13 font-600">我的奖金</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                                 <div class="card-box">
-                                    <h4 class="header-title m-t-0 m-b-30 text-center">第<span id="round"> </span>期比赛排行榜 | 奖金池金额: <span id="reward" class="text-success">0</span> NAS</h4>
                                     <ul class="nav nav-pills navtab-bg nav-justified pull-in ">
                                         <li class="nav-item">
                                             <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link active" onclick="loadRank(0)">

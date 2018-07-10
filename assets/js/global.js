@@ -23,6 +23,9 @@ var priceQuery;
 var awardPool = 40;
 var checkTime = 10;
 var loginTime = 5;
+var myRank=0;
+var myAward = 0;
+var totalPlayers = 0;
 
 var userAddress = "";
 var userLoaded = 0;
@@ -90,7 +93,7 @@ var cn = {
     change: '24小时涨跌幅：',
     trade: '交易',
     roundAlert: '本轮比赛还没有人报名，快来成为第一个吧！',
-    check: '正在查询报名结果，请稍等... ',
+    check: '正在查询交易结果，请稍等... ',
     success: '交易成功!',
     fail: '交易失败!',
     showHash: '您可以根据以下哈希，再次确认您的交易状态:',
@@ -173,7 +176,7 @@ function login() {
     document.getElementById('matchRule').style.display = 'none'
     document.getElementById('homeText').style.display = ''
     document.getElementById("tradeAlert").innerHTML = `
-    <h3 class="m-b-20 text-center">Please complete the trade in Nebulas Wallet.</h4>
+    <h3 class="m-b-20 text-center">${lan.wallet}</h4>
     <p></p>`
     var to = contractAddress;
     var value = 0;
@@ -190,7 +193,7 @@ function login() {
             openExtension: true //是否支持插件调用
         },
         mobile: {
-            showInstallTip: false, //是否支持手机钱包安装提示
+            showInstallTip: true, //是否支持手机钱包安装提示
             installTip: undefined // 手机钱包安装提示
         },
         listener: function (serialNumber,result) {
@@ -407,7 +410,8 @@ function tradeQuery(txhash) {
 function start(){
 
     loadInfo();
-    loadReward()
+    loadReward();
+    loadRank(0);
     if (!userAddress){
         userAddress = localStorage.getItem('userAddress');
     }
@@ -454,6 +458,7 @@ function loadAccount() {
                             userBalance = -1;
                             document.getElementById("register").innerText = lan.joinAlert;
                             showHome();
+                            userLoaded = 1;
                         }
                     } else {
                         loginTime = 5;
@@ -519,6 +524,7 @@ function loadRank(round) {
                     document.getElementById('lastRank').onclick = function(){loadRank(lastRound)}
                 }
                 console.log(userList)
+                totalPlayers = userList.length;
                 var finalList = new Array()
                 for (var u of userList){
                     if(u.balance != 10000){
@@ -531,6 +537,11 @@ function loadRank(round) {
                     return n2-n1; 
                 });
                 console.log(finalList)
+                if(userBalance == 10000){
+                    document.getElementById("myRankHref").href = '#'
+                } else {
+                    document.getElementById("myRankHref").href = '#myRankList'
+                }
                 document.getElementById('rankWave').style.display = 'none';
                 document.getElementById('rankTable').style.display = '';
                 for (var j=0;j<finalList.length;j++){
@@ -567,8 +578,23 @@ function loadRank(round) {
                         <td>${rate}%</td>
                         <td>${award}NAS</td>
                     </tr>`
+                    if (user.address == userAddress){
+                        myRank = i;
+                        myAward = award;
+                        var html = `
+                        <tr id="myRankList" class="text-danger">
+                            <td>${user.address}</td>
+                            <td>${i}</td>
+                            <td>${Math.floor(user.balance*100)/100}</td>
+                            <td>${rate}%</td>
+                            <td>${award}NAS</td>
+                        </tr>`
+                    }
                     document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
                 }
+                document.getElementById("myRank").innerText = myRank;
+                document.getElementById("myReward").innerText = myAward;
+                document.getElementById('playersAmount').innerText = totalPlayers;
                 
             }
             console.log('loaded rank')
