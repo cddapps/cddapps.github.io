@@ -444,7 +444,7 @@ function loadAccount() {
             getUserAddress().then(function(data){
                 console.log(userAddress)
                 localStorage.setItem('userAddress', userAddress);
-                document.getElementById("userAddress").innerText = userAddress;
+                document.getElementById("userAddress").innerText = `${userAddress} | `;
                 console.log('loading accountInfo')
                 neb.api.call({
                     chainID: chainId,
