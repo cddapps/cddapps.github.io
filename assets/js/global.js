@@ -83,7 +83,9 @@ var en = {
     days: 'days',
     hours: 'hours',
     minutes: 'minutes',
-    seconds: 'seconds'
+    seconds: 'seconds',
+    countdown: 'Contest Countdown: ',
+    participants: 'Participants: '
 }
 
 var cn = {
@@ -108,7 +110,9 @@ var cn = {
     days: '天',
     hours: '小时',
     minutes: '分钟',
-    seconds: '秒'
+    seconds: '秒',
+    countdown: '本轮比赛倒计时: ',
+    participants: '本轮参与人数: '
 }
 var lan;
 
@@ -409,7 +413,12 @@ function tradeQuery(txhash) {
 }
 
 function start(){
-
+    if (IsPC()){
+        document.getElementById("CP").innerHTML = `<span>${lan.countdown}</span><span id="countDown" class="text-danger"></span> | <span>${lan.participants}</span><span id="playersAmount" class="text-danger"></span>`
+    } else {
+        document.getElementById("CP").innerHTML = `<span id="countDown" class="text-danger"></span> <br> <span>${lan.participants}</span><span id="playersAmount" class="text-danger"></span>`
+    }
+    
     loadInfo();
     loadReward();
     loadRank(0);
