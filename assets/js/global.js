@@ -611,7 +611,9 @@ function loadRank(round) {
                     } else {
                         document.getElementById('round').innerHTML = "2"
                     }
-                    document.getElementById('playersAmount').innerText = totalPlayers;
+                    if(IsPC()){
+                        document.getElementById('playersAmount').innerText = totalPlayers;
+                    }  
                 } else {
                     document.getElementById('round').innerHTML = `${round}`
                 }
