@@ -557,6 +557,7 @@ function loadRank(round) {
                 if(round){
                     userCount = 350;
                 }
+                myRank = 0;
                 for (var j=0;j<finalList.length;j++){
                     var user = finalList[j];
                     var i = j+1;
