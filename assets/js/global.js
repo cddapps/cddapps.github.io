@@ -20,7 +20,8 @@ var mQuery;
 var intervalQuery;
 var accountQuery;
 var priceQuery;
-var awardPool = 40;
+var reward = 0;
+var lastReward = 50.673
 var checkTime = 10;
 var loginTime = 5;
 var myRank=0;
@@ -487,6 +488,7 @@ function loadRank(round) {
     document.getElementById("rankList").innerHTML = ''
     document.getElementById('rankWave').style.display = '';
     document.getElementById('rankTable').style.display = 'none';
+    var awardPool;
     if (isNaN(parseInt(round))){
         alert("Please fill in correct round！")
     } else {
@@ -495,10 +497,12 @@ function loadRank(round) {
             if (matchRound){
                 document.getElementById('round').innerHTML = `${matchRound}`
             } else {
-                document.getElementById('round').innerHTML = "1"
+                document.getElementById('round').innerHTML = "2"
             }
+            awardPool = reward;
         } else {
             document.getElementById('round').innerHTML = `${round}`
+            awardPool = lastReward;
         }
         neb.api.call({
             chainID: chainId,
@@ -592,6 +596,7 @@ function loadRank(round) {
                     }
                     document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
                 }
+                document.getElementById("reward").innerText =  parseFloat(awardPool).toFixed(3)
                 document.getElementById("myRank").innerText = myRank;
                 document.getElementById("myReward").innerText = myAward;
                 document.getElementById('playersAmount').innerText = totalPlayers;
@@ -650,9 +655,9 @@ function loadReward(){
         }
     }).then(function (resp) {
         var balance =  JSON.parse(resp.result);
-        awardPool = parseInt(balance)/1e18; 
-        document.getElementById("reward").innerText =  parseFloat(awardPool).toFixed(3)
-        console.log("奖池金额：" + awardPool.toString())
+        reward = parseInt(balance)/1e18; 
+        document.getElementById("reward").innerText =  parseFloat(reward).toFixed(3)
+        console.log("奖池金额：" + reward.toString())
     }).catch(function(err) {
         console.log(err);
         loadReward()
