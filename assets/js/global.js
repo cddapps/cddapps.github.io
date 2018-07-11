@@ -552,7 +552,7 @@ function loadRank(round) {
                 if(round){
                     userCount = 350;
                 }
-                for (var j=0;j<userCount;j++){
+                for (var j=0;j<finalList.length;j++){
                     var user = finalList[j];
                     var i = j+1;
                     var rate = Math.floor(user.balance-10000)/100;
@@ -598,7 +598,9 @@ function loadRank(round) {
                             <td>${award}NAS</td>
                         </tr>`
                     }
-                    document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
+                    if(j<userCount){
+                        document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
+                    } 
                 }
                 document.getElementById("reward").innerText =  parseFloat(awardPool).toFixed(3)
                 document.getElementById("myRank").innerText = myRank;
