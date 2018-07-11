@@ -80,10 +80,10 @@ var en = {
     fillIn: 'Please fill in an amount!',
     insufficientBalance: 'Your balance is not enough',
     insufficientCoin: 'Your Coin is not enough',
-    days: 'days',
-    hours: 'hours',
-    minutes: 'minutes',
-    seconds: 'seconds',
+    days: 'D',
+    hours: 'H',
+    minutes: 'M',
+    seconds: 'S',
     countdown: 'Contest Countdown: ',
     participants: 'Participants: '
 }
@@ -416,7 +416,7 @@ function start(){
     if (IsPC()){
         document.getElementById("CP").innerHTML = `<span>${lan.countdown}</span><span id="countDown" class="text-danger"></span> | <span>${lan.participants}</span><span id="playersAmount" class="text-danger"></span>`
     } else {
-        document.getElementById("CP").innerHTML = `<span id="countDown" class="text-danger"></span> <br> <span>${lan.participants}</span><span id="playersAmount" class="text-danger"></span>`
+        document.getElementById("CP").innerHTML = `<span id="countDown" class="text-danger"></span>`
     }
     
     loadInfo();
@@ -503,14 +503,8 @@ function loadRank(round) {
     } else {
         console.log('loading rank')
         if (!round){
-            if (matchRound){
-                document.getElementById('round').innerHTML = `${matchRound}`
-            } else {
-                document.getElementById('round').innerHTML = "2"
-            }
             awardPool = reward;
         } else {
-            document.getElementById('round').innerHTML = `${round}`
             awardPool = lastReward;
         }
         neb.api.call({
@@ -611,10 +605,20 @@ function loadRank(round) {
                         document.getElementById("rankList").insertAdjacentHTML('beforeend', html);
                     } 
                 }
+                if (!round){
+                    if (matchRound){
+                        document.getElementById('round').innerHTML = `${matchRound}`
+                    } else {
+                        document.getElementById('round').innerHTML = "2"
+                    }
+                    document.getElementById('playersAmount').innerText = totalPlayers;
+                } else {
+                    document.getElementById('round').innerHTML = `${round}`
+                }
                 document.getElementById("reward").innerText =  parseFloat(awardPool).toFixed(3)
                 document.getElementById("myRank").innerText = myRank;
-                document.getElementById("myReward").innerText = myAward;
-                document.getElementById('playersAmount').innerText = totalPlayers;
+                //document.getElementById("myReward").innerText = myAward;
+                document.getElementById('playersAmount1').innerText = totalPlayers;
                 
             }
             console.log('loaded rank')
