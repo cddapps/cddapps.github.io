@@ -678,9 +678,14 @@ function loadReward(){
         }
     }).then(function (resp) {
         var balance =  JSON.parse(resp.result);
-        reward = parseInt(balance)/1e18; 
-        document.getElementById("reward").innerText =  parseFloat(reward).toFixed(3)
-        console.log("奖池金额：" + reward.toString())
+        var value = parseInt(balance)/1e18;
+        if(!isNaN(value)){
+            reward = value;
+            document.getElementById("reward").innerText =  parseFloat(reward).toFixed(3)
+            console.log("奖池金额：" + reward.toString())
+        } else {
+            loadReward()
+        }
     }).catch(function(err) {
         console.log(err);
         loadReward()
