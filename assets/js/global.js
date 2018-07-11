@@ -62,7 +62,7 @@ var xemValue=0;
 /******************* 语言 **********************/
 
 var en = {
-    joinAlert: 'Please click "Join" to take part in contest.',
+    joinAlert: 'Please join the contest, or refresh this page if you have joined.',
     alreadJoined: 'Already Joined',
     balance: 'Balance:$ ',
     coin: 'Coin: ',
@@ -89,7 +89,7 @@ var en = {
 }
 
 var cn = {
-    joinAlert: '请先点击"我要报名"，参加本轮比赛',
+    joinAlert: '请先报名参赛，如果您已报名，请刷新页面',
     alreadJoined: '已经报名',
     balance: '余额：$ ',
     coin: '币数: ',
