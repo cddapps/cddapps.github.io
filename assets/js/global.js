@@ -548,7 +548,11 @@ function loadRank(round) {
                 }
                 document.getElementById('rankWave').style.display = 'none';
                 document.getElementById('rankTable').style.display = '';
-                for (var j=0;j<finalList.length;j++){
+                var userCount = finalList.length;
+                if(round){
+                    userCount = 350;
+                }
+                for (var j=0;j<userCount;j++){
                     var user = finalList[j];
                     var i = j+1;
                     var rate = Math.floor(user.balance-10000)/100;
