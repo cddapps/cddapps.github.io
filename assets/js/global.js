@@ -119,8 +119,10 @@ var lan;
 var lanValue = document.getElementById("lan").value
 if(lanValue == 1){
     lan = en;
+    document.getElementById("walletLink1").href = "https://nano.nebulas.io/index_en.html"
 } else if(lanValue == 2) {
     lan = cn
+    document.getElementById("walletLink2").href = "https://nano.nebulas.io/index.html"
 }
 
 /******************* 语言 **********************/
