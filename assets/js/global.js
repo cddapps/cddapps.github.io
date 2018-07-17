@@ -85,7 +85,8 @@ var en = {
     minutes: 'M',
     seconds: 'S',
     countdown: 'Contest Countdown: ',
-    participants: 'Participants: '
+    participants: 'Participants: ',
+    gasLimit: "Please increase your GAS Limit to 2000000 in your WebWallet if the error is 'insufficient gas'."
 }
 
 var cn = {
@@ -112,7 +113,8 @@ var cn = {
     minutes: '分钟',
     seconds: '秒',
     countdown: '本轮比赛倒计时: ',
-    participants: '本轮参与人数: '
+    participants: '本轮参与人数: ',
+    gasLimit: "如果失败原因是：insufficient gas，请在浏览器插件中将gas限制改为2000000"
 }
 var lan;
 
@@ -395,13 +397,15 @@ function tradeQuery(txhash) {
             <h3 class="m-b-20 text-center">${lan.fail}</h3>
             <p class="text-center">${lan.showHash}</p>
             <p class="text-center">${txhash}</p>
+            <p class="text-center">${lan.gasLimit}</p>
             <a class="btn btn-block btn-custom waves-effect waves-light" 
             onclick="document.getElementById('tradeText').style.display = 'none';document.getElementById('warning').style.display = '';">
                 ${lan.ok}
             </a>`
+            
         }
     }).catch(function(err){
-        console.log("fail")
+        console.log(err)
         clearInterval(intervalQuery);
         document.getElementById("tradeAlert2").innerHTML = `
         <h3 class="m-b-20 text-center">${lan.fail}</h3>
@@ -912,7 +916,7 @@ function showHome() {
     document.getElementById("rank").style.display = 'none';
     document.getElementById('homeText').style.display = 'none'
     document.getElementById("tutorial").style.display = 'none';
-    if(userBalance>0){
+    if(register){
         document.getElementById("want1").innerText = lan.alreadJoined
         document.getElementById("want1").disabled = true;
         document.getElementById("want2").innerText = lan.alreadJoined
