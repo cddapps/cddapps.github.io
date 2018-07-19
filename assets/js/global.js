@@ -192,6 +192,8 @@ function login() {
     var callFunction = "register";
     var callArgs =  JSON.stringify([]);
     var options = {
+        gasLimit: "2000000",
+	    gasPrice: "1000000",
         qrcode: {
             showQRCode: false,      //是否显示二维码信息
             container: undefined,    //指定显示二维码的canvas容器，不指定则生成一个默认canvas
@@ -284,6 +286,8 @@ function buy(){
         var callFunction = "buyCoin";
         var callArgs =  JSON.stringify([currentCoin, count]);
         var options = {
+            gasLimit: "2000000",
+	        gasPrice: "1000000",
             qrcode: {
                 showQRCode: false,      //是否显示二维码信息
                 container: undefined,    //指定显示二维码的canvas容器，不指定则生成一个默认canvas
@@ -337,6 +341,8 @@ function sell(){
         var callFunction = "sellCoin";
         var callArgs =  JSON.stringify([currentCoin, count]);
         var options = {
+            gasLimit: "2000000",
+	        gasPrice: "1000000",
             qrcode: {
                 showQRCode: false,      //是否显示二维码信息
                 container: undefined,    //指定显示二维码的canvas容器，不指定则生成一个默认canvas
