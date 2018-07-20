@@ -560,7 +560,10 @@ function loadRank(round) {
                 if(userBalance == 10000){
                     document.getElementById("myRankHref").href = '#'
                 } else {
-                    document.getElementById("myRankHref").href = '#myRankList'
+                    // document.getElementById("myRankHref").href = '#myRankList'
+                    document.getElementById("myRankHref").onclick = function(){
+                        window.scrollTo(0, document.getElementById('myRankList').offsetTop-200)
+                    }
                 }
                 document.getElementById('rankWave').style.display = 'none';
                 document.getElementById('rankTable').style.display = '';
