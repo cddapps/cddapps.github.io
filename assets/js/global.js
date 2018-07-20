@@ -21,7 +21,7 @@ var intervalQuery;
 var accountQuery;
 var priceQuery;
 var reward = 0;
-var lastReward = 50.673
+var lastReward = 101.155
 var checkTime = 10;
 var loginTime = 5;
 var myRank=0;
@@ -1066,7 +1066,7 @@ $(function(){
 })
 
 /******************* 倒计时 **********************/
-var deadLine = "2018/07/20 24:00:00"
+var deadLine = "2018/07/30 24:00:00"
 var disposeTime = function(a){
     a = a || new Date().getTime() + 24*60*60*1000;
     var timeArr0 = a.split(' ');
