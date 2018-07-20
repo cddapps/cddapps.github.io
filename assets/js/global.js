@@ -21,7 +21,7 @@ var intervalQuery;
 var accountQuery;
 var priceQuery;
 var reward = 0;
-var lastReward = 101.155
+var lastReward = 100
 var checkTime = 10;
 var loginTime = 5;
 var myRank=0;
