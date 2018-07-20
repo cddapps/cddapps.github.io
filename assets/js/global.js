@@ -21,7 +21,6 @@ var intervalQuery;
 var accountQuery;
 var priceQuery;
 var reward = 0;
-var lastReward = 100
 var checkTime = 10;
 var loginTime = 5;
 var myRank=0;
@@ -38,8 +37,6 @@ var register = 0;
 var currentPrice;
 var currentCoin;
 var onTrade=0;
-var matchRound=0;
-var lastRound=0;
 var firstLoad=0;
 
 var btcValue=0;
@@ -57,7 +54,11 @@ var etcValue=0;
 var dashValue=0;
 var neoValue=0;
 var xemValue=0;
-
+/******************* 比赛换期时需要更改的数据 **********************/
+var lastReward = 100  //上期奖金
+var deadLine = "2018/07/30 24:00:00"  // 本期比赛结束日期
+var matchRound=3;
+var lastRound=2;
 
 /******************* 语言 **********************/
 
@@ -1066,7 +1067,6 @@ $(function(){
 })
 
 /******************* 倒计时 **********************/
-var deadLine = "2018/07/30 24:00:00"
 var disposeTime = function(a){
     a = a || new Date().getTime() + 24*60*60*1000;
     var timeArr0 = a.split(' ');
