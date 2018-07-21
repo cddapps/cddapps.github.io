@@ -562,7 +562,7 @@ function loadRank(round) {
                 } else {
                     // document.getElementById("myRankHref").href = '#myRankList'
                     document.getElementById("myRankHref").onclick = function(){
-                        window.scrollTo(0, document.getElementById('myRankList').offsetTop-200)
+                        window.scrollTo(0, document.getElementById('myRankList').offsetTop-400)
                     }
                 }
                 document.getElementById('rankWave').style.display = 'none';
