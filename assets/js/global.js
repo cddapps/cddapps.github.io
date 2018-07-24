@@ -435,15 +435,14 @@ function start(){
     loadInfo();
     loadReward();
     loadRank(0);
-    if (!userAddress){
-        userAddress = localStorage.getItem('userAddress');
-    }
-    if (IsPC() || userAddress) {
+    getPrice();
+    // if (!userAddress){
+    //     userAddress = localStorage.getItem('userAddress');
+    // }
+    if (IsPC() || localStorage.getItem('userAddress')) {
         accountQuery = setInterval(function() {
             loadAccount().then(function(data){
-                if (data != ""){
                     getPrice();
-                } 
             });
         }, 1000)
     } else {
@@ -1031,7 +1030,7 @@ function getUserAddress() {
                 } else {
                     console.log("没有检测到插件")
                     checkTime = checkTime - 1
-                    if (checkTime < 0 && !userAddress){
+                    if (checkTime <= 0){
                         checkTime = 10;
                         showHome();
                         userLoaded = 1
@@ -1040,7 +1039,8 @@ function getUserAddress() {
                 }
             })
         } else {
-            resolve(userAddress)
+            userAddress = localStorage.getItem('userAddress');
+            resolve(userAddress);
         }
     })
 }
