@@ -55,10 +55,10 @@ var dashValue=0;
 var neoValue=0;
 var xemValue=0;
 /******************* 比赛换期时需要更改的数据 **********************/
-var lastReward = 100  //上期奖金
-var deadLine = "2018/07/30 24:00:00"  // 本期比赛结束日期
-var matchRound=3;
-var lastRound=2;
+var lastReward = 60  //上期奖金
+var deadLine = "2018/08/09 24:00:00"  // 本期比赛结束日期
+var matchRound=4;
+var lastRound=3;
 
 /******************* 语言 **********************/
 
