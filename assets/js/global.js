@@ -21,7 +21,7 @@ var intervalQuery;
 var accountQuery;
 var priceQuery;
 var reward = 0;
-var checkTime = 10;
+var checkTime = 20;
 var loginTime = 5;
 var myRank=0;
 var myAward = 0;
@@ -1025,13 +1025,13 @@ function getUserAddress() {
             window.addEventListener('message', function(e) {
                 if (e.data && e.data.data && e.data.data.account) {
                     userAddress = e.data.data.account;
-                    checkTime = 10;
+                    checkTime = 20;
                     resolve(userAddress)
                 } else {
                     console.log("没有检测到插件")
                     checkTime = checkTime - 1
                     if (checkTime <= 0){
-                        checkTime = 10;
+                        checkTime = 20;
                         showHome();
                         userLoaded = 1
                         resolve(userAddress) 
