@@ -56,9 +56,9 @@ var neoValue=0;
 var xemValue=0;
 /******************* 比赛换期时需要更改的数据 **********************/
 var lastReward = 50  //上期奖金
-var deadLine = "2018/08/19 24:00:00"  // 本期比赛结束日期
-var matchRound=5;
-var lastRound=4;
+var deadLine = "2018/08/29 24:00:00"  // 本期比赛结束日期
+var matchRound=6;
+var lastRound=5;
 
 /******************* 语言 **********************/
 
